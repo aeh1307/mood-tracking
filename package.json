@@ -1,0 +1,23 @@
+{
+  "name": "mood-tracking",
+  "version": "1.0.0",
+  "description": "My glorious Nuxt.js project",
+  "author": "aeh1307",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "swiper": "^5.3.8",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue2-touch-events": "^2.2.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
