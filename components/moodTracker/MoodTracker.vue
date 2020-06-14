@@ -27,13 +27,14 @@
      <div>
        <!--TODO: change from touchhold to longtap when the new version is out-->
        <swiper class="innerCircle active:interval" ref="mySwiper" :options="swiperOptions">
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji tenseNervousEmoji">fas fa-frown-open {{count}}</v-icon></swiper-slide>
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon></swiper-slide>
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon></swiper-slide>
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji cheerfulHappyEmoji">fas fa-laugh-beam</v-icon></swiper-slide>
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji boredWearyEmoji">fas fa-meh</v-icon></swiper-slide>
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji gloomySadEmoji">fas fa-frown</v-icon></swiper-slide>
-         <swiper-slide><v-icon @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop" class="emoji relaxedCalmEmoji">fas fa-smile-beam</v-icon></swiper-slide>
+<!--         <swiper-slide><div @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="swipeContainer"><v-icon class="swipeArrow">fas fa-angle-double-left</v-icon><v-icon class="swipeArrow">fas fa-angle-double-right</v-icon></div></swiper-slide>-->
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji tenseNervousEmoji">fas fa-frown-open {{count}}</v-icon></swiper-slide>
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon></swiper-slide>
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon></swiper-slide>
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji cheerfulHappyEmoji">fas fa-laugh-beam</v-icon></swiper-slide>
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji boredWearyEmoji">fas fa-meh</v-icon></swiper-slide>
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji gloomySadEmoji">fas fa-frown</v-icon></swiper-slide>
+         <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji relaxedCalmEmoji">fas fa-smile-beam</v-icon></swiper-slide>
        </swiper>
      </div>
     </div>
@@ -42,127 +43,143 @@
 </template>
 
 <script>
+
   export default {
-    name: 'moodTracker',
+    name: "MoodTracker.vue",
     data() {
       return {
         swiperOptions: {
-          loop: true,
-          // Some Swiper option/callback...
+          loop: false,
+          spaceBetween: 15,
+          slidesPerView: 1,
         },
         interval: false,
         count: 0,
       }
     },
     computed: {
+      swipeElement: {
+        get() {return this.$store.getters['moodtracker/swipeElement']}
+      },
+   /*   count: {
+        get() {return this.$store.getters['moodtracker/count']}
+      },*/
+     /* interval: {
+        get() {return this.$store.getters['moodtracker/interval']}
+      },*/
       swiper() {
         return this.$refs.mySwiper.$swiper
+      },
+
+    },
+    watch: {
+      count: function (val) {
+        this.$store.commit('moodtracker/setSwipeElement', this.swiper.realIndex)
+        let color;
+        let classSelector;
+        let emoji;
+        let node = document.getElementsByTagName("LI");
+
+
+        if(this.swipeElement === 0){
+          color = '#3CBB75';
+          classSelector = '.tenseNervousEmoji';
+        }
+        if(this.swipeElement === 1){
+          color = '#DE6465';
+          classSelector = '.irritatedAnnoyedEmoji';
+        }
+        if(this.swipeElement === 2){
+          color = '#EB7955';
+          classSelector = '.excitedLivelyEmoji';
+        }
+        if(this.swipeElement === 3){
+          color = '#F7CB50';
+          classSelector = '.cheerfulHappyEmoji';
+        }
+        if(this.swipeElement === 4){
+          color = '#8B42CC';
+          classSelector = '.boredWearyEmoji';
+        }
+        if(this.swipeElement === 5){
+          color = '#3D3D3D';
+          classSelector = '.gloomySadEmoji';
+        }
+        if(this.swipeElement === 6){
+          color = '#425CCC';
+          classSelector = '.relaxedCalmEmoji';
+        }
+        emoji = document.querySelector(classSelector);
+
+        if(val === 0){
+          node[0].firstChild.style.background = 'white';
+          node[1].firstChild.style.background = 'white';
+          node[2].firstChild.style.background = 'white';
+          node[3].firstChild.style.background = 'white';
+          node[4].firstChild.style.background = 'white';
+          node[5].firstChild.style.background = 'white';
+          node[6].firstChild.style.background = 'white';
+        }
+
+        if(val >= 3){
+          node[0].firstChild.style.background = color;
+          emoji.style.border = `2px solid ${color}`;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 1)
+        }
+        if(val >= 8){
+          node[1].firstChild.style.background = color;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 2)
+        }
+        if(val >= 13){
+          node[2].firstChild.style.background = color;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 3)
+        }
+        if(val >= 18){
+          node[3].firstChild.style.background = color;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 4)
+        }
+        if(val >= 23){
+          node[4].firstChild.style.background = color;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 5)
+        }
+        if(val >= 28){
+          node[5].firstChild.style.background = color;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 6)
+        }
+        if(val >= 33){
+          node[6].firstChild.style.background = color;
+          this.$store.commit('moodtracker/setDegreeOfEmotion', 7)
+        }
       }
     },
     mounted() {
-      console.log('Current Swiper instance object', this.swiper)
+      this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.swiper.slideTo(3, 1000, false)
+      this.swiper.on('slideChange', function (store){
+        store.commit('moodtracker/setShowConfirmationBubble', false)
+      }.bind(null, this.$store));
     },
     methods: {
-      start(){
+      startCounter(){
+        this.count = 0
         if(!this.interval){
-          this.interval = setInterval(() => this.count++, 30)
-          console.log("Start", this.interval)
+         this.interval = setInterval(() => this.count++, 0)
         }
       },
       stop(){
-        console.log("Stop", this.interval)
+        if(this.count >= 3){
+          this.$store.commit('moodtracker/setShowConfirmationBubble', true)
+        }else{
+          this.$store.commit('moodtracker/setShowConfirmationBubble', false)
+        }
         clearInterval(this.interval)
         this.interval = false
       },
-
-     /* mouseDownHandler (){
-        console.log("touch")
-      /!*  // Define variable
-        let pressTimer = null
-
-        // Define funtion handlers
-        // Create timeout ( run function after 1s )
-        let start = (e) => {
-
-          if (e.type === 'click' && e.button !== 0) {
-            return;
-          }
-
-          if (pressTimer === null) {
-            pressTimer = setTimeout(() => {
-              // Execute something !!!
-            }, 1000)
-          }
-        }
-
-        // Cancel Timeout
-        let cancel = (e) => {
-          // Check if timer has a value or not
-          if (pressTimer !== null) {
-            clearTimeout(pressTimer)
-            pressTimer = null
-          }
-        }*!/
-        /!* console.log('Element: ', el.addEventListener("mousedown", start));*!/
-        /!*
-        // Add Event listeners
-        el.addEventListener("mousedown", start);
-        // Cancel timeouts if this events happen
-        el.addEventListener("click", cancel);
-        el.addEventListener("mouseout", cancel);*!/
-        /!*     }
-*!/
-
-       /!* console.log('test');
-        let node = document.getElementsByTagName("LI");
-        /!*Fin timer function for hold.... now it just a timer that get triggered if the user holds for a while
-        * so it will complete the coloring regardless of when the user stops holding*!/
-        /!*touchHoldTolerance default 400 millisecond The timeout for a touchhold event.*!/
-        /!*Style color on elements according to timer*!/
-        setInterval(firstDegree, 500);
-        setInterval(secondDegree, 1000);
-        setInterval(thirdDegree, 1500);
-        setInterval(fourthDegree, 2000);
-        setInterval(fifthDegree, 2500);
-        setInterval(sixthDegree, 3000);
-        setInterval(seventhDegree, 3500);
-
-        function firstDegree() {
-          node[0].firstChild.style.background = '#3CBB75';
-        }
-
-        function secondDegree() {
-          node[1].firstChild.style.background = '#3CBB75';
-        }
-
-        function thirdDegree() {
-          node[2].firstChild.style.background = '#3CBB75';
-        }
-
-        function fourthDegree() {
-          node[3].firstChild.style.background = '#3CBB75';
-        }
-
-        function fifthDegree() {
-          node[4].firstChild.style.background = '#3CBB75';
-        }
-
-        function sixthDegree() {
-          node[5].firstChild.style.background = '#3CBB75';
-        }
-
-        function seventhDegree() {
-          node[6].firstChild.style.background = '#3CBB75';
-        }*!/
-      },
-      mouseUpHandler: function(){
-        console.log("released")
-      }*/
     }
   }
 
 </script>
+
 
 <style scoped>
   .moodTracker {
@@ -177,8 +194,6 @@
    width: 100px;
    height: 100px;
    border-radius: 50%;
-   /*background-color: rgb(42 106 170);*/
-   /*background-color: darkgrey;*/
    list-style: none;
    overflow: hidden;
  }
@@ -269,10 +284,36 @@
     left: 7%;
   }
 
+  .swiperSlides {
+    display: flex;
+    justify-content: center;
+  }
+
   .emoji {
     font-size: 70px;
-    left: 9%;
-    top: 9%;
+    position: relative;
+    overflow-y: visible;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    justify-content: center;
+    align-self: center;
+  }
+
+  .swipeContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .swipeArrow {
+    font-size: 30px;
+    padding-top: 30%;
+    padding-left: 13px;
+    padding-right: 13px;
+    display: flex;
+    align-self: center;
+
   }
 
   .tenseNervousEmoji {

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import MoodTracker from "@/components/moodTracker/MoodTracker";
+  import MoodTracker from "../moodTracker/MoodTracker";
   import EmojiDescription from "../emojiDescription/EmojiDescription";
     export default {
         name: "MainMenu.vue",
@@ -52,7 +52,7 @@
   }
   .iconCaption {
     font-family: 'Manrope', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .lifekeys{
@@ -65,4 +65,5 @@
     color: #F5F5F5;
     font-size: 35px;
   }
+
 </style>

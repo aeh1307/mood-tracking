@@ -19,7 +19,6 @@
   }
   .marker {
     font-size: 40px;
-    /* Bored and wary: color: #8a2be2;*/
     color: #3e3e3e;
     position: fixed;
     margin-top: 37vh;

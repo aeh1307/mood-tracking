@@ -1,18 +1,53 @@
 export const state = () => ({
-  showConfirmationBubble: Boolean
+  showConfirmationBubble: false,
+  showFeedbackBubble: false,
+  swipeElement: 3,
+/*  count: 0,*/
+  emojiDescription: 'Cheerful/Happy',
+  degreeOfEmotion: 0,
 })
 
-export const mutations = {
-  add (state, text) {
-    state.list.push({
-      text,
-      done: false
-    })
+export const getters = {
+  showConfirmationBubble: state => {
+    return state.showConfirmationBubble
   },
-  remove (state, { todo }) {
-    state.list.splice(state.list.indexOf(todo), 1)
+  showFeedbackBubble: state => {
+    return state.showFeedbackBubble
   },
-  toggle (state, todo) {
-    todo.done = !todo.done
+  swipeElement: state => {
+    return state.swipeElement
+  },
+/*  count: state => {
+    return state.count
+  },*/
+  emojiDescription: state => {
+    return state.emojiDescription
+  },
+  degreeOfEmotion: state => {
+    return state.degreeOfEmotion
   }
+}
+
+export const mutations = {
+  setShowConfirmationBubble (state, boolean) {
+      state.showConfirmationBubble = boolean
+  },
+  setShowFeedbackBubble (state, boolean) {
+    state.showFeedbackBubble = boolean
+  },
+  setSwipeElement (state, number) {
+    state.swipeElement = number
+  },
+/*  setCount (state, number) {
+    state.swipeElement = number
+  },*/
+/*  incrementCount (state){
+    state.count++
+  },*/
+  setEmojiDescription (state, string) {
+    state.emojiDescription = string
+  },
+  setDegreeOfEmotion (state, number) {
+    state.degreeOfEmotion = number
+  },
 }

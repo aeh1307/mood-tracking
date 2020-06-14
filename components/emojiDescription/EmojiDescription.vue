@@ -1,20 +1,48 @@
 <template>
   <div class="container">
     <div class="emojiDescription">
-      <!--<span class="captionText">Tense/Nervous</span>-->
-     <!-- <span class="captionText">Irritated/Annoyed</span>-->
-     <!-- <span class="captionText">Excited/Lively</span>-->
-      <span class="captionText">Cheerful/Happy</span>
-     <!-- <span class="captionText">Bored/Weary</span>-->
-      <!--<span class="captionText">Gloomy/Sad</span>-->
-      <!--<span class="captionText">Relaxed/Calm</span>-->
+      <span class="captionText">{{this.emojiDescription}}</span>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "EmojiDescription.vue"
+    name: "EmojiDescription.vue",
+    computed: {
+      swipeElement: {
+        get() { return this.$store.getters['moodtracker/swipeElement']}
+      },
+      emojiDescription: {
+        get() {return this.$store.getters['moodtracker/emojiDescription']}
+      }
+    },
+    watch: {
+      swipeElement: function () {
+        if(this.swipeElement === 0){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous')
+        }
+        if(this.swipeElement === 1){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed')
+        }
+        if(this.swipeElement === 2){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively')
+        }
+        if(this.swipeElement === 3){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy')
+        }
+        if(this.swipeElement === 4){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary')
+        }
+        if(this.swipeElement === 5){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad')
+        }
+        if(this.swipeElement === 6){
+          this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm')
+        }
+
+      }
+    },
   }
 
 </script>
@@ -28,7 +56,7 @@
   .emojiDescription {
     position: fixed;
     bottom: 0;
-    width: 150px;
+    width: 160px;
     text-align: center;
     padding: 5px 0;
     align-self: center;

@@ -7,10 +7,9 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
         <div class="menuOptions">
-          <a href="">Customize background photo</a>
           <a href="">Profile settings</a>
-          <a href="">[ Third menu option]</a>
-          <a href="">[ Fourth menu option]</a>
+          <a href="">General settings</a>
+          <a href="">Customize Background Photo</a>
         </div>
       </div>
     </div>
