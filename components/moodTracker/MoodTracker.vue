@@ -54,16 +54,16 @@
           slidesPerView: 1,
         },
         interval: false,
-        count: 0,
+    /*    count: 0,*/
       }
     },
     computed: {
       swipeElement: {
         get() {return this.$store.getters['moodtracker/swipeElement']}
       },
-   /*   count: {
+      count: {
         get() {return this.$store.getters['moodtracker/count']}
-      },*/
+      },
      /* interval: {
         get() {return this.$store.getters['moodtracker/interval']}
       },*/
@@ -157,13 +157,14 @@
       this.swiper.slideTo(3, 1000, false)
       this.swiper.on('slideChange', function (store){
         store.commit('moodtracker/setShowConfirmationBubble', false)
+        store.commit('moodtracker/setCount', 0)
       }.bind(null, this.$store));
     },
     methods: {
       startCounter(){
-        this.count = 0
+        this.$store.commit('moodtracker/setCount', 0)
         if(!this.interval){
-         this.interval = setInterval(() => this.count++, 0)
+         this.interval = setInterval(() => this.$store.commit('moodtracker/incrementCount'), 0)
         }
       },
       stop(){

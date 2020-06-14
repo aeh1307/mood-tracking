@@ -2,7 +2,7 @@ export const state = () => ({
   showConfirmationBubble: false,
   showFeedbackBubble: false,
   swipeElement: 3,
-/*  count: 0,*/
+  count: 0,
   emojiDescription: 'Cheerful/Happy',
   degreeOfEmotion: 0,
 })
@@ -17,9 +17,9 @@ export const getters = {
   swipeElement: state => {
     return state.swipeElement
   },
-/*  count: state => {
+  count: state => {
     return state.count
-  },*/
+  },
   emojiDescription: state => {
     return state.emojiDescription
   },
@@ -38,12 +38,12 @@ export const mutations = {
   setSwipeElement (state, number) {
     state.swipeElement = number
   },
-/*  setCount (state, number) {
-    state.swipeElement = number
-  },*/
-/*  incrementCount (state){
+  setCount (state, number) {
+    state.count = number
+  },
+  incrementCount (state){
     state.count++
-  },*/
+  },
   setEmojiDescription (state, string) {
     state.emojiDescription = string
   },

@@ -28,6 +28,7 @@
     methods: {
       cancelMoodTracking(){
         this.$store.commit('moodtracker/setShowConfirmationBubble', false)
+        this.$store.commit('moodtracker/setCount', 0)
         console.log("Confirmation bubble", this.showConfirmationBubble)
       },
       confirmMoodTracking() {
