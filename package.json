@@ -11,7 +11,9 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "@nuxtjs/firebase": "^6.0.1",
+    "firebase": "^7.15.1",
+    "nuxt": "^2.12.2",
     "swiper": "^5.3.8",
     "vue-awesome-swiper": "^4.1.1",
     "vue2-touch-events": "^2.2.1"

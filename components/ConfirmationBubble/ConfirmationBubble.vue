@@ -19,22 +19,30 @@
   export default {
     name: "ConfirmationBubble.vue",
     computed: {
-      showConfirmationBubble: { get() {return this.$store.getters['moodtracker/showConfirmationBubble']}},
-      showFeedbackBubble: { get() {return this.$store.getters['moodtracker/showFeedbackBubble']}},
-      count: { get() {return this.$store.getters['moodtracker/count']}},
-      emojiDescription: { get() {return this.$store.getters['moodtracker/emojiDescription']}},
-      degreeOfEmotion: { get() {return this.$store.getters['moodtracker/degreeOfEmotion']}},
+      emojiDescription: { get() { return this.$store.getters['moodtracker/emojiDescription'] }},
+      degreeOfEmotion: { get() { return this.$store.getters['moodtracker/degreeOfEmotion'] }},
     },
     methods: {
       cancelMoodTracking(){
         this.$store.commit('moodtracker/setShowConfirmationBubble', false)
         this.$store.commit('moodtracker/setCount', 0)
-        console.log("Confirmation bubble", this.showConfirmationBubble)
+        this.$fireStore.collection("users").doc("1").collection("moodTracking").get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              console.log(`${doc.id} => ${doc.data().emotion}`)
+            })
+          })
       },
       confirmMoodTracking() {
-          this.$store.commit('moodtracker/setShowFeedbackBubble', true)
-        console.log("Feedback bubble", this.showFeedbackBubble)
-        setTimeout(function () {this.$store.commit('moodtracker/setShowFeedbackBubble', false)}, 1000)
+        this.$store.commit('moodtracker/setShowConfirmationBubble', false)
+        this.$store.commit('moodtracker/setShowFeedbackBubble', true)
+        this.$fireStore.collection('users').doc('1').collection('moodTracking').add({
+          emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now()
+        }).then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        setTimeout(() => {this.$store.commit('moodtracker/setShowFeedbackBubble', false)
+        this.$store.commit('moodtracker/setCount', 0)}, 3000)
 
       }
     }

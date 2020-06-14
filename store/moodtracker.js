@@ -51,3 +51,4 @@ export const mutations = {
     state.degreeOfEmotion = number
   },
 }
+
