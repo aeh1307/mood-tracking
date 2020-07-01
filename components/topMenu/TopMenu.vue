@@ -53,7 +53,9 @@
 <style scoped>
   .topMenu {
     position: fixed;
-    background-color: rgb(46 119 191);
+   /* background-color: rgb(46 119 191);*/
+    background: linear-gradient(to right, #24C6DC 0%, #514A9D 100%);
+
     /*background-color: rgb(42 106 170);*/
     opacity: 100%;
     min-width: 100%;

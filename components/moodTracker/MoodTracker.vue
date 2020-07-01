@@ -250,31 +250,24 @@
   }
   li:first-child .circlePart {
     background: #ffffff;
-    opacity: 70%;
   }
   li:nth-child(2) .circlePart {
     background: white;
-    opacity: 70%;
   }
   li:nth-child(3) .circlePart {
     background: white;
-    opacity: 70%;
   }
   li:nth-child(4) .circlePart {
     background: white;
-    opacity: 70%;
   }
   li:nth-child(5) .circlePart {
     background: white;
-    opacity: 70%;
   }
   li:nth-child(6) .circlePart {
     background: white;
-    opacity: 70%;
   }
   li:nth-child(7) .circlePart {
     background: white;
-    opacity: 70%;
   }
   .innerCircle {
     width: 85px;

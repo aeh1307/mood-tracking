@@ -26,8 +26,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url('../assets/hillPathNew.jpg');
-  background-position: center;
+  background: url('../assets/bali.jpg') no-repeat center fixed;
+  background-size: cover;
 
   height: 100vh;
 }

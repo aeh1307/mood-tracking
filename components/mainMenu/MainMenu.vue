@@ -28,8 +28,9 @@
   .mainMenu {
     position: fixed;
     /*background-color: rgb(42 106 170);*/
-    background-color: rgb(46 119 191);
-    opacity: 85%;
+   /* background-color: rgb(46 119 191);*/
+    background: linear-gradient(to right, #24C6DC 0%, #514A9D 100%);
+    /*opacity: 85%;*/
     min-width: 100%;
     max-width: 100%;
     bottom: 0;

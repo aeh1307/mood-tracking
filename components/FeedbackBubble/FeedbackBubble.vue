@@ -24,7 +24,8 @@
   }
 
   .confirmationBubble {
-    width: 250px;
+    width: 290px;
+    border: 1px solid grey;
     border-radius: 10px;
     padding: 15px;
     height:180px;

@@ -22,7 +22,6 @@
     },
     methods: {
       calendarView () {
-        console.log("Calendar", this.$store.getters['statistics/showCalendar'], "Stats: ", this.showStats)
         this.$store.commit('statistics/setShowCalendar', true)
         this.$store.commit('statistics/setShowStat', false)
 
@@ -30,19 +29,15 @@
       statsView() {
         this.$store.commit('statistics/setShowStat', true)
         this.$store.commit('statistics/setShowCalendar', false)
-        console.log("Calendar", this.showCalendar, "Stats: ", this.showStats)
       }
     },
-    mounted() {
-      console.log(this.showCalendar, this.showStats)
-    }
   }
 </script>
 
 <style scoped>
   .statistics {
     display: flex;
-    justify-content: center;
+   /* justify-content: center;*/
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
@@ -52,17 +47,24 @@
   }
 
   .statisticsButtonSection {
+    width: 100%;
+    margin-top: 60px;
   }
   .statisticsButton {
-    background-color: #44719a;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
+    background-color: white;
+    padding: 2px 20px;
+    margin-left: 0;
+    margin-right: 0;
     transition: all 0.5s;
     font-family: 'Manrope', sans-serif;
-    color: white;
+    color: #44719a;
     font-size: 16px;
     margin-bottom: 30px;
+    border-right: 1px solid #44719a;
   }
+
+  .statisticsButton:focus {
+    outline:0;
+  }
+
 </style>
