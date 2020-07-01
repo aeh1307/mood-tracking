@@ -12,9 +12,12 @@
   },
   "dependencies": {
     "@nuxtjs/firebase": "^6.0.1",
+    "add": "^2.0.6",
+    "d3-scale": "^3.2.1",
     "firebase": "^7.15.1",
     "nuxt": "^2.12.2",
     "swiper": "^5.3.8",
+    "v-calendar": "^1.0.6",
     "vue-awesome-swiper": "^4.1.1",
     "vue2-touch-events": "^2.2.1"
   },

@@ -26,12 +26,6 @@
       cancelMoodTracking(){
         this.$store.commit('moodtracker/setShowConfirmationBubble', false)
         this.$store.commit('moodtracker/setCount', 0)
-        this.$fireStore.collection("users").doc("1").collection("moodTracking").get()
-          .then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-              console.log(`${doc.id} => ${doc.data().emotion}`)
-            })
-          })
       },
       confirmMoodTracking() {
         this.$store.commit('moodtracker/setShowConfirmationBubble', false)

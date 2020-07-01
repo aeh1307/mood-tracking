@@ -1,9 +1,12 @@
 <template>
-  <div class="reminderBubble">
-    <div class="arrow bottom"></div>
-    You have completed 2/3 parts of the survey.
-    Remember to complete the last part at   http://survey.com
+  <div class="reminder">
+    <div class="reminderBubble">
+      <div class="arrow bottom"></div>
+      You have completed 2/3 parts of the survey.
+      Remember to complete the last part at   http://survey.com
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -13,6 +16,11 @@
 </script>
 
 <style scoped>
+
+  .reminder {
+    display: flex;
+    justify-content: center;
+  }
   .reminderBubble{
     background-color: #f8f8f8;
     border: 1px solid #c8c8c8;
@@ -23,14 +31,13 @@
     height: 80px;
     font-size: 14px;
     font-family: 'Manrope', sans-serif;
-    top: 22%;
-    left: 10%;
+    top: 10%;
   }
 
-  .reminderBubble .arrow {
+ /* .reminderBubble .arrow {
     border-style: solid;
     position: absolute;
-  }
+  }*/
   .bottom {
     border-color: #878787 transparent transparent transparent;
     border-width: 8px 8px 0px 8px;

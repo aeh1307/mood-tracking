@@ -1,6 +1,7 @@
 <template>
   <div>
     <TopMenu/>
+    <BackgroundImagePicker v-if="showBackgroundImagePicker"/>
     <nuxt/>
     <ConfirmationBubble v-if="showConfirmationBubble"/>
     <FeedbackBubble v-if="showFeedbackBubble"/>
@@ -12,6 +13,7 @@
   import TopMenu from "../components/topMenu/TopMenu";
   import ConfirmationBubble from "../components/ConfirmationBubble/ConfirmationBubble";
   import FeedbackBubble from "../components/FeedbackBubble/FeedbackBubble";
+  import BackgroundImagePicker from "../components/BackgroundImagePicker/BackgroundImagePicker";
 
   export default {
     components: {
@@ -19,10 +21,12 @@
       TopMenu,
       ConfirmationBubble,
       FeedbackBubble,
+      BackgroundImagePicker,
     },
     computed: {
       showConfirmationBubble: { get() {return this.$store.getters['moodtracker/showConfirmationBubble']}},
       showFeedbackBubble: { get() {return this.$store.getters['moodtracker/showFeedbackBubble']}},
+      showBackgroundImagePicker: { get() {return this.$store.getters['settings/showBackgroundImagePicker']}}
     }
   }
 

@@ -80,35 +80,37 @@
         let emoji;
         let node = document.getElementsByTagName("LI");
 
+        switch(this.swipeElement){
+          case 0:
+            color = '#3CBB75';
+            classSelector = '.tenseNervousEmoji';
+            break;
+          case 1:
+            color = '#DE6465';
+            classSelector = '.irritatedAnnoyedEmoji';
+            break;
+          case 2:
+            color = '#EB7955';
+            classSelector = '.excitedLivelyEmoji';
+            break;
+          case 3:
+            color = '#F7CB50';
+            classSelector = '.cheerfulHappyEmoji';
+            break;
+          case 4:
+            color = '#8B42CC';
+            classSelector = '.boredWearyEmoji';
+            break;
+          case 5:
+            color = '#3D3D3D';
+            classSelector = '.gloomySadEmoji';
+            break;
+          case 6:
+            color = '#425CCC';
+            classSelector = '.relaxedCalmEmoji';
+            break;
+        }
 
-        if(this.swipeElement === 0){
-          color = '#3CBB75';
-          classSelector = '.tenseNervousEmoji';
-        }
-        if(this.swipeElement === 1){
-          color = '#DE6465';
-          classSelector = '.irritatedAnnoyedEmoji';
-        }
-        if(this.swipeElement === 2){
-          color = '#EB7955';
-          classSelector = '.excitedLivelyEmoji';
-        }
-        if(this.swipeElement === 3){
-          color = '#F7CB50';
-          classSelector = '.cheerfulHappyEmoji';
-        }
-        if(this.swipeElement === 4){
-          color = '#8B42CC';
-          classSelector = '.boredWearyEmoji';
-        }
-        if(this.swipeElement === 5){
-          color = '#3D3D3D';
-          classSelector = '.gloomySadEmoji';
-        }
-        if(this.swipeElement === 6){
-          color = '#425CCC';
-          classSelector = '.relaxedCalmEmoji';
-        }
         emoji = document.querySelector(classSelector);
 
         if(val === 0){
@@ -154,7 +156,7 @@
     },
     mounted() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
-      this.swiper.slideTo(3, 1000, false)
+      this.swiper.slideTo(3, 300, false)
       this.swiper.on('slideChange', function (store){
         store.commit('moodtracker/setShowConfirmationBubble', false)
         store.commit('moodtracker/setCount', 0)

@@ -2,7 +2,7 @@
     <div class="mainMenu">
       <EmojiDescription/>
       <div class="navigation">
-        <nuxt-link to="/about/statistics" class="statistics"><v-icon class="heartIcon">fas fa-heartbeat</v-icon><p class="iconCaption">Statistics</p></nuxt-link>
+        <nuxt-link to="/moodstatistics/statistics" class="statistics"><v-icon class="heartIcon">fas fa-heartbeat</v-icon><p class="iconCaption">Statistics</p></nuxt-link>
         <MoodTracker/>
         <a href="https://lifekeys.no/" class="contact"><img class="lifekeys" src="@/assets/lifekeysLogo.png"/><p class="iconCaption">Contact</p></a>
       </div>

@@ -19,28 +19,29 @@
     },
     watch: {
       swipeElement: function () {
-        if(this.swipeElement === 0){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous')
+        switch(this.swipeElement){
+          case 0:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous')
+            break;
+          case 1:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed')
+            break;
+          case 2:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively')
+            break;
+          case 3:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy')
+            break;
+          case 4:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary')
+            break;
+          case 5:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad')
+            break;
+          case 6:
+            this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm')
+            break;
         }
-        if(this.swipeElement === 1){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed')
-        }
-        if(this.swipeElement === 2){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively')
-        }
-        if(this.swipeElement === 3){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy')
-        }
-        if(this.swipeElement === 4){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary')
-        }
-        if(this.swipeElement === 5){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad')
-        }
-        if(this.swipeElement === 6){
-          this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm')
-        }
-
       }
     },
   }

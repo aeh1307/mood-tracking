@@ -1,7 +1,7 @@
 <template>
   <div>
     <Reminder/>
-    <MapMarker/>
+   <!-- <MapMarker/>-->
     <div class="mainContainer">
     </div>
   </div>

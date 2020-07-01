@@ -9,7 +9,7 @@
         <div class="menuOptions">
           <a href="">Profile settings</a>
           <a href="">General settings</a>
-          <a href="">Customize Background Photo</a>
+          <a href="" v-on:click="chooseBackground">Customize Background Photo</a>
         </div>
       </div>
     </div>
@@ -34,7 +34,10 @@
       goBack: function() {
           console.log(this.$router.options.base);
           this.$router.push(this.$router.options.base);
-      }
+      },
+      chooseBackground: function() {
+          this.$store.commit('settings/setShowBackgroundImagePicker', true)
+      },
     },
     computed: {
       showBackButton() {
