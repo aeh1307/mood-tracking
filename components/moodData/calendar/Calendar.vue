@@ -1,4 +1,4 @@
-<template class="moodData">
+<template>
   <div>
     <v-date-picker
       class="v-date-picker"
@@ -6,7 +6,6 @@
       single
       v-model="selectedDate"
       :events="functionEvents"
-      year-icon="mdi-calendar-blank"
       @change="showDateInfo"
       no-title
     >
@@ -46,25 +45,20 @@
 </template>
 
 <script>
-  import DatePicker from 'v-calendar/lib/components/date-picker.umd'
-
   export default {
     name: 'Calendar.vue',
-    components: {
-      DatePicker,
-    },
     data() {
 
       return {
         moods: [],
-        xLabels: [],
-        yDegrees: [],
-        selectedDate: null,
+        xLabels: [], /* For chart */
+        yDegrees: [], /* For chart */
+        selectedDate: new Date().toISOString().slice(0,10),
         selectAttribute: {
           dot: true
         },
         date: new Date(),
-        titleDate: new Date().toISOString().substr(0, 10),
+        /*titleDate: new Date().toISOString().substr(0, 10),*/
         tenseNervousDateDegree: 0,
         irritatedAnnoyedDateDegree: 0,
         excitedLivelyDateDegree: 0,
@@ -77,16 +71,12 @@
     mounted() {
       this.$fireStore.collection("users").doc("1").collection("moodTracking")
         .onSnapshot(querySnapshot => {
-          this.moods = [];
-          this.xLabels = [];
-          this.yDegrees = [];
-
           querySnapshot.forEach(doc => {
             // Degree of emotion, emotion, time:
             this.moods.push(doc.data())
-            // Emoji labels:
+            // Emoji labels ( For chart):
             this.xLabels.push(doc.data().emotion)
-            // Degrees of emotions tracked:
+            // Degrees of emotions tracked (For chart):
             this.yDegrees.push(doc.data().degreeOfEmotion)
           })
         })
@@ -98,27 +88,20 @@
     },
     methods: {
       functionEvents(date) {
-        const [year, month , day] = date.split('-')
-        console.log("MONTH: ", month, year)
-        let trackedDates = []
-        this.moods.forEach(trackedMood => {
-          let dateFromDB = new Date(trackedMood.time).toString().split(" ")
-          let trackedDay= dateFromDB[2]
-          if (!(trackedDates.includes(trackedDay))){
-            if(trackedDay.startsWith('0')){
-              trackedDay = trackedDay.substr(1);
-            }
-            trackedDates.push(parseInt(trackedDay));
-          }
+        let foundDate = this.moods.find(trackedMood => {
+          let convertedDBTime = new Date(trackedMood.time).toISOString().substring(0, 10)
+          return convertedDBTime === date;
         })
-        console.log("Tracked dates: ", trackedDates);
-        if (trackedDates.includes(parseInt(day, 10)) && trackedDates.includes(parseInt(month, 10))) return '#FF69B4';
+        if (foundDate) {
+          return '#FF69B4'
+        }
+        return null
+/*
 
 
+        const [, , day] = date.split('-')
 
-       /* const [, , day] = date.split('-')*/
-
-       /* let tenseNervousDates = []
+        let tenseNervousDates = []
         let irritatedAnnoyed = []
         let excitedLively = []
         let cheerfulHappy = []
@@ -179,12 +162,10 @@
             }
           }
         }
-*/
-        /*if ([2].includes(parseInt(day, 10))) return eventColors*/
+        if ([2].includes(parseInt(day, 10))) return eventColors
 
-/*         if ([12, 17, 28].includes(parseInt(day, 10))) return true
-         if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']*/
-        /*
+         if ([12, 17, 28].includes(parseInt(day, 10))) return true
+         if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']
 
                 if (tenseNervousDates.includes(parseInt(day, 10))) return ['#3CBB75']
                 if (irritatedAnnoyed.includes(parseInt(day, 10))) return ['#DE6465']
@@ -199,8 +180,6 @@
         let selectedYear = selectedDate[0]
         let selectedMonth = selectedDate[1]
         let selectedDay = selectedDate[2]
-
-    /*    console.log("Whole", selectedDate, "Selected Year: ", selectedYear, " Selected Month: ", selectedMonth, "Selected Day: ", selectedDay)*/
 
         this.tenseNervousDateDegree = 0;
         this.irritatedAnnoyedDateDegree = 0;
@@ -252,11 +231,15 @@
 
 <style scoped>
   .v-date-picker {
-    top: -10px;
+    top: 0;
   }
   .moods {
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px 2px;
+    margin-top: 0;
   }
 
   .moodStats {

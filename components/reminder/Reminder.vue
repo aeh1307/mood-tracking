@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: "Reminder.vue"
+    name: "Reminder.vue",
   }
 </script>
 
@@ -44,7 +44,7 @@
     bottom: -8px;
     left:125px;
   }
-  .bottom:after {
+  /*.bottom:after {
     border-color: #f8f8f8 transparent transparent transparent;
     border-style: solid;
     border-width: 7px 7px 0px 7px;
@@ -52,7 +52,7 @@
     content: "";
     position: absolute;
     left: -3px;
-  }
+  }*/
 
 
 

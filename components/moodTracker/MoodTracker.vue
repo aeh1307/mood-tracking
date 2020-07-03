@@ -54,7 +54,6 @@
           slidesPerView: 1,
         },
         interval: false,
-    /*    count: 0,*/
       }
     },
     computed: {
@@ -64,9 +63,6 @@
       count: {
         get() {return this.$store.getters['moodtracker/count']}
       },
-     /* interval: {
-        get() {return this.$store.getters['moodtracker/interval']}
-      },*/
       swiper() {
         return this.$refs.mySwiper.$swiper
       },
@@ -75,6 +71,7 @@
     watch: {
       count: function (val) {
         this.$store.commit('moodtracker/setSwipeElement', this.swiper.realIndex)
+        console.log("RealIndex: " + this.swiper.realIndex)
         let color;
         let classSelector;
         let emoji;
@@ -121,6 +118,7 @@
           node[4].firstChild.style.background = 'white';
           node[5].firstChild.style.background = 'white';
           node[6].firstChild.style.background = 'white';
+          emoji.style.border = '2px solid white';
         }
 
         if(val >= 3){
@@ -199,6 +197,7 @@
    border-radius: 50%;
    list-style: none;
    overflow: hidden;
+   display: flex;
  }
  .circlePartContainer {
    position: relative;
@@ -214,39 +213,44 @@
    width: 50%;
    height: 50%;
    transform-origin: 0% 100%;
-   border: 1px solid black;
+/*   border-right: 1px solid black;
+   border-bottom: 1px solid black;
+   border-top: 1px solid black;*/
+   border-left: 1px solid black;
+
+
  }
  .circlePart {
    position: absolute;
    left: -100%;
    width: 260%;
-   height: 290%;
+   height: 300%;
    text-align: center;
    transform: skewY(60deg) rotate(15deg);
    padding-top: 20px;
-   border: 1px solid black;
+/*   border: 1px solid black;*/
  }
 
   li:first-child {
-    transform: rotate(0deg) skewY(-35deg);
+    transform: rotate(0deg) skewY(-39deg);
   }
   li:nth-child(2) {
-    transform: rotate(51.42deg) skewY(-35deg);
+    transform: rotate(51.4285714286deg) skewY(-39deg);
   }
   li:nth-child(3) {
-    transform: rotate(102.58deg) skewY(-35deg);
+    transform: rotate(102.8571428572deg) skewY(-39deg);
   }
   li:nth-child(4) {
-    transform: rotate(154.28deg) skewY(-35deg);
+    transform: rotate(154.2857142858deg) skewY(-39deg);
   }
   li:nth-child(5) {
-    transform: rotate(205.71deg) skewY(-35deg);
+    transform: rotate(205.7142857144deg) skewY(-39deg);
   }
   li:nth-child(6) {
-    transform: rotate(257.14deg) skewY(-35deg);
+    transform: rotate(257.142857143deg) skewY(-39deg);
   }
   li:nth-child(7) {
-    transform: rotate(308.57deg) skewY(-35deg);
+    transform: rotate(308.5714285716deg) skewY(-39deg);
   }
   li:first-child .circlePart {
     background: #ffffff;
@@ -276,8 +280,8 @@
     background: white;
     position: absolute;
     border: 1px solid #000000;
-    top: 7%;
-    left: 7%;
+    top: 7px;
+    left: 7px;
   }
 
   .swiperSlides {

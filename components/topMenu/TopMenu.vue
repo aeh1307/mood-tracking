@@ -32,8 +32,9 @@
            }
         },
       goBack: function() {
-          console.log(this.$router.options.base);
           this.$router.push(this.$router.options.base);
+          this.$store.commit('statistics/setShowCalendar', true)
+          this.$store.commit('statistics/setShowStat', false)
       },
       chooseBackground: function() {
           this.$store.commit('settings/setShowBackgroundImagePicker', true)

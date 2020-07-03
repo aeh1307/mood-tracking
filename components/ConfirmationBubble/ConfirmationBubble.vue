@@ -50,14 +50,14 @@
   }
 
   .confirmationBubble {
-    width: 290px;
+    width: 260px;
     border: 1px solid grey;
     border-radius: 10px;
     padding: 15px;
-    height:180px;
+    height:200px;
     background-color: white;
     position: absolute;
-    bottom: 170px;
+    bottom: 145px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

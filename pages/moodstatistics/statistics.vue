@@ -1,8 +1,9 @@
 <template>
   <div class="statistics">
+    <div></div>
     <div class="statisticsButtonSection">
-    <button class="statisticsButton" v-on:click="calendarView">Calendar</button>
-    <button class="statisticsButton" v-on:click="statsView">Stats</button>
+    <button id="calendarButton" class="statisticsButton" v-on:click="calendarView">Calendar</button>
+    <button id="statsButton" class="statisticsButton" v-on:click="statsView">Stats</button>
     </div>
     <MoodData/>
   </div>
@@ -24,13 +25,40 @@
       calendarView () {
         this.$store.commit('statistics/setShowCalendar', true)
         this.$store.commit('statistics/setShowStat', false)
-
+        /*let calendarButtonEl = document.getElementById("calendarButton");
+        let statsButtonEl = document.getElementById("statsButton");
+        calendarButtonEl.style.fontWeight = 'bold';
+        statsButtonEl.style.fontWeight = 'normal';*/
       },
       statsView() {
         this.$store.commit('statistics/setShowStat', true)
         this.$store.commit('statistics/setShowCalendar', false)
+       /* let calendarButtonEl = document.getElementById("calendarButton");
+        let statsButtonEl = document.getElementById("statsButton");
+        statsButtonEl.style.fontWeight = 'bold';
+        calendarButtonEl.style.fontWeight = 'normal';*/
       }
     },
+    watch: {
+      showCalendar: function (val) {
+        let calendarButtonEl = document.getElementById("calendarButton");
+        let statsButtonEl = document.getElementById("statsButton");
+        if(val === true){
+          calendarButtonEl.style.fontWeight = 'bold';
+          calendarButtonEl.style.background = '#add8e6';
+          statsButtonEl.style.fontWeight = 'normal';
+          statsButtonEl.style.background = '#ffffff'
+        }else{
+          statsButtonEl.style.fontWeight = 'bold';
+          statsButtonEl.style.background = '#add8e6';
+          calendarButtonEl.style.fontWeight = 'normal';
+          calendarButtonEl.style.background = '#ffffff'
+        }
+      }
+    },
+    mounted() {
+      this.calendarView()
+    }
   }
 </script>
 
@@ -44,11 +72,16 @@
     min-width: 100vw;
     font-size: 20px;
     font-family: 'Manrope', sans-serif;
+    background: url('../../assets/bali.jpg') no-repeat center fixed;
+    background-size: cover;
   }
 
   .statisticsButtonSection {
-    width: 100%;
-    margin-top: 60px;
+    background-color: white;
+    width: 290px;
+    height: 27px;
+    margin-top: 80px;
+    display: flex;
   }
   .statisticsButton {
     background-color: white;
@@ -59,12 +92,19 @@
     font-family: 'Manrope', sans-serif;
     color: #44719a;
     font-size: 16px;
-    margin-bottom: 30px;
-    border-right: 1px solid #44719a;
+ /*   border-right: 1px solid #44719a;*/
+    border-bottom:  1px solid #44719a;
+    width: 145px;
   }
 
   .statisticsButton:focus {
     outline:0;
+  }
+
+  #calendarButton {
+    border-right: 1px solid #44719a;
+    font-weight: bold;
+    background-color: #add8e6;
   }
 
 </style>

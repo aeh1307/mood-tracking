@@ -1,5 +1,5 @@
-<template class="moodData">
-  <div>
+<template>
+  <div class="moodData">
     <Calendar v-if="showCalendar"/>
     <Stats v-if="showStats"/>
   </div>
