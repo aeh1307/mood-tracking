@@ -1,8 +1,8 @@
 <template>
   <div>
     <TopMenu/>
-    <BackgroundImagePicker v-if="showBackgroundImagePicker"/>
     <nuxt/>
+    <BackgroundImagePicker v-if="showBackgroundImagePicker"/>
     <ConfirmationBubble v-if="showConfirmationBubble"/>
     <FeedbackBubble v-if="showFeedbackBubble"/>
     <MainMenu/>

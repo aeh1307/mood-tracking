@@ -1,5 +1,5 @@
 export const state = () => ({
-  backgroundImagePath: '../../assets/hillPathNew.jpg',
+  backgroundImagePath: '_nuxt/assets/bali.jpg',
   showBackgroundImagePicker: false,
 })
 
@@ -7,9 +7,9 @@ export const getters = {
   backgroundImagePath: state => {
    return state.backgroundImagePath;
  },
- showBackgroundImagePicker: state => {
-   return state.showBackgroundImagePicker;
- },
+  showBackgroundImagePicker: state => {
+    return state.showBackgroundImagePicker
+  },
 }
 
 export const mutations = {

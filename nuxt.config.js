@@ -35,7 +35,9 @@ export default {
   plugins: [
     '@/plugins/vuetify.js',
     '@/plugins/vue-swipe.js',
-    '@/plugins/vue2-touch-events.js'
+    '@/plugins/vue2-touch-events.js',
+    '@/plugins/apexcharts.js',
+    '@/plugins/vue-lazyload.js',
   ],
   /*
   ** Nuxt.js dev-modules

@@ -7,9 +7,9 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
         <div class="menuOptions">
-          <a href="">Profile settings</a>
-          <a href="">General settings</a>
-          <a href="" v-on:click="chooseBackground">Customize Background Photo</a>
+          <a>Profile settings</a>
+          <a>General settings</a>
+          <a v-on:click="chooseBackground">Customize Background Photo</a>
         </div>
       </div>
     </div>
@@ -19,6 +19,15 @@
 <script>
   export default {
     name: "TopMenu.vue",
+    data() {
+      return{
+        computed: {
+          showBackgroundImagePicker: {
+            get() {return this.$store.getters['settings/showBackgroundImagePicker']}
+          },
+        }
+      }
+    },
     methods: {
         openMenu: function() {
           let hamburger = this.$el.querySelector('.hamburgerMenu')
@@ -37,7 +46,8 @@
           this.$store.commit('statistics/setShowStat', false)
       },
       chooseBackground: function() {
-          this.$store.commit('settings/setShowBackgroundImagePicker', true)
+        this.$store.commit('settings/setShowBackgroundImagePicker', true)
+        console.log(this.showBackgroundImagePicker);
       },
     },
     computed: {
@@ -107,7 +117,7 @@
     height: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 0;
-    top: 150%;
+    top: 145%;
     right: -65%;
   }
 

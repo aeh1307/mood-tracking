@@ -20,6 +20,7 @@
     computed: {
       showCalendar: { get() { return this.$store.getters['statistics/showCalendar']}},
       showStats: { get() { return this.$store.getters['statistics/showStats'] }},
+      backgroundImagePath: { get() { return this.$store.getters['settings/backgroundImagePath']}},
     },
     methods: {
       calendarView () {
@@ -45,19 +46,25 @@
         let statsButtonEl = document.getElementById("statsButton");
         if(val === true){
           calendarButtonEl.style.fontWeight = 'bold';
-          calendarButtonEl.style.background = '#add8e6';
+          calendarButtonEl.style.background = '#a4b6bb';
           statsButtonEl.style.fontWeight = 'normal';
           statsButtonEl.style.background = '#ffffff'
         }else{
           statsButtonEl.style.fontWeight = 'bold';
-          statsButtonEl.style.background = '#add8e6';
+          statsButtonEl.style.background = '#a4b6bb';
           calendarButtonEl.style.fontWeight = 'normal';
           calendarButtonEl.style.background = '#ffffff'
         }
-      }
+      },
+      backgroundImagePath: function (val) {
+        let element = document.querySelector('.statistics');
+        element.style.backgroundImage = `url('../${val}')`;
+      },
     },
     mounted() {
       this.calendarView()
+      let element = document.querySelector('.statistics');
+      element.style.backgroundImage = `url('../${this.backgroundImagePath}')`;
     }
   }
 </script>
@@ -65,14 +72,13 @@
 <style scoped>
   .statistics {
     display: flex;
-   /* justify-content: center;*/
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     min-width: 100vw;
     font-size: 20px;
     font-family: 'Manrope', sans-serif;
-    background: url('../../assets/bali.jpg') no-repeat center fixed;
+    background: no-repeat center fixed;
     background-size: cover;
   }
 
@@ -104,7 +110,7 @@
   #calendarButton {
     border-right: 1px solid #44719a;
     font-weight: bold;
-    background-color: #add8e6;
+    background-color: #a4b6bb;
   }
 
 </style>

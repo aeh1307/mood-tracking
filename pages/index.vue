@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Reminder/>
+<!--    <Reminder/>--> <!-- TODO: comment in -->
    <!-- <MapMarker/>-->
     <div class="mainContainer">
     </div>
@@ -14,6 +14,19 @@
     components: {
       MapMarker,
       Reminder,
+    },
+    computed: {
+      backgroundImagePath: { get() { return this.$store.getters['settings/backgroundImagePath']}},
+    },
+    watch: {
+      backgroundImagePath: function (val) {
+        let element = document.querySelector('.mainContainer');
+        element.style.backgroundImage = `url('${val}')`;
+      },
+    },
+    mounted() {
+      let element = document.querySelector('.mainContainer');
+      element.style.backgroundImage = `url('${this.backgroundImagePath}')`;
     }
   }
 </script>
@@ -26,9 +39,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: url('../assets/bali.jpg') no-repeat center fixed;
+  background: no-repeat center fixed;
   background-size: cover;
-
   height: 100vh;
 }
 </style>
