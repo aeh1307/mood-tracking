@@ -70,8 +70,6 @@
     },
     watch: {
       count: function (val) {
-        this.$store.commit('moodtracker/setSwipeElement', this.swiper.realIndex)
-        console.log("RealIndex: " + this.swiper.realIndex)
         let color;
         let classSelector;
         let emoji;
@@ -121,32 +119,32 @@
           emoji.style.border = '2px solid white';
         }
 
-        if(val >= 3){
+        if(val >= 1){
           node[0].firstChild.style.background = color;
           emoji.style.border = `2px solid ${color}`;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 1)
         }
-        if(val >= 8){
+        if(val >= 3){
           node[1].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 2)
         }
-        if(val >= 13){
+        if(val >= 5){
           node[2].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 3)
         }
-        if(val >= 18){
+        if(val >= 7){
           node[3].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 4)
         }
-        if(val >= 23){
+        if(val >= 9){
           node[4].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 5)
         }
-        if(val >= 28){
+        if(val >= 11){
           node[5].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 6)
         }
-        if(val >= 33){
+        if(val >= 13){
           node[6].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 7)
         }
@@ -155,16 +153,17 @@
     mounted() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.swiper.slideTo(3, 300, false)
-      this.swiper.on('slideChange', function (store){
+      this.swiper.on('slideChange', function (store, swiper){
         store.commit('moodtracker/setShowConfirmationBubble', false)
         store.commit('moodtracker/setCount', 0)
-      }.bind(null, this.$store));
+        store.commit('moodtracker/setSwipeElement', swiper.realIndex)
+      }.bind(null, this.$store, this.swiper));
     },
     methods: {
       startCounter(){
         this.$store.commit('moodtracker/setCount', 0)
         if(!this.interval){
-         this.interval = setInterval(() => this.$store.commit('moodtracker/incrementCount'), 0)
+         this.interval = setInterval(() => this.$store.commit('moodtracker/incrementCount'), 500)
         }
       },
       stop(){

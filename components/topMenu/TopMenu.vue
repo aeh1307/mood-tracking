@@ -47,7 +47,6 @@
       },
       chooseBackground: function() {
         this.$store.commit('settings/setShowBackgroundImagePicker', true)
-        console.log(this.showBackgroundImagePicker);
       },
     },
     computed: {

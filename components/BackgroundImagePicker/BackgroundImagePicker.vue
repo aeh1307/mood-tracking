@@ -27,58 +27,71 @@
     },
     methods: {
       changeBackground(e) {
-        /*        document.getElementById('bali').style.border = 'none';
-                document.getElementById('pinkBeach').style.border = 'none';
-                document.getElementById('lakeMountain').style.border = 'none';
-                document.getElementById('oceanSun').style.border = 'none';*/
-        console.log("HEUAAA: ", document.getElementById('bali'))
-
         switch (e.target.id) {
           case 'bali':
+            document.querySelector('#bali').style.borderColor = 'solid 3px #3CBB75';
+            document.querySelector('#pinkBeach').style.border = 'solid 3px white';
+            document.querySelector('#lakeMountain').style.border = 'solid 3px white';
+            document.querySelector('#oceanSun').style.border = 'solid 3px white';
             this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/bali.jpg');
             this.$store.commit('settings/setShowBackgroundImagePicker', false)
             break;
           case 'pinkBeach':
             this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/pinkishBeach.jpg');
             this.$store.commit('settings/setShowBackgroundImagePicker', false)
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
+            document.querySelector('#bali').style.border = 'solid 3px white';
+            document.querySelector('#lakeMountain').style.border = 'solid 3px white';
+            document.querySelector('#oceanSun').style.border = 'solid 3px white';
             break;
           case 'lakeMountain':
             this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/water.jpg');
             this.$store.commit('settings/setShowBackgroundImagePicker', false)
+            document.querySelector('#lakeMountain').style.border = 'solid 3px #3CBB75';
+            document.querySelector('#bali').style.border = 'solid 3px white';
+            document.querySelector('#pinkBeach').style.border = 'solid 3px white';
+            document.querySelector('#oceanSun').style.border = 'solid 3px white';
             break;
           case 'oceanSun':
             this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/ocean.jpg');
             this.$store.commit('settings/setShowBackgroundImagePicker', false)
+            document.querySelector('#oceanSun').style.border = 'solid 3px #3CBB75';
+            document.querySelector('#bali').style.border = 'solid 3px white';
+            document.querySelector('#pinkBeach').style.border = 'solid 3px white';
+            document.querySelector('#lakeMountain').style.border = 'solid 3px white';
             break;
         }
       },
     },
     watch: {
       backgroundImagePath: function (val) {
-        console.log('Test:', this.backgroundImagePath, val, document.getElementById('bali'));
-        document.getElementById('bali').style.border = 'none';
-        document.getElementById('pinkBeach').style.border = 'none';
-        document.getElementById('lakeMountain').style.border = 'none';
-        document.getElementById('oceanSun').style.border = 'none';
+ /*       console.log("VALUE", val);*/
+
         switch(this.backgroundImagePath){
           case '_nuxt/assets/bali.jpg':
-            document.getElementById('bali').style.border = 'solid 3px #3CBB75';
+            console.log("BALI IS IT");
             break;
           case '_nuxt/assets/pinkishBeach.jpg':
-            document.getElementById('pinkBeach').style.border = 'solid 3px #3CBB75';
+            console.log("PINK");
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
-          case '_nuxt/assets/water.jpg':
-            document.getElementById('lakeMountain').style.border = 'solid 3px #3CBB75';
+          case 2:
             break;
-          case '_nuxt/assets/ocean.jpg':
-            document.getElementById('oceanSun').style.border = 'solid 3px #3CBB75';
+          case 3:
+            break;
+          case 4:
+            break;
+          case 5:
+            break;
+          case 6:
             break;
         }
-      },
+
+      }
     },
-    mounted() {
-      document.getElementById('bali').style.border = 'solid 3px #3CBB75';
-    }
+   /* mounted() {
+      console.log("HER:, ", this.backgroundImagePath);
+    }*/
   }
 
 
@@ -121,5 +134,12 @@
   .row2 {
     margin-top: 5px;
     margin-bottom: 20px;
+  }
+  #bali{
+    border: solid 3px #3CBB75;
+  }
+
+  #pinkBeach, #lakeMountain, #oceanSun {
+    border: solid 3px white;
   }
 </style>
