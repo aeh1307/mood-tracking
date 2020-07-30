@@ -61,24 +61,34 @@ export default {
     },
     services: {
       auth: true,
-      /*auth: {
+      // or
+  /*    auth: {
         persistence: 'local', // default
-
+*/
         // it is recommended to configure either a mutation or action but you can set both
-        initialize: {
-          onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
-          // onAuthStateChangedAction: 'onAuthStateChangedAction'
-        },
+      initialize: {
+        onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
+        onAuthStateChangedAction: 'onAuthStateChangedAction',
+      },
+      ssr: {
+        // nuxt aliases are supported
+        credential: '~/secrets/serviceAccount.json',
 
-        ssr: false // default*/
+        // The service worker session automatically ignores external resources, static files and HMR calls
+        // If you need to ignore additional routes, define them here
+        ignorePaths: [
+          '/admin', // path is ignored if url.pathname.startsWith('/admin')
+          /^api/ // path is ignored if url.pathname without the leading slash (/) matches the RegExp
+        ],
+        serverLogin: true
+      },
       firestore: true,
-    /*  functions: true,
-      storage: true,
-      realtimeDb: true,
-      messaging: true,
-      performance: true,
-      analytics: true,
-      remoteConfig: true*/
+        workbox: {
+          importScripts: [
+            '/firebase-auth-sw.js'
+            ],
+          dev: false
+        }
     }
   },
 vuetify: {

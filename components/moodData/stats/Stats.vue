@@ -161,7 +161,7 @@
     min-height: 375px;
     min-width: 290px;
     border-radius: 5px;
-    top: -25px;
+    top: 0;
   }
   .charts {
     min-height: 180px;

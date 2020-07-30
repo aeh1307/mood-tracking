@@ -8,45 +8,54 @@
       :events="functionEvents"
       @change="showDateInfo"
       no-title
+      v-if="showDatePicker"
     >
     </v-date-picker>
-    <div class="moods">
-      <div class="moodStats">
-        <v-icon class="emojiIcon tenseNervousIcon">fas fa-frown-open</v-icon>
-        <div class="degreeTracked">{{this.tenseNervousDateDegree}}</div>
+    <div class="moodSection">
+      <div class="moods">
+        <div class="moodStats">
+          <v-icon class="emojiIcon tenseNervousIcon">fas fa-frown-open</v-icon>
+          <div class="degreeTracked">{{this.tenseNervousDateDegree}}</div>
+        </div>
+        <div class="moodStats">
+          <v-icon class="emojiIcon irritatedAnnoyedIcon">fas fa-angry</v-icon>
+          <div class="degreeTracked">{{this.irritatedAnnoyedDateDegree}}</div>
+        </div>
+        <div class="moodStats">
+          <v-icon class="emojiIcon excitedLivelyIcon">fas fa-grin-stars</v-icon>
+          <div class="degreeTracked">{{this.excitedLivelyDateDegree}}</div>
+        </div>
+        <div class="moodStats">
+          <v-icon class="emojiIcon cheerfulHappyIcon">fas fa-laugh-beam</v-icon>
+          <div class="degreeTracked">{{this.cheerfulHappyDateDegree}}</div>
+        </div>
+        <div class="moodStats">
+          <v-icon class="emojiIcon boredWearyIcon">fas fa-meh</v-icon>
+          <div class="degreeTracked">{{this.boredWearyDateDegree}}</div>
+        </div>
+        <div class="moodStats">
+          <v-icon class="emojiIcon gloomySadIcon">fas fa-frown</v-icon>
+          <div class="degreeTracked">{{this.gloomySadDateDegree}}</div>
+        </div>
+        <div class="moodStats">
+          <v-icon class="emojiIcon relaxedCalmIcon">fas fa-smile-beam</v-icon>
+          <div class="degreeTracked">{{this.relaxedCalmDateDegree}}</div>
+        </div>
       </div>
-      <div class="moodStats">
-        <v-icon class="emojiIcon irritatedAnnoyedIcon">fas fa-angry</v-icon>
-        <div class="degreeTracked">{{this.irritatedAnnoyedDateDegree}}</div>
-      </div>
-      <div class="moodStats">
-        <v-icon class="emojiIcon excitedLivelyIcon">fas fa-grin-stars</v-icon>
-        <div class="degreeTracked">{{this.excitedLivelyDateDegree}}</div>
-      </div>
-      <div class="moodStats">
-        <v-icon class="emojiIcon cheerfulHappyIcon">fas fa-laugh-beam</v-icon>
-        <div class="degreeTracked">{{this.cheerfulHappyDateDegree}}</div>
-      </div>
-      <div class="moodStats">
-        <v-icon class="emojiIcon boredWearyIcon">fas fa-meh</v-icon>
-        <div class="degreeTracked">{{this.boredWearyDateDegree}}</div>
-      </div>
-      <div class="moodStats">
-        <v-icon class="emojiIcon gloomySadIcon">fas fa-frown</v-icon>
-        <div class="degreeTracked">{{this.gloomySadDateDegree}}</div>
-      </div>
-      <div class="moodStats">
-        <v-icon class="emojiIcon relaxedCalmIcon">fas fa-smile-beam</v-icon>
-        <div class="degreeTracked">{{this.relaxedCalmDateDegree}}</div>
+      <div class="buttonSection">
+        <button v-on:click="this.deleteMood" class="deleteButton"><span>Delete Mood</span></button>
+        <button v-on:click="this.showDetails" class="showDetailsButton"><span>View Details</span></button>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
   export default {
     name: 'Calendar.vue',
+    computed: {
+      showDatePicker: { get() {return this.$store.getters['statistics/showDatePicker']}},
+    },
     data() {
 
       return {
@@ -69,6 +78,7 @@
       }
     },
     mounted() {
+      this.$store.commit('statistics/setShowDatePicker', true);
       this.$fireStore.collection("users").doc("1").collection("moodTracking")
         .onSnapshot(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -225,6 +235,14 @@
 
         })
       },
+      deleteMood: function() {
+        console.log("deleteMood fired");
+      },
+      showDetails: function() {
+        console.log("showDetails fired");
+        this.$store.commit('statistics/setShowDatePicker', false);
+        this.$store.commit('statistics/setShowDetails', true);
+      }
     }
   }
 </script>
@@ -233,12 +251,14 @@
   .v-date-picker {
     top: 0;
   }
+  .moodSection {
+    background-color: white;
+  }
   .moods {
     display: flex;
     justify-content: space-between;
-    background-color: white;
     border-radius: 4px;
-    padding: 10px 2px;
+    padding: 5px 2px;
     margin-top: 0;
   }
 
@@ -284,6 +304,33 @@
 
   .relaxedCalmIcon {
     color: #425CCC;
+  }
+
+  .buttonSection {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  .deleteButton {
+    background-color: #DE6465;
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin: 2px;
+    transition: all 0.5s;
+    font-family: 'Manrope', sans-serif;
+    color: white;
+    font-size: 16px;
+  }
+  .showDetailsButton {
+    background-color: #23a2b3;
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin: 2px;
+    transition: all 0.5s;
+    font-family: 'Manrope', sans-serif;
+    color: white;
+    font-size: 16px;
   }
 
 </style>

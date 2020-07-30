@@ -86,7 +86,7 @@
     background-color: white;
     width: 290px;
     height: 27px;
-    margin-top: 80px;
+    margin-top: 70px;
     display: flex;
   }
   .statisticsButton {

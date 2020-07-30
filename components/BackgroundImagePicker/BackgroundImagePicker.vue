@@ -63,9 +63,9 @@
         }
       },
     },
-    watch: {
+   /* watch: {
       backgroundImagePath: function (val) {
- /*       console.log("VALUE", val);*/
+        console.log("VALUE", val);
 
         switch(this.backgroundImagePath){
           case '_nuxt/assets/bali.jpg':
@@ -75,20 +75,30 @@
             console.log("PINK");
             document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
-          case 2:
+          case '_nuxt/assets/pinkishBeach.jpg':
+            console.log("LAKE");
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
-          case 3:
+          case '_nuxt/assets/pinkishBeach.jpg':
+            console.log("PINK");
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
-          case 4:
+          case '_nuxt/assets/pinkishBeach.jpg':
+            console.log("PINK");
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
-          case 5:
+          case '_nuxt/assets/pinkishBeach.jpg':
+            console.log("PINK");
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
-          case 6:
+          case '_nuxt/assets/pinkishBeach.jpg':
+            console.log("PINK");
+            document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
             break;
         }
 
       }
-    },
+    },*/
    /* mounted() {
       console.log("HER:, ", this.backgroundImagePath);
     }*/

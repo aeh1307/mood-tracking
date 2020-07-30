@@ -1,6 +1,8 @@
 export const state = () => ({
   showCalendar: true,
   showStats: false,
+  showDetails: false,
+  showDatePicker: true,
 })
 
 export const getters = {
@@ -9,7 +11,13 @@ export const getters = {
   },
   showStats: state => {
     return state.showStats;
-  }
+  },
+  showDetails: state => {
+    return state.showDetails;
+  },
+  showDatePicker: state => {
+    return state.showDatePicker;
+  },
 }
 
 export const mutations = {
@@ -18,5 +26,11 @@ export const mutations = {
   },
   setShowStat(state, boolean){
     state.showStats = boolean
+  },
+  setShowDetails(state, boolean){
+    state.showDetails = boolean
+  },
+  setShowDatePicker(state, boolean){
+    state.showDatePicker = boolean
   },
 }

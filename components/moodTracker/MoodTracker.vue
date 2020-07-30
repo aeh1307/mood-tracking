@@ -161,6 +161,7 @@
     },
     methods: {
       startCounter(){
+
         this.$store.commit('moodtracker/setCount', 0)
         if(!this.interval){
          this.interval = setInterval(() => this.$store.commit('moodtracker/incrementCount'), 500)
