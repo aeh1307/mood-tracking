@@ -3,6 +3,7 @@
     <div></div>
     <div class="statisticsButtonSection">
     <button id="calendarButton" class="statisticsButton" v-on:click="calendarView">Calendar</button>
+      <button id="detailsButton" class="statisticsButton" v-on:click="calendarView">Details</button>
     <button id="statsButton" class="statisticsButton" v-on:click="statsView">Stats</button>
     </div>
     <MoodData/>
@@ -25,6 +26,8 @@
     methods: {
       calendarView () {
         this.$store.commit('statistics/setShowCalendar', true)
+        this.$store.commit('statistics/setShowMoodSection', true)
+        this.$store.commit('statistics/setShowCalendarMoodDetails', false)
         this.$store.commit('statistics/setShowStat', false)
         /*let calendarButtonEl = document.getElementById("calendarButton");
         let statsButtonEl = document.getElementById("statsButton");
@@ -34,6 +37,7 @@
       statsView() {
         this.$store.commit('statistics/setShowStat', true)
         this.$store.commit('statistics/setShowCalendar', false)
+        this.$store.commit('statistics/setShowCalendarMoodDetails', false)
        /* let calendarButtonEl = document.getElementById("calendarButton");
         let statsButtonEl = document.getElementById("statsButton");
         statsButtonEl.style.fontWeight = 'bold';
@@ -65,6 +69,21 @@
       this.calendarView()
       let element = document.querySelector('.statistics');
       element.style.backgroundImage = `url('../${this.backgroundImagePath}')`;
+
+      this.$fireStore.collection("users").doc("1").collection("moodTracking")
+        .onSnapshot(querySnapshot => {
+          this.$store.commit('statistics/emptyMoods');
+          querySnapshot.forEach(doc => {
+            // Degree of emotion, emotion, time, id:
+            let trackedMood = {
+              degreeOfEmotion: doc.data().degreeOfEmotion,
+              emotion: doc.data().emotion,
+              time: doc.data().time,
+              id: doc.id
+            }
+            this.$store.commit('statistics/addMoods', trackedMood)
+          })
+        })
     }
   }
 </script>
@@ -84,9 +103,9 @@
 
   .statisticsButtonSection {
     background-color: white;
-    width: 290px;
+    width: 100vw;
     height: 27px;
-    margin-top: 70px;
+    margin-top: 50px;
     display: flex;
   }
   .statisticsButton {
@@ -111,6 +130,11 @@
     border-right: 1px solid #44719a;
     font-weight: bold;
     background-color: #a4b6bb;
+  }
+
+  #detailsButton {
+    border-right: 1px solid #44719a;
+    background-color: white;
   }
 
 </style>

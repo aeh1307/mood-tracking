@@ -9,6 +9,9 @@
         <div class="menuOptions">
           <a>Profile settings</a>
           <a>General settings</a>
+          <a>Goals</a>
+          <a>Reminders</a>
+          <a>Achievements</a>
           <a v-on:click="chooseBackground">Customize Background Photo</a>
         </div>
       </div>

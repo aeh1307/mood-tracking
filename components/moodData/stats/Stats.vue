@@ -1,5 +1,6 @@
 <template>
   <div class="stats">
+    <div>Statistics coming ...</div>
     <div class="charts">
       <!--<apex-charts.component
         width="500" type="bar"
@@ -8,16 +9,20 @@
       Show in bubble chart:
       <ul>
         <li class="listElement">Total number of mood trackings: {{this.moods.length}}</li>
+        <li class="listElement"> Longest chain/streak of trackings</li>
       </ul>
 
     </div>
     <div class="charts">
       Show in linear chart:
-      Most tracked mood:{{this.mostTrackedMood}}
+    <!--  Most tracked mood:{{this.mostTrackedMood}}-->
+
       <ul>
         <li class="listElement"> Number of mood trackings this day</li>
         <li class="listElement"> Number of mood trackings this week</li>
         <li class="listElement"> Number of mood trackings this month</li>
+        <li class="listElement"> Perhaps a simple weekly mood chart?
+          Showing which types of moods are tracked on which weekday the current week </li>
       </ul>
     </div>
   </div>
