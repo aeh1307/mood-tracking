@@ -157,9 +157,10 @@ export default {
       })
     },
     showDetails: function () {
-      this.$store.commit('statistics/setShowDatePicker', false);
-      this.$store.commit('statistics/setShowMoodSection', false);
       this.$store.commit('statistics/setShowCalendarMoodDetails', true);
+      this.$store.commit('statistics/setShowCalendar', false);
+      this.$store.commit('statistics/setShowMoodSection', false);
+      this.$store.commit('statistics/setShowStat', false);
     }
   }
 }
@@ -168,7 +169,7 @@ export default {
 <style scoped>
 
 .calendarView{
- /* background-color: #e5e3e3;*/
+  background-color: #cbcaca;
   width: 100vw;
   height: 76vh;
   display: flex;

@@ -19,6 +19,7 @@
     "d3-scale": "^3.2.1",
     "d3.js": "0.0.2-security",
     "firebase": "^7.15.1",
+    "mdbvue": "^6.7.1",
     "nuxt": "^2.12.2",
     "swiper": "^5.4.5",
     "v-calendar": "^1.0.8",

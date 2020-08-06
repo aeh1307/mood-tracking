@@ -1,8 +1,7 @@
 <template>
   <div class="moodData">
-    <CalendarMoodDetails v-if="showCalendarMoodDetails"/>
+    <CalendarDetails v-if="showCalendarMoodDetails"/>
     <Calendar v-if="showCalendar"/>
-
     <Stats v-if="showStats"/>
   </div>
 </template>
@@ -10,14 +9,14 @@
 <script>
   import Calendar from "./calendar/Calendar";
   import Stats from "./stats/Stats";
-  import CalendarMoodDetails from "./calendar/CalendarMoodDetails";
+  import CalendarDetails from "./calendarDetails/CalendarDetails";
 
   export default {
     name: "MoodData.vue",
     components: {
       Calendar,
       Stats,
-      CalendarMoodDetails
+      CalendarDetails,
     },
     computed: {
           showCalendar: { get() { return this.$store.getters['statistics/showCalendar'] }},

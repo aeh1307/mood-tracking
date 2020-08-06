@@ -3,7 +3,7 @@
     <div></div>
     <div class="statisticsButtonSection">
     <button id="calendarButton" class="statisticsButton" v-on:click="calendarView">Calendar</button>
-      <button id="detailsButton" class="statisticsButton" v-on:click="calendarView">Details</button>
+      <button id="detailsButton" class="statisticsButton" v-on:click="detailView">Details</button>
     <button id="statsButton" class="statisticsButton" v-on:click="statsView">Stats</button>
     </div>
     <MoodData/>
@@ -21,6 +21,7 @@
     computed: {
       showCalendar: { get() { return this.$store.getters['statistics/showCalendar']}},
       showStats: { get() { return this.$store.getters['statistics/showStats'] }},
+      showCalendarMoodDetails: { get() { return this.$store.getters['statistics/showCalendarMoodDetails']}},
       backgroundImagePath: { get() { return this.$store.getters['settings/backgroundImagePath']}},
     },
     methods: {
@@ -33,6 +34,12 @@
         let statsButtonEl = document.getElementById("statsButton");
         calendarButtonEl.style.fontWeight = 'bold';
         statsButtonEl.style.fontWeight = 'normal';*/
+      },
+      detailView(){
+        this.$store.commit('statistics/setShowCalendarMoodDetails', true)
+        this.$store.commit('statistics/setShowCalendar', false)
+        this.$store.commit('statistics/setShowMoodSection', false)
+        this.$store.commit('statistics/setShowStat', false)
       },
       statsView() {
         this.$store.commit('statistics/setShowStat', true)
@@ -47,17 +54,32 @@
     watch: {
       showCalendar: function (val) {
         let calendarButtonEl = document.getElementById("calendarButton");
-        let statsButtonEl = document.getElementById("statsButton");
         if(val === true){
           calendarButtonEl.style.fontWeight = 'bold';
-          calendarButtonEl.style.background = '#a4b6bb';
-          statsButtonEl.style.fontWeight = 'normal';
-          statsButtonEl.style.background = '#ffffff'
+          calendarButtonEl.style.background = '#cbcaca';
         }else{
-          statsButtonEl.style.fontWeight = 'bold';
-          statsButtonEl.style.background = '#a4b6bb';
           calendarButtonEl.style.fontWeight = 'normal';
-          calendarButtonEl.style.background = '#ffffff'
+          calendarButtonEl.style.background = '#ffffff';
+        }
+      },
+      showStats: function (val) {
+        let statsButttonEl = document.getElementById("statsButton");
+        if(val === true){
+          statsButttonEl.style.fontWeight = 'bold';
+          statsButttonEl.style.background = '#cbcaca';
+        } else {
+          statsButttonEl.style.fontWeight = 'normal';
+          statsButttonEl.style.background = '#ffffff';
+        }
+      },
+      showCalendarMoodDetails: function (val) {
+        let viewDetailsButttonEl = document.getElementById("detailsButton");
+        if(val === true){
+          viewDetailsButttonEl.style.fontWeight = 'bold';
+          viewDetailsButttonEl.style.background = '#cbcaca';
+        } else {
+          viewDetailsButttonEl.style.fontWeight = 'normal';
+          viewDetailsButttonEl.style.background = '#ffffff';
         }
       },
       backgroundImagePath: function (val) {
@@ -118,7 +140,6 @@
     color: #44719a;
     font-size: 16px;
  /*   border-right: 1px solid #44719a;*/
-    border-bottom:  1px solid #44719a;
     width: 145px;
   }
 
@@ -130,11 +151,17 @@
     border-right: 1px solid #44719a;
     font-weight: bold;
     background-color: #a4b6bb;
+    border-bottom:  1px solid #44719a;
   }
 
   #detailsButton {
     border-right: 1px solid #44719a;
     background-color: white;
+    border-bottom:  1px solid #44719a;
+  }
+  #statsButton {
+    background-color: white;
+    border-bottom:  1px solid #44719a;
   }
 
 </style>

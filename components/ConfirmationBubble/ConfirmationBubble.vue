@@ -53,18 +53,18 @@
     width: 260px;
     border: 1px solid grey;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     height:200px;
     background-color: white;
     position: absolute;
     bottom: 145px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .informationText {
-    padding: 10px;
+    padding: 25px;
     font-family: 'Manrope', sans-serif;
     font-size: 16px;
     display: flex;

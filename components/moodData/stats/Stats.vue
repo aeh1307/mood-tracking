@@ -163,8 +163,8 @@
 <style scoped>
   .stats {
     background-color: white;
-    min-height: 375px;
-    min-width: 290px;
+    height: 76vh;
+    min-width: 100vw;
     border-radius: 5px;
     top: 0;
   }

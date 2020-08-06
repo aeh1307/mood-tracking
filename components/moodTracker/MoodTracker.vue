@@ -168,7 +168,7 @@
         }
       },
       stop(){
-        if(this.count >= 3){
+        if(this.count >= 1){
           this.$store.commit('moodtracker/setShowConfirmationBubble', true)
         }else{
           this.$store.commit('moodtracker/setShowConfirmationBubble', false)
