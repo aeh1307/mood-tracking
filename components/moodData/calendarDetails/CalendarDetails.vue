@@ -43,6 +43,7 @@
       </div>
 
     <div class="flexWrapper" v-if="showEditMoodWindow">
+
       <div class="editMoodWindow">
         <v-form
           data-app
@@ -55,45 +56,29 @@
             <v-select
               v-model="selectedEmotion"
               :items="emotions"
-              item-text="hi"
-              item-color="white"
               label="Emotion"
-              return-object
               required
-              single-line
+              return-object
             ></v-select>
 
             <v-select
               v-model="selectedDegree"
               :items="numbers"
               item-text="degree"
-              item-color="white"
               label="Degree"
-              return-object
               required
-              single-line
+              return-object
             ></v-select>
-
-           <!-- <v-select
-              v-model="selectedDegree"
-              :items="numbers"
-              item-text="degree"
-              label="Degree"
-              return-object
-              required
-              single-line
-            ></v-select>-->
 
             <v-text-field
               v-model="selectedTime"
               label="Time"
               required
+              type="time"
             ></v-text-field>
           </div>
           <div class="saveButtonSection">
-            <v-btn class="editButton" @click="editMood()">
-              Save
-            </v-btn>
+            <v-btn class="editButton" @click="editMood()">Save</v-btn>
           </div>
         </v-form>
       </div>
@@ -134,9 +119,8 @@ export default {
         v => !!v || 'Time is required',
         v => /.+@.+\..+/.test(v) || 'Time must be valid',
       ],*/
-        select: {},
         emotions: [
-          'Tense/nervous',
+          'Tense/Nervous',
           'Irritated/Annoyed',
           'Excited/Lively',
           'Cheerful/Happy',
@@ -145,13 +129,13 @@ export default {
           'Relaxed/Calm',
         ],
         numbers: [
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
         ],
         checkbox: false,
         lazy: true,
@@ -203,12 +187,11 @@ export default {
       openEditMoodWindow: function (selectedDateMood) {
         this.showEditMoodWindow = true;
         this.selectedDateMoodCopy = selectedDateMood;
-        console.log(selectedDateMood.degreeOfEmotion);
         this.selectedId = selectedDateMood.id;
-        this.selectedDegree = selectedDateMood.degreeOfEmotion;
-        this.selectedEmotion = selectedDateMood.emotion;
+        this.selectedDegree = selectedDateMood.degreeOfEmotion; //number
+        this.selectedEmotion = selectedDateMood.emotion; // string
         this.selectedTime = ('0' + new Date(selectedDateMood.time).getHours()).toString()
-          .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0, 2)
+          .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0, 2); //string
       },
       closeEditMoodWindow: function () {
         this.showEditMoodWindow = false;
@@ -372,52 +355,55 @@ export default {
 .viewNotes {
   padding-top: 3px;
 }
-.eyeIcon{
-  color: #605f5f;
-  font-size: 16px;
-  padding: 4px;
-}
 
 .editMoodWindow{
-  /*background-color: white;
-  display: flex;
-  justify-content: center;*/
-  width: 240px;
+  width: 230px;
   border: 1px solid grey;
   border-radius: 10px;
-  padding: 10px;
-  height: 300px;
+  height: 280px;
   background-color: white;
-  position: absolute;
   bottom: 145px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.v-text-field {
+  padding-top: 0;
+}
+
+.v-select__selections {
+  text-align: right;
 }
 
 .editForm {
-  max-width: 200px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 25px;
+  height: 270px;
+  width: 210px;
   display: flex;
   flex-direction: column;
-  position: absolute;
 }
 .saveButtonSection{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .editButton {
-  display: flex;
-  justify-self: flex-end;
-  color: #425CCC;
+  color: #3559e5;
   font-weight: bold;
   border: 2px solid #5871d9;
+  width: 160px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 5px;
+  font-family: 'Manrope', sans-serif;
+  text-transform: capitalize;
 }
+
 /* Confirmation bubble styling: */
 .flexWrapper {
   display: flex;
   justify-content: center;
+  padding-top: 25%;
 }
 
 .confirmationBubble {

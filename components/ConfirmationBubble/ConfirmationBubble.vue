@@ -9,8 +9,8 @@
         </span>
       </div>
       <div class="buttonSection">
-        <button v-on:click="this.cancelMoodTracking" class="cancelButton">Cancel</button>
-        <button v-on:click="this.confirmMoodTracking" class="confirmationButton"><span>Confirm</span></button>
+        <v-button v-on:click="this.cancelMoodTracking" class="cancelButton">Cancel</v-button>
+        <v-button v-on:click="this.confirmMoodTracking" class="confirmationButton"><span>Confirm</span></v-button>
       </div>
     </div>
   </div>

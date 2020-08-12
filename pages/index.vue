@@ -1,13 +1,13 @@
 <template>
   <div>
 <!--    <Reminder/>--> <!-- TODO: comment in -->
-   <!-- <MapMarker/>-->
     <div class="mainContainer">
     </div>
   </div>
 
   </template>
 <script>
+
   import MapMarker from "../components/mapMarker/MapMarker";
   import Reminder from "../components/reminder/Reminder";
   export default {

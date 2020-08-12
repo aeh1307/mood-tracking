@@ -61,8 +61,6 @@ export default {
   },
   data() {
     return {
-     /* xLabels: [], /!* For chart *!/
-      yDegrees: [], /!* For chart *!/*/
       selectedDate: new Date().toISOString().slice(0, 10),
       selectAttribute: {
         dot: true

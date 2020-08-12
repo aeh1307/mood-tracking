@@ -86,7 +86,7 @@
       element.style.backgroundImage = `url('../${this.backgroundImagePath}')`;
 
       this.$fireStore.collection("users").doc("1").collection("moodTracking")
-        .onSnapshot(querySnapshot => {
+        .orderBy('time').onSnapshot(querySnapshot => {
           this.$store.commit('statistics/emptyMoods');
           querySnapshot.forEach(doc => {
             // Degree of emotion, emotion, time, id:
