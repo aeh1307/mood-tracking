@@ -26,29 +26,22 @@
     },
     methods: {
       calendarView () {
-        this.$store.commit('statistics/setShowCalendar', true)
-        this.$store.commit('statistics/setShowMoodSection', true)
-        this.$store.commit('statistics/setShowCalendarMoodDetails', false)
-        this.$store.commit('statistics/setShowStat', false)
-        /*let calendarButtonEl = document.getElementById("calendarButton");
-        let statsButtonEl = document.getElementById("statsButton");
-        calendarButtonEl.style.fontWeight = 'bold';
-        statsButtonEl.style.fontWeight = 'normal';*/
+        this.$store.commit('statistics/setShowCalendar', true);
+        this.$store.commit('statistics/setShowMoodSection', true);
+        this.$store.commit('statistics/setShowCalendarMoodDetails', false);
+        this.$store.commit('statistics/setShowStat', false);
       },
       detailView(){
-        this.$store.commit('statistics/setShowCalendarMoodDetails', true)
-        this.$store.commit('statistics/setShowCalendar', false)
-        this.$store.commit('statistics/setShowMoodSection', false)
-        this.$store.commit('statistics/setShowStat', false)
+        this.$store.commit('statistics/setShowCalendarMoodDetails', true);
+        this.$store.commit('statistics/setShowCalendar', false);
+        this.$store.commit('statistics/setShowMoodSection', false);
+        this.$store.commit('statistics/setShowStat', false);
       },
       statsView() {
-        this.$store.commit('statistics/setShowStat', true)
-        this.$store.commit('statistics/setShowCalendar', false)
-        this.$store.commit('statistics/setShowCalendarMoodDetails', false)
-       /* let calendarButtonEl = document.getElementById("calendarButton");
-        let statsButtonEl = document.getElementById("statsButton");
-        statsButtonEl.style.fontWeight = 'bold';
-        calendarButtonEl.style.fontWeight = 'normal';*/
+        this.$store.commit('statistics/setShowStat', true);
+        this.$store.commit('statistics/setShowCalendar', false);
+        this.$store.commit('statistics/setShowMoodSection', false);
+        this.$store.commit('statistics/setShowCalendarMoodDetails', false);
       }
     },
     watch: {

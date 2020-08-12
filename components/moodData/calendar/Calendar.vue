@@ -42,11 +42,8 @@
           <div class="degreeTracked">{{ this.relaxedCalmDateDegree }}</div>
         </div>
       </div>
-      <div class="buttonSection">
-        <!--<button v-on:click="this.deleteMood" class="deleteButton"><span>Delete Mood</span></button>
-        <button v-on:click="this.updateMood" class="showDetailsButton"><span>Update</span></button>-->
-        <button v-on:click="this.showDetails" class="showDetailsButton"><span>View Details</span></button>
-
+      <div class="buttonSection" v-on:click="this.showDetails">
+        <button class="showDetailsButton"><span>View Details</span></button>
       </div>
     </div>
     </div>
@@ -84,11 +81,13 @@ export default {
   mounted() {
     /*this.$store.commit('statistics/setSelectedDate', new Date().toISOString().slice(0, 10));*/
     this.$store.commit('statistics/setShowDatePicker', true);
+    this.showDateInfo();
   },
   watch: {
     moods: function () {
       this.showDateInfo()
-    }
+    },
+
   },
   methods: {
     // Move this to watch??
@@ -161,7 +160,7 @@ export default {
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
       this.$store.commit('statistics/setShowStat', false);
-    }
+    },
   }
 }
 </script>
@@ -249,17 +248,6 @@ export default {
 .buttonSection {
   display: flex;
   justify-content: flex-end;
-}
-
-.deleteButton {
-  background-color: #DE6465;
-  padding: 5px 15px;
-  border-radius: 10px;
-  margin: 2px;
-  transition: all 0.5s;
-  font-family: 'Manrope', sans-serif;
-  color: white;
-  font-size: 16px;
 }
 
 .showDetailsButton {

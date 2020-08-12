@@ -1,6 +1,6 @@
 <template>
   <div class="stats">
-    <div>Statistics coming ...</div>
+    <h5>Statistics coming ...</h5>
     <div class="charts">
       <!--<apex-charts.component
         width="500" type="bar"
@@ -161,6 +161,9 @@
 
 </script>
 <style scoped>
+h5 {
+  text-align: center;
+}
   .stats {
     background-color: white;
     height: 76vh;

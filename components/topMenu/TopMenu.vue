@@ -33,8 +33,8 @@
     },
     methods: {
         openMenu: function() {
-          let hamburger = this.$el.querySelector('.hamburgerMenu')
-          let dropdown = this.$el.querySelector('.menuOptions')
+          let hamburger = this.$el.querySelector('.hamburgerMenu');
+          let dropdown = this.$el.querySelector('.menuOptions');
 
           hamburger.classList.toggle("change");
            if (dropdown.style.display === "block") {
@@ -45,8 +45,8 @@
         },
       goBack: function() {
           this.$router.push(this.$router.options.base);
-          this.$store.commit('statistics/setShowCalendar', true)
-          this.$store.commit('statistics/setShowStat', false)
+          this.$store.commit('statistics/setShowCalendar', true);
+          this.$store.commit('statistics/setShowStat', false);
       },
       chooseBackground: function() {
         this.$store.commit('settings/setShowBackgroundImagePicker', true)
