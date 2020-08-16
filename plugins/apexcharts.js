@@ -1,6 +1,7 @@
-/*
 import Vue from 'vue'
-import VueApexCharts from 'vue-apexcharts'
-Vue.use(VueApexCharts)
-Vue.component('apexchart', VueApexCharts)
-*/
+
+if(process.client){
+  let VueApexCharts = require('vue-apexcharts');
+  Vue.use(VueApexCharts)
+  Vue.component('apexchart', VueApexCharts)
+}

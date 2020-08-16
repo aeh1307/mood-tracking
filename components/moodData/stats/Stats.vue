@@ -2,7 +2,8 @@
   <div class="stats">
     <h5>Statistics coming ...</h5>
     <div class="charts">
-    <!--  <apexchart type="area" height="350" :options="chartOptions" :series="series"/>-->
+        <apexchart type="area" height="350" :options="chartOptions" :series="series"/>
+
       <!-- <li v-for="mood in moods">{{mood}}</li>-->
       Show in bubble chart:
       <ul>
@@ -26,13 +27,9 @@
   </div>
 </template>
 <script>
-/*import apexchart from "vue-apexcharts";*/
 
   export default {
     name: 'Stats.vue',
-/*    components: {
-      apexchart,
-    },*/
     computed: {
       moods: { get(){ return this.$store.getters['statistics/moods'] } },
     },
