@@ -1,6 +1,7 @@
 <template>
   <div class="flexWrapper">
     <div class="editMoodWindow">
+      <v-icon class="exitIcon" v-on:click="cancelEdit">fas fa-times</v-icon>
       <v-form
         data-app
         class="editForm"
@@ -103,8 +104,6 @@ export default {
   },
   methods: {
     editMood: function (){
-      console.log("Test: ",this.selectedId)
-      console.log("Test: ",this.newSelectedEmotion)
      // console.log(this.selectedId, this.selectedEmotion, this.selectedDegree, this.selectedTime);
      //  console.log(this.$store.getters['statistics/selectedEmotion']);
       // TODO: fix: issue if month is november or december have to account for 2 digits.
@@ -120,6 +119,12 @@ export default {
       this.$store.commit('statistics/setSelectedEmotion', this.newSelectedEmotion);
       this.$store.commit('statistics/setSelectedDegree', this.newSelectedDegree);
 
+      this.$store.commit('statistics/setShowEditMoodWindow', false);
+      let selectedMoodEl = document.getElementById(this.selectedId);
+      selectedMoodEl.style.border = '1px solid #e3e3e3';
+      selectedMoodEl.style.backgroundColor = 'white';
+    },
+    cancelEdit: function () {
       this.$store.commit('statistics/setShowEditMoodWindow', false);
       let selectedMoodEl = document.getElementById(this.selectedId);
       selectedMoodEl.style.border = '1px solid #e3e3e3';
@@ -145,6 +150,13 @@ export default {
   position: absolute;
 }
 
+.exitIcon {
+  display: flex;
+  align-self: flex-end;
+  padding-top: 15px;
+  padding-right: 15px;
+}
+
 .v-menu__content {
   top: -20px !important;
 }
@@ -163,7 +175,9 @@ export default {
 }
 
 .editForm {
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
   height: 270px;
   width: 210px;
   display: flex;

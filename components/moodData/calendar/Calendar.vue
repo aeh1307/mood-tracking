@@ -61,6 +61,7 @@ export default {
   },
   data() {
     return {
+      filteredMoods: [],
       selectedDate: new Date().toISOString().slice(0, 10),
       selectAttribute: {
         dot: true
@@ -101,6 +102,8 @@ export default {
       return null
     },
     // Shows a overview over the different moods that are tracked on the date the user select in the calendar.
+
+    // TODO: separate switch into own method, use filter to find entries for selected date, see filterMoods in MoodTable
     showDateInfo: function () {
       this.$store.commit('statistics/emptySelectedDateMoods');
       let selectedDate = this.selectedDate ? this.selectedDate.split("-") : this.date.toString().split("-");
@@ -117,41 +120,40 @@ export default {
       this.gloomySadDateDegree = 0;
       this.relaxedCalmDateDegree = 0;
 
-      this.moods.forEach(trackedMood => {
-        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
-        let trackedDay = dateFromDB[2]
-        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
-        let trackedYear = dateFromDB[3]
-        /*let trackedTime = dateFromDB[4]*/
+       this.filteredMoods = this.moods.filter(trackedMood => {
+         let dateFromDB = new Date(trackedMood.time).toString().split(" ")
+         let trackedDay = dateFromDB[2]
+         let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
+         let trackedYear = dateFromDB[3]
+         return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay))
+       })
 
-        /*          console.log("Test: ", dateFromDB, "Day: ", trackedDay, "Month: ", trackedMonth, "Year: ", trackedYear, "Time: ", trackedTime)*/
-        if ((trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay)) {
-          switch (trackedMood.emotion) {
-            case 'Tense/Nervous':
-              this.tenseNervousDateDegree = this.tenseNervousDateDegree + trackedMood.degreeOfEmotion;
-              break;
-            case 'Irritated/Annoyed':
-              this.irritatedAnnoyedDateDegree = this.irritatedAnnoyedDateDegree + trackedMood.degreeOfEmotion;
-              break;
-            case 'Excited/Lively':
-              this.excitedLivelyDateDegree = this.excitedLivelyDateDegree + trackedMood.degreeOfEmotion;
-              break;
-            case 'Cheerful/Happy':
-              this.cheerfulHappyDateDegree = this.cheerfulHappyDateDegree + trackedMood.degreeOfEmotion;
-              break;
-            case 'Bored/Weary':
-              this.boredWearyDateDegree = this.boredWearyDateDegree + trackedMood.degreeOfEmotion;
-              break;
-            case 'Gloomy/Sad':
-              this.gloomySadDateDegree = this.gloomySadDateDegree + trackedMood.degreeOfEmotion;
-              break;
-            case 'Relaxed/Calm':
-              this.relaxedCalmDateDegree = this.relaxedCalmDateDegree + trackedMood.degreeOfEmotion;
-              break;
-          }
-          this.$store.commit('statistics/addSelectedDateMoods', trackedMood);
-        }
-      })
+       this.filteredMoods.forEach(filteredMood => {
+         switch (filteredMood.emotion) {
+           case 'Tense/Nervous':
+             this.tenseNervousDateDegree = this.tenseNervousDateDegree + filteredMood.degreeOfEmotion;
+             break;
+           case 'Irritated/Annoyed':
+             this.irritatedAnnoyedDateDegree = this.irritatedAnnoyedDateDegree + filteredMood.degreeOfEmotion;
+             break;
+           case 'Excited/Lively':
+             this.excitedLivelyDateDegree = this.excitedLivelyDateDegree + filteredMood.degreeOfEmotion;
+             break;
+           case 'Cheerful/Happy':
+             this.cheerfulHappyDateDegree = this.cheerfulHappyDateDegree + filteredMood.degreeOfEmotion;
+             break;
+           case 'Bored/Weary':
+             this.boredWearyDateDegree = this.boredWearyDateDegree + filteredMood.degreeOfEmotion;
+             break;
+           case 'Gloomy/Sad':
+             this.gloomySadDateDegree = this.gloomySadDateDegree + filteredMood.degreeOfEmotion;
+             break;
+           case 'Relaxed/Calm':
+             this.relaxedCalmDateDegree = this.relaxedCalmDateDegree + filteredMood.degreeOfEmotion;
+             break;
+         }
+         this.$store.commit('statistics/addSelectedDateMoods', filteredMood);
+       })
     },
     showDetails: function () {
       this.$store.commit('statistics/setShowCalendarMoodDetails', true);

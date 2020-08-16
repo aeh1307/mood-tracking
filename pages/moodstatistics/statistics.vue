@@ -88,6 +88,7 @@
       this.$fireStore.collection("users").doc("1").collection("moodTracking")
         .orderBy('time').onSnapshot(querySnapshot => {
           this.$store.commit('statistics/emptyMoods');
+          let trackedMoods = []
           querySnapshot.forEach(doc => {
             // Degree of emotion, emotion, time, id:
             let trackedMood = {
@@ -96,8 +97,10 @@
               time: doc.data().time,
               id: doc.id
             }
-            this.$store.commit('statistics/addMoods', trackedMood)
+            trackedMoods.push(trackedMood)
           })
+          this.$store.commit('statistics/addMoods', trackedMoods)
+          // console.log(...trackedMoods)
         })
     }
   }

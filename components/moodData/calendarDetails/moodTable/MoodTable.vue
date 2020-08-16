@@ -11,21 +11,21 @@
       <td id="timeHeader" class="tableHeaderColumnNames">Time</td>
       </thead>
 
-      <div class="noTrackedMoodsText" v-if="selectedDateMoods.length === 0">
+      <div class="noTrackedMoodsText" v-if="filteredMoods.length === 0">
         There are no tracked mood on the day you have selected.
       </div>
 
-      <tr v-bind:key="`${selectedDateMood.id}-key`" :id="selectedDateMood.id" class="tableRow" v-for="selectedDateMood in selectedDateMoods" v-if="selectedDateMoods.length > 0">
-        <td><v-icon class="emojiIcon" :id="`icon-${selectedDateMood.id}`" :style="`color: ${findEmojiIcon(selectedDateMood).color}`">{{findEmojiIcon(selectedDateMood).icon}}</v-icon></td>
-        <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ selectedDateMood.emotion }}</b>
+      <tr v-bind:key="filteredMood.id" :id="filteredMood.id" class="tableRow" v-for="filteredMood in filteredMoods" v-if="filteredMoods.length > 0" >
+        <td><v-icon class="emojiIcon" :id="`icon-${filteredMood.id}`" :style="`color: ${findEmojiIcon(filteredMood).color}`">{{findEmojiIcon(filteredMood).icon}}</v-icon></td>
+        <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
           <div class="viewNotes" v-on:click="viewNotes">View notes</div>
         </td>
-        <td id="degreeRow" class="tableRowCells">{{ selectedDateMood.degreeOfEmotion }}</td>
-        <td id="timeRow" class="tableRowCells">{{ ('0' + new Date(selectedDateMood.time).getHours()).toString()
-          .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0,2)}}</td>
+        <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
+        <td id="timeRow" class="tableRowCells">{{ ('0' + new Date(filteredMood.time).getHours()).toString()
+          .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0,2)}}</td>
         <div class="actionSection">
-          <v-icon class="trashIcon" v-on:click="deleteMood(selectedDateMood.id)">far fa-trash-alt</v-icon>
-          <v-icon class="editIcon" v-on:click="openEditMoodWindow(selectedDateMood)">far fa-edit</v-icon>
+          <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
+          <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>
         </div>
       </tr>
     </table>
@@ -36,9 +36,14 @@
 export default {
   name: 'MoodTable.vue',
   computed: {
-    selectedDateMoods: { get(){ return this.$store.getters['statistics/selectedDateMoods'] } },
+    moods: { get(){ return this.$store.getters['statistics/moods'] } },
     selectedDate: { get(){ return this.$store.getters['statistics/selectedDate'] } },
     selectedId: { get(){ return this.$store.getters['statistics/selectedId'] } },
+  },
+  data(){
+    return{
+      filteredMoods: [],
+    }
   },
   methods: {
     deleteMood: function (docId) {
@@ -99,9 +104,31 @@ export default {
           emojiIconObj.color = '#425CCC';
           return emojiIconObj;
       }
+    },
+    filterMoods() {
+      let selectedYear = this.selectedDate[0]
+      let selectedMonth =this.selectedDate[1]
+      let selectedDay = this.selectedDate[2]
+
+      this.filteredMoods = this.moods.filter(trackedMood => {
+        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
+        let trackedDay = dateFromDB[2]
+        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
+        let trackedYear = dateFromDB[3]
+
+        return (trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay);
+      })
+
+    },
+  },
+  watch: {
+    moods: function(){
+      this.filterMoods();
     }
   },
-
+  mounted(){
+    this.filterMoods();
+  }
 }
 
 </script>

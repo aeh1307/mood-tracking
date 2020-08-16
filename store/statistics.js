@@ -124,8 +124,11 @@ export const mutations = {
   emptySelectedDateMoods(state){
     state.selectedDateMoods = []
   },
-  addMoods(state, object){
-    state.moods.push(object)
+  addMoods(state, moodList){
+    state.moods = moodList
+  },
+  deleteMood(state, moodId){
+    state.moods.filter(m => m.id !== moodId)
   },
   emptyMoods(state){
     state.moods = []

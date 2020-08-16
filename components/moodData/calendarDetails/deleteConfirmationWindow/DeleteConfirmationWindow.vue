@@ -21,9 +21,12 @@ export default {
   },
   methods: {
     confirmMoodDeletion: function () {
+      let deleteId = this.selectedId;
+      let store = this.$store;
       this.$fireStore.collection('users').doc('1').collection('moodTracking')
         .doc(this.selectedId).delete().then(function () {
-        console.log("The mood was successfully deleted!",);
+        console.log(`The mood: ${deleteId} was successfully deleted!`);
+        store.commit('statistics/deleteMood', deleteId)
       }).catch(function (error) {
         console.error("Error occurred, could not delete mood: ", error);
       })

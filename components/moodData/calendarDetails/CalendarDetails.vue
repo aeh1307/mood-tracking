@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     showDeleteConfirmationWindow: { get(){ return this.$store.getters['statistics/showDeleteConfirmationWindow'] } },
-    showEditMoodWindow: { get(){ return this.$store.getters['statistics/showEditMoodWindow'] }}
+    showEditMoodWindow: { get(){ return this.$store.getters['statistics/showEditMoodWindow'] }},
   },
 }
 

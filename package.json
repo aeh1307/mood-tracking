@@ -13,7 +13,7 @@
   "dependencies": {
     "@nuxtjs/firebase": "^6.0.1",
     "add": "^2.0.6",
-    "apexcharts": "^3.19.3",
+    "apexcharts": "^3.20.0",
     "chart.js": "^2.9.3",
     "d3": "^5.16.0",
     "d3-scale": "^3.2.1",
@@ -23,7 +23,7 @@
     "nuxt": "^2.12.2",
     "swiper": "^5.4.5",
     "v-calendar": "^1.0.8",
-    "vue-apexcharts": "^1.5.3",
+    "vue-apexcharts": "^1.6.0",
     "vue-awesome-swiper": "^4.1.1",
     "vue-chart.js": "^0.2.0",
     "vue-clazy-load": "^0.4.2",
