@@ -1,13 +1,14 @@
 <template>
   <div class="calendarView">
+    <!-- TODO: add dark ?-->
     <v-date-picker
       class="v-date-picker"
-      dark
       single
       v-model="selectedDate"
       :events="functionEvents"
       @change="showDateInfo"
       no-title
+      dark
       v-if="showDatePicker"
     >
     </v-date-picker>
@@ -63,9 +64,6 @@ export default {
     return {
       filteredMoods: [],
       selectedDate: new Date().toISOString().slice(0, 10),
-      selectAttribute: {
-        dot: true
-      },
       date: new Date(),
       documentId: '',
       tenseNervousDateDegree: 0,
@@ -98,6 +96,7 @@ export default {
       })
       if (foundDate) {
         return '#FF69B4'
+ /*       return '#24C6DC'*/
       }
       return null
     },
