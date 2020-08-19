@@ -1,7 +1,6 @@
 <template>
   <div class="flexWrapper" >
     <v-app>
-      <v-main>
         <v-dialog v-model="dialog" persistent max-width="260">
           <v-card class="dialogCard" light min-height="180">
               <div class="informationText">
@@ -13,7 +12,6 @@
               </div>
           </v-card>
         </v-dialog>
-      </v-main>
     </v-app>
   </div>
 

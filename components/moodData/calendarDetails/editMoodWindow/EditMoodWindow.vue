@@ -1,15 +1,15 @@
 <template>
   <div class="flexWrapper">
       <v-app>
-        <v-main>
           <v-dialog v-model="dialog" persistent max-width="240">
-            <v-card class="dialogCard" light>
+            <v-card class="dialogCard">
               <v-form
                 data-app
                 class="editForm"
                 ref="form"
                 v-model="valid"
                 :lazy-validation="lazy"
+                color="#fefefe"
               >
                 <div>
                   <v-select
@@ -19,7 +19,7 @@
                     required
                     return-object
                     id="selectEmotion"
-                    color="#808080"
+                    class="v-list-item--link theme--light"
                   ></v-select>
 
                   <v-select
@@ -45,7 +45,6 @@
               </v-form>
             </v-card>
             </v-dialog>
-          </v-main>
       </v-app>
   </div>
 
@@ -139,28 +138,6 @@ export default {
       selectedMoodEl.style.border = '1px solid #e3e3e3';
       selectedMoodEl.style.backgroundColor = 'white';
     },
-    customDropdownStyling (dropdownList, component, {width}) {
-      dropdownList.style.width = width;
-
-     /* const popper = createPopper(component.$refs.toggle, dropdownList, {
-        placement: this.placement,
-        modifiers: [
-          {
-            name: 'offset', options: {
-              offset: [0, -1]
-            }
-          },
-          {
-            name: 'toggleClass',
-            enabled: true,
-            phase: 'write',
-            fn ({state}) {
-              component.$el.classList.toggle('drop-up', state.placement === 'top')
-            },
-          }]
-      });
-      return () => popper.destroy();*/
-    }
   }
 
 }
