@@ -1,14 +1,20 @@
 <template>
   <div class="flexWrapper" >
-    <div class="confirmationBubble">
-      <div class="informationText">
-        Are you sure you want to delete the tracked mood?
-      </div>
-      <div class="buttonSection">
-        <button v-on:click="this.cancelMoodDeletion" class="cancelButton">Cancel</button>
-        <button v-on:click="this.confirmMoodDeletion" class="confirmationButton"><span>Confirm</span></button>
-      </div>
-    </div>
+    <v-app>
+      <v-main>
+        <v-dialog v-model="dialog" persistent max-width="260">
+          <v-card class="dialogCard" light min-height="180">
+              <div class="informationText">
+                Are you sure you want to delete the tracked mood?
+              </div>
+              <div class="buttonSection">
+                <v-btn width="90px" text color="#DE6465"rounded class="editButton cancelButton" @click="this.cancelMoodDeletion">Cancel</v-btn> <!-- Must be v-btn -->
+                <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton" @click="this.confirmMoodDeletion">Confirm</v-btn> <!-- Must be v-btn -->
+              </div>
+          </v-card>
+        </v-dialog>
+      </v-main>
+    </v-app>
   </div>
 
 </template>
@@ -18,6 +24,11 @@ export default {
   name: 'DeleteConfirmationWindow.vue',
   computed: {
     selectedId: { get() { return this.$store.getters['statistics/selectedId']}}
+  },
+  data() {
+    return{
+      dialog: true,
+    }
   },
   methods: {
     confirmMoodDeletion: function () {
@@ -47,35 +58,33 @@ export default {
 .flexWrapper {
   display: flex;
   justify-content: center;
+  align-self: center;
   padding-top: 25%;
-}
 
-.confirmationBubble {
-  width: 260px;
-  border: 1px solid grey;
-  border-radius: 10px;
-  padding: 10px;
-  height: 180px;
-  background-color: white;
-  position: absolute;
-  bottom: 145px;
+}
+.dialogCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .informationText {
-  padding: 25px;
+  padding: 40px 20px 5px;
   width: 240px;
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
+  font-weight: normal;
+  color: black;
   display: flex;
+  justify-self: center;
+  align-self: center;
   flex-direction: column;
 }
 
 .buttonSection {
   display:flex;
   justify-content: center;
+  padding: 15px 15px 20px;
 }
 
 .confirmationButton {
@@ -98,5 +107,17 @@ export default {
   margin: 5px;
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
+}
+
+.editButton {
+  color: white;
+  text-transform: none;
+  font-size: 16px;
+  width: 160px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 5px;
+  font-family: 'Manrope', sans-serif;
+  transition: all 0.5s;
 }
 </style>

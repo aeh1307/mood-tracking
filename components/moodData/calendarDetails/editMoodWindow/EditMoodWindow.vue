@@ -1,44 +1,52 @@
 <template>
   <div class="flexWrapper">
-    <div class="editMoodWindow">
-      <v-icon class="exitIcon" v-on:click="cancelEdit">fas fa-times</v-icon>
-      <v-form
-        data-app
-        class="editForm"
-        ref="form"
-        v-model="valid"
-        :lazy-validation="lazy"
-      >
-        <div>
-          <v-select
-            v-model="newSelectedEmotion"
-            :items="emotions"
-            label="Emotion"
-            required
-            return-object
-          ></v-select>
+      <v-app>
+        <v-main>
+          <v-dialog v-model="dialog" persistent max-width="240">
+            <v-card class="dialogCard" light>
+              <v-form
+                data-app
+                class="editForm"
+                ref="form"
+                v-model="valid"
+                :lazy-validation="lazy"
+              >
+                <div>
+                  <v-select
+                    v-model="newSelectedEmotion"
+                    :items="emotions"
+                    label="Emotion"
+                    required
+                    return-object
+                    id="selectEmotion"
+                    color="#808080"
+                  ></v-select>
 
-          <v-select
-            v-model="newSelectedDegree"
-            :items="numbers"
-            item-text="degree"
-            label="Degree"
-            required
-            return-object
-          ></v-select>
+                  <v-select
+                    v-model="newSelectedDegree"
+                    :items="numbers"
+                    item-text="degree"
+                    label="Degree"
+                    required
+                    return-object
+                  ></v-select>
 
-          <v-text-field
-            v-model="newSelectedTime"
-            label="Time"
-            required
-            type="time"
-          ></v-text-field>
-        </div>
-        <div class="saveButtonSection">
-          <v-btn color="#3CBB75" rounded class="editButton" @click="this.editMood">Save</v-btn> <!-- Must be v-btn -->
-        </div>
-      </v-form>
-    </div>
+                  <v-text-field
+                    v-model="newSelectedTime"
+                    label="Time"
+                    required
+                    type="time"
+                  ></v-text-field>
+                </div>
+                <div class="buttonSection">
+                  <v-btn width="90px" text color="#DE6465"rounded class="editButton cancelButton" @click="this.cancelEdit">Cancel</v-btn> <!-- Must be v-btn -->
+                  <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton" @click="this.editMood">Save</v-btn> <!-- Must be v-btn -->
+                </div>
+              </v-form>
+            </v-card>
+            </v-dialog>
+          </v-main>
+      </v-app>
   </div>
 
 </template>
@@ -56,6 +64,7 @@ export default {
   },
   data() {
     return{
+      dialog: true,
       newSelectedEmotion: this.$store.getters['statistics/selectedEmotion'],
       newSelectedDegree: this.$store.getters['statistics/selectedDegree'],
       newSelectedTime: this.$store.getters['statistics/selectedTime'],
@@ -130,48 +139,66 @@ export default {
       selectedMoodEl.style.border = '1px solid #e3e3e3';
       selectedMoodEl.style.backgroundColor = 'white';
     },
+    customDropdownStyling (dropdownList, component, {width}) {
+      dropdownList.style.width = width;
+
+     /* const popper = createPopper(component.$refs.toggle, dropdownList, {
+        placement: this.placement,
+        modifiers: [
+          {
+            name: 'offset', options: {
+              offset: [0, -1]
+            }
+          },
+          {
+            name: 'toggleClass',
+            enabled: true,
+            phase: 'write',
+            fn ({state}) {
+              component.$el.classList.toggle('drop-up', state.placement === 'top')
+            },
+          }]
+      });
+      return () => popper.destroy();*/
+    }
   }
 
 }
 
 </script>
 <style scoped>
-.editMoodWindow{
-  width: 230px;
-  border: 1px solid grey;
-  border-radius: 10px;
-  height: 280px;
-  background-color: white;
-  bottom: 145px;
+
+/* Confirmation bubble styling: */
+.flexWrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  position: absolute;
+  z-index: 500;
+  align-content: center;
 }
 
-.exitIcon {
+.dialogCard {
+  padding-top: 30px;
   display: flex;
-  align-self: flex-end;
-  padding-top: 15px;
-  padding-right: 15px;
+  justify-content: center;
 }
 
-.v-menu__content {
-  top: -20px !important;
+.confirmationButton {
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 5px;
+  transition: all 0.5s;
+  font-family: 'Manrope', sans-serif;
+  color: white;
+  font-size: 16px;
 }
 
-.v-menu__content .v-list {
-  position: relative;
-  /*  top: -20px;*/
-}
-
-.v-text-field {
-  padding-top: 0;
-}
-
-.v-select__selections {
-  text-align: right;
+.cancelButton {
+  border: 1px solid #DE6465;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 5px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
 }
 
 .editForm {
@@ -183,7 +210,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.saveButtonSection{
+.buttonSection{
   display: flex;
   justify-content: center;
 }
@@ -199,10 +226,4 @@ export default {
   transition: all 0.5s;
 }
 
-/* Confirmation bubble styling: */
-.flexWrapper {
-  display: flex;
-  justify-content: center;
-  padding-top: 25%;
-}
 </style>

@@ -47,7 +47,7 @@
         <button class="showDetailsButton"><span>View Details</span></button>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -95,7 +95,8 @@ export default {
         return convertedDBTime === date;
       })
       if (foundDate) {
-        return '#FF69B4'
+       /* return '#FF69B4'*/
+        return '#58d6f1'
  /*       return '#24C6DC'*/
       }
       return null
@@ -167,14 +168,32 @@ export default {
 <style scoped>
 
 .calendarView{
-  background-color: #cbcaca;
+  /*background-color: #cbcaca;*/
+/*  background: #12c2e9;  !* fallback for old browsers *!
+  background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  !* Chrome 10-25, Safari 5.1-6 *!
+  background: linear-gradient(to left, #f64f59 , #c471ed , #12c2e9); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!
+  background: linear-gradient(to right, #24C6DC 0%, #514A9D 100%);*/
   width: 100vw;
-  height: 76vh;
+  height: 70vh;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 }
+/*.calendarView::after {
+  content: "";
+  background: linear-gradient(to left, #f64f59 , #c471ed , #12c2e9);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}*/
+
 .v-date-picker {
   top: -55px;
   width: 290px;
@@ -182,17 +201,28 @@ export default {
 
 .moodSection {
   margin-top: -45px;
-  background-color: white;
+/*  background-color: white;*/
   width: 100vw;
   display:flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid lightgrey;
+  color: dimgrey;
 }
+
+/*.moodSection::after {
+  content: "";
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}*/
 
 .moods {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   border-radius: 4px;
   padding: 5px 2px;
   margin-top: 0;
@@ -203,12 +233,33 @@ export default {
   display: flex;
   flex-direction: column;
   width: 277px;
+  margin: 0 3px;
+  color: dimgrey;
+  font-weight: 600;
 }
 
 .emojiIcon {
   padding: 5px;
   font-size: 30px;
   font-weight: bold;
+/*  background: white;
+  border-radius: 50%;*/
+  position: relative;
+  z-index: 0;
+}
+
+.emojiIcon::after {
+  content: "";
+  background: white;
+  width: 20px;
+  height: 20px;
+  position:absolute;
+  opacity: 1.0;
+  top: 10px;
+  left: 10px;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 }
 
 .degreeTracked {
@@ -250,7 +301,7 @@ export default {
 }
 
 .showDetailsButton {
-  background-color: #23a2b3;
+  background-color: dimgrey;
   padding: 4px 10px;
   border-radius: 10px;
   margin: 2px;
@@ -258,7 +309,7 @@ export default {
   font-family: 'Manrope', sans-serif;
   color: white;
   font-size: 16px;
-  width: 98vw;
+ /* width: 98vw;*/
 }
 
 </style>

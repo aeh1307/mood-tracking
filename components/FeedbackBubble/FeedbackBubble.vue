@@ -1,6 +1,21 @@
 <template>
   <div class="flexWrapper">
-    <div class="confirmationBubble">
+    <v-app>
+      <v-main>
+        <v-dialog v-model="dialog" persistent max-width="260">
+          <v-card class="dialogCard" light min-height="180">
+            <div class="buttonSection">
+              <v-icon class="checkMark">fas fa-check-circle</v-icon>
+            </div>
+            <div class="informationText">
+              <h3 class="feedbackText">Mood was tracked successfully!</h3>
+              <p class="additionalInfo">See your tracked moods in Statistics</p>
+            </div>
+          </v-card>
+        </v-dialog>
+      </v-main>
+    </v-app>
+    <!--<div class="confirmationBubble">
       <div class="buttonSection">
         <v-icon class="checkMark">fas fa-check-circle</v-icon>
       </div>
@@ -8,12 +23,17 @@
         <h3 class="feedbackText">Mood was tracked successfully!</h3>
         <p class="additionalInfo">See your tracked moods in Statistics</p>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
   export default {
     name: "FeedbackBubble.vue",
+    data(){
+      return{
+      dialog: true,
+    }
+    }
   }
 </script>
 
@@ -23,18 +43,8 @@
     justify-content: center;
   }
 
-  .confirmationBubble {
-    width: 260px;
-    border: 1px solid grey;
-    border-radius: 10px;
-    padding: 15px;
-    height:200px;
-    background-color: white;
-    position: absolute;
-    bottom: 145px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .dialogCard{
+    padding-top: 15px;
   }
 
   .informationText {
