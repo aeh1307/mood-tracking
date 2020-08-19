@@ -1,24 +1,41 @@
 <template>
   <div class="topMenu">
     <div class="container">
-      <v-icon class="backButton" v-if="isStatisticPage" v-on:click="goBack">fas fa-chevron-left</v-icon>
+
       <div class="custom-select" v-if="isStatisticPage">
-        <select class="select-items" onchange="this.getSelectedStat(this, event)">
-          <option value="0">Calendar</option>
-          <option value="1">Details</option>
-          <option value="2">Stats</option>
-          <option value="2">Achievements</option>
+        <select id="selectInput" class="select-items" @change="switchPage" v-model="selectedPage">
+          <option class="itemOptions" value="Calendar">Calendar</option>
+          <option class="itemOptions" value="Details">Details</option>
+          <option class="itemOptions" value="Stats">Stats</option>
+          <option class="itemOptions" value="Achievements">Achievements</option>
         </select>
       </div>
+<!--      <div class="custom-select text-white" v-if="isStatisticPage">
+        <v-app color="transparent" class="transparent text-white">
+          <v-card class="vCard text-white" color="transparent">
+            <v-select
+              @change="this.switchPage"
+              v-model="selectedPage"
+              class="custom text-white"
+              :items="statPages"
+              color="white"
+              item-text="white"
+              :width="100"
+            >
+            </v-select>
+          </v-card>
+        </v-app>
+      </div>-->
+      <v-icon class="backButton" v-if="isStatisticPage" v-on:click="goBack">fas fa-chevron-left</v-icon>
       <div class="hamburgerMenu" v-on:click="openMenu">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
         <div class="menuOptions">
           <a class="constraint">Profile settings</a>
-          <a class="constraint" >General settings</a>
-          <a class="constraint" >Goals</a>
-          <a class="constraint" >Reminders</a>
+          <a class="constraint">General settings</a>
+          <a class="constraint">Goals</a>
+          <a class="constraint">Reminders</a>
           <a v-on:click="chooseBackground">Customize Background Photo</a>
         </div>
       </div>
@@ -31,17 +48,52 @@ export default {
   name: "TopMenu.vue",
   computed: {
     isStatisticPage() {
-      if(this.$route.path.match("^/$")) {
+      if (this.$route.path.match("^/$")) {
         return false;
       }
       return true;
     },
     showBackgroundImagePicker: {
-      get() {return this.$store.getters['settings/showBackgroundImagePicker']}
+      get() {
+        return this.$store.getters['settings/showBackgroundImagePicker']
+      }
+    },
+    showCalendar: {
+      get() {
+        return this.$store.getters['statistics/showCalendar']
+      }
+    },
+    showStats: {
+      get() {
+        return this.$store.getters['statistics/showStats']
+      }
+    },
+    showCalendarMoodDetails: {
+      get() {
+        return this.$store.getters['statistics/showCalendarMoodDetails']
+      }
+    },
+    selectedPage: {
+      get() {
+        return this.$store.getters['statistics/selectedPage']
+      }, set(value){
+        this.$store.commit('statistics/setSelectedPage', value);
+      }
     },
   },
+  data() {
+    return {
+/*      selectedPage: this.$store.getters['statistics/selectedPage'],*/
+      statPages: [
+        'Calendar',
+        'Details',
+        'Stats',
+        'Achievements'
+      ]
+    }
+  },
   methods: {
-    openMenu: function() {
+    openMenu: function () {
       let hamburger = this.$el.querySelector('.hamburgerMenu');
       let dropdown = this.$el.querySelector('.menuOptions');
       hamburger.classList.toggle("change");
@@ -51,21 +103,22 @@ export default {
         dropdown.style.display = "block";
       }
     },
-    goBack: function() {
+    goBack: function () {
       this.$router.push(this.$router.options.base);
       this.$store.commit('statistics/setShowCalendar', true);
       this.$store.commit('statistics/setShowStat', false);
+      this.$store.commit('statistics/setSelectedPage', 'Calendar');
     },
-    chooseBackground: function() {
+    chooseBackground: function () {
       this.$store.commit('settings/setShowBackgroundImagePicker', true)
     },
-    calendarView () {
+    calendarView() {
       this.$store.commit('statistics/setShowCalendar', true);
       this.$store.commit('statistics/setShowMoodSection', true);
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
       this.$store.commit('statistics/setShowStat', false);
     },
-    detailView(){
+    detailView() {
       this.$store.commit('statistics/setShowCalendarMoodDetails', true);
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
@@ -76,9 +129,28 @@ export default {
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
-    }
+    },
+    switchPage: function () {
+      console.log(this.selectedPage);
+      if (this.selectedPage === 'Calendar') {
+        this.calendarView();
+      }
+      if (this.selectedPage === 'Details') {
+        this.detailView();
+      }
+      if (this.selectedPage === 'Stats') {
+        this.statsView();
+      }
+    },
   },
-
+  watch: {
+    selectedPage: function (){
+      let element = document.getElementById('selectInput');
+      console.log("element: ", element)
+      element.value = this.selectedPage;
+      this.switchPage();
+    }
+  }
 }
 </script>
 <style scoped>
@@ -95,6 +167,9 @@ export default {
   z-index: 1;
 }
 
+.theme--light.v-select .v-select__selection--comma {
+  color: white !important;
+}
 /*.topMenu::after {
   content: "";
   background: #fefefe;
@@ -110,7 +185,9 @@ export default {
 .container {
   min-width: 100%;
   min-height: 100%;
+  position: absolute;
 }
+
 .hamburgerMenu {
   position: fixed;
   top: 10px;
@@ -120,6 +197,7 @@ export default {
   flex-direction: column;
   align-content: center;
 }
+
 .bar1, .bar2, .bar3 {
   width: 30px;
   height: 4px;
@@ -128,24 +206,31 @@ export default {
   transition: 0.4s;
   justify-content: flex-end;
 }
+
 .change .bar1 {
   transform: rotate(-45deg) translate(-8px, 6px);
 }
-.change .bar2 {opacity: 0;}
+
+.change .bar2 {
+  opacity: 0;
+}
+
 .change .bar3 {
   transform: rotate(45deg) translate(-8px, -6px);
 }
+
 .menuOptions {
   display: none;
   position: absolute;
   background-color: white;
   min-width: 100vw;
   height: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 0;
   top: 145%;
   right: -65%;
 }
+
 .menuOptions a {
   color: black;
   padding: 12px 0;
@@ -156,6 +241,7 @@ export default {
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
 }
+
 .backButton {
   color: white;
   top: 10px;
@@ -163,28 +249,70 @@ export default {
   left: 10px;
   position: absolute;
 }
+
 .custom-select {
-  display: flex;
-  justify-content: center;
-  width: 150px;
+ /* min-width: 250px;*/
   margin: 0 auto;
+  text-align: center;
   color: white;
   font-size: 18px;
   font-family: 'Manrope', sans-serif;
   position: relative;
 }
 
-select-selected {
-  background-color: #c8c8ca;
-}
-
-select{
+.custom-select select {
+  color: #fefefe;
+  background-color: transparent;
   text-align-last: center;
 }
 
+#selectInput:focus {
+  outline: none;
+}
+
+/* Style the arrow inside the select element: */
+#selectInput:after {
+  position: absolute;
+  content: "";
+  top: 19px;
+  right: 50px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  /*border-color: #fff transparent transparent transparent;*/
+}
+/* Point the arrow upwards when the select box is open (active): */
+#selectInput .select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+
+.select-selected {
+  background-color: #5a5b60;
+}
+
+.itemOptions {
+  background-color: white;
+  color: black;
+}
+
+.select-items  {
+  text-align: center;
+}
 .constraint {
   background-color: #c8c8ca;
 }
+
+.transparent {
+  background-color: transparent !important;
+  border-style: none !important;
+}
+
+.vCard {
+  box-shadow: none;
+}
+
 </style>
 
 

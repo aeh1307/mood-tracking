@@ -14,9 +14,9 @@
       <apexchart type="radialBar" width="80" height="125" :options="irritatedAnnoyedOptions" :series="irritatedAnnoyedOptions.series"/>
     </div>-->
 
-    <div class="charts">
+  <!--  <div class="charts">
       <apexchart type="line" width="300" height="300" :options="lineChartOptions" :series="lineChartOptions.series"/>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
@@ -380,7 +380,7 @@
 </script>
 <style scoped>
   .stats {
-    background-color: white;
+   /* background-color: white;*/
     height: 76vh;
     min-width: 100vw;
     border-radius: 5px;

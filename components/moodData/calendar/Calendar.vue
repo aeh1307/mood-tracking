@@ -160,6 +160,7 @@ export default {
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
       this.$store.commit('statistics/setShowStat', false);
+      this.$store.commit('statistics/setSelectedPage', 'Details');
     },
   }
 }

@@ -16,6 +16,8 @@ export const state = () => ({
   selectedDegree: '',
   selectedTime: '',
   findSelectedMonth: '',
+
+  selectedPage: 'Calendar',
 })
 
 
@@ -40,6 +42,9 @@ export const getters = {
   },
   selectedDateMoods: state => {
     return state.selectedDateMoods;
+  },
+  selectedPage: state => {
+    return state.selectedPage;
   },
   moods: state => {
     return state.moods;
@@ -99,6 +104,9 @@ export const mutations = {
   },
   setSelectedTime(state, string){
     state.selectedTime = string
+  },
+  setSelectedPage(state, string){
+    state.selectedPage= string
   },
   setShowCalendar(state, boolean){
     state.showCalendar = boolean
