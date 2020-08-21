@@ -34,6 +34,7 @@
             degreeOfEmotion: doc.data().degreeOfEmotion,
             emotion: doc.data().emotion,
             time: doc.data().time,
+            notes: doc.data().notes,
             id: doc.id
           }
           trackedMoods.push(trackedMood)

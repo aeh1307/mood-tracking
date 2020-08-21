@@ -18,7 +18,7 @@
       <tr v-bind:key="filteredMood.id" :id="filteredMood.id" class="tableRow" v-for="filteredMood in filteredMoods" v-if="filteredMoods.length > 0" >
         <td><v-icon class="emojiIcon" :id="`icon-${filteredMood.id}`" :style="`color: ${findEmojiIcon(filteredMood).color}`">{{findEmojiIcon(filteredMood).icon}}</v-icon></td>
         <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
-          <div class="viewNotes" v-on:click="viewNotes">View notes</div>
+          <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>
         </td>
         <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
         <td id="timeRow" class="tableRowCells">{{ ('0' + new Date(filteredMood.time).getHours()).toString()
@@ -68,8 +68,15 @@ export default {
       selectedMoodEl.style.backgroundColor = '#b1f8cc';
     },
 
-    viewNotes: function () {
-      console.log("View notes fired");
+    viewNotes: function (filterMood) {
+      console.log(filterMood.notes)
+      if(filterMood.notes !== ''){
+        console.log("Notes");
+      }
+      if(filterMood.notes === ''){
+        console.log("NO notes");
+      }
+
     },
     findEmojiIcon(selectedDateMood) {
       /*        let iconEl = document.querySelector(`#icon-${selectedDateMood.id}`);*/
