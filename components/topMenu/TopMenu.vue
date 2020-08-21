@@ -76,7 +76,8 @@ export default {
     selectedPage: {
       get() {
         return this.$store.getters['statistics/selectedPage']
-      }, set(value){
+      },
+      set(value){
         this.$store.commit('statistics/setSelectedPage', value);
       }
     },

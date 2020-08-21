@@ -10,6 +10,8 @@
           Degree/intensity: <span class="trackingInformationEmphasized">{{ this.degreeOfEmotion }}</span> ?
         </span>
             </div>
+            <div><span>Add notes <v-icon @click="this.addNote">fas fa-plus-circle</v-icon></span></div>
+            <v-textarea v-if="seeNotes" value="Write your notes here ..." v-model="notes" filled></v-textarea>
             <div class="buttonSection">
               <v-btn width="90px" text color="#DE6465" rounded class="editButton cancelButton"
                      @click="this.cancelMoodTracking">Cancel
@@ -37,22 +39,32 @@ export default {
         return this.$store.getters['moodtracker/degreeOfEmotion']
       }
     },
+    notes: {
+      get() {
+        return this.$store.getters['moodtracker/notes']
+      },
+      set(value){
+        this.$store.commit('moodtracker/setNotes', value);
+      }
+    },
   },
   data(){
     return{
+      seeNotes: false,
       dialog: true,
     }
   },
   methods: {
-    cancelMoodTracking() {
+    cancelMoodTracking: function() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.$store.commit('moodtracker/setCount', 0)
+      this.$store.commit('moodtracker/setNotes', '');
     },
-    confirmMoodTracking() {
+    confirmMoodTracking: function() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.$store.commit('moodtracker/setShowFeedbackBubble', true)
       this.$fireStore.collection('users').doc('1').collection('moodTracking').add({
-        emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now()
+        emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now(), notes: this.notes,
       }).then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
       })
@@ -60,7 +72,10 @@ export default {
         this.$store.commit('moodtracker/setShowFeedbackBubble', false)
         this.$store.commit('moodtracker/setCount', 0)
       }, 3000)
-
+      this.$store.commit('moodtracker/setNotes', '');
+    },
+    addNote: function() {
+      this.seeNotes = true;
     }
   }
 }

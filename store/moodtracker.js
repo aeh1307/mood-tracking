@@ -5,6 +5,7 @@ export const state = () => ({
   count: 0,
   emojiDescription: 'Cheerful/Happy',
   degreeOfEmotion: 0,
+  notes: '',
 })
 
 export const getters = {
@@ -25,6 +26,9 @@ export const getters = {
   },
   degreeOfEmotion: state => {
     return state.degreeOfEmotion
+  },
+  notes: state => {
+    return state.notes
   }
 }
 
@@ -50,5 +54,8 @@ export const mutations = {
   setDegreeOfEmotion (state, number) {
     state.degreeOfEmotion = number
   },
+  setNotes (state, string) {
+  state.notes = string
+}
 }
 
