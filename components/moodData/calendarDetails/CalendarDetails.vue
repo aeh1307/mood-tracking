@@ -22,9 +22,6 @@ export default {
     showDeleteConfirmationWindow: { get(){ return this.$store.getters['statistics/showDeleteConfirmationWindow'] } },
     showEditMoodWindow: { get(){ return this.$store.getters['statistics/showEditMoodWindow'] }},
   },
-  mounted() {
-    console.log("CalendarDetails", this.$store.getters['statistics/selectedPage'])
-  }
 }
 
 </script>

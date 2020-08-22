@@ -132,7 +132,6 @@ export default {
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
     },
     switchPage: function () {
-      console.log(this.selectedPage);
       if (this.selectedPage === 'Calendar') {
         this.calendarView();
       }
@@ -147,7 +146,6 @@ export default {
   watch: {
     selectedPage: function (){
       let element = document.getElementById('selectInput');
-      console.log("element: ", element)
       element.value = this.selectedPage;
       this.switchPage();
     }

@@ -146,6 +146,7 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: white;
+  /*height: 56vh;*/
   overflow: auto;
 }
 

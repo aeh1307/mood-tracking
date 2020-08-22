@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!isLoggedIn">
+    <div class="loginComponent" v-if="!isLoggedIn">
       <Login/>
     </div>
     <div v-if="isLoggedIn">
@@ -44,6 +44,11 @@
 <style>
 html, body {
   margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loginComponent{
   height: 100vh;
   width: 100vw;
 }

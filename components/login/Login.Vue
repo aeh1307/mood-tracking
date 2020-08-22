@@ -1,13 +1,11 @@
 <template>
-  <div class="loginForm">
-    <v-form ref="form" v-model="valid">
-      <v-text-field v-model="email" :rules="emailRules" label="password" required ></v-text-field>
-      <v-text-field v-model="password" :rules="passwordRules" label="password" required></v-text-field>
+  <div class="login">
+    <v-form class="loginForm"ref="form" v-model="valid">
+      <v-text-field class="emailField" v-model="email" :rules="emailRules" label="Email" required ></v-text-field>
+      <v-text-field class="passwordField" v-model="password" type="password" label="Password" required></v-text-field>
       <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="validate"
+        color="black"
+        @click="logIn(email, password)"
       >
         Login
       </v-btn>
@@ -24,10 +22,6 @@
       return {
         valid: true,
         password: '',
-        passwordRules: [
-          v => !!v || 'Password is required',
-          v => (v && v.length <= 6) || 'Name must be less than 10 characters',
-        ],
         email: '',
         emailRules: [
           v => !!v || 'E-mail is required',
@@ -36,8 +30,15 @@
       }
     },
     methods: {
-      validate () {
-        this.$refs.form.validate()
+      logIn (email, password) {
+        let store = this.$store;
+        this.$fireAuth.signInWithEmailAndPassword(email, password).then(function(){
+          store.commit('users/setIsLoggedIn', true);
+        }).catch(function(error) {
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
       },
     }
   }
@@ -45,9 +46,33 @@
 </script>
 <style scoped>
 
+.login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.login::after {
+  content: "";
+  background: linear-gradient(to right, #24C6DC , #514A9D);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
   .loginForm {
-    height: 100%;
-    widht: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin: 0 auto;
+  }
+
+  .passwordField {
+    padding-bottom: 20px;
   }
 
 </style>

@@ -107,7 +107,6 @@ vuetify: {
         success: '#4CAF50',
         warning: '#FFC107',
         white: '#FEFEFE',
-        transparent: 'rgb(255,255,255, 0)'
       }
     }
   }

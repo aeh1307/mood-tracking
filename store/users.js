@@ -1,6 +1,6 @@
 export const state = () => ({
   user: {},
-  isLoggedIn: true,
+  isLoggedIn: false,
 })
 
 export const getters = {
@@ -18,6 +18,7 @@ export const mutations = {
 
       // perform logout operations
     } else {
+      console.log("ON AUTH TEST");
       const { uid, email, emailVerified } = authUser
       state.user = { uid, email, emailVerified }
     }
@@ -31,5 +32,9 @@ export const mutations = {
     } else {
       // Do something with the authUser and the claims object...
     }
+  },
+
+  setIsLoggedIn(state, boolean) {
+    state.isLoggedIn = boolean
   }
 }
