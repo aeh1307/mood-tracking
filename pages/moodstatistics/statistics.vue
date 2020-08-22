@@ -22,8 +22,8 @@
     },
     mounted(){
       this.calendarView()
-      let element = document.querySelector('.statistics');
-      element.style.backgroundImage = `url('${this.backgroundImagePath}')`;
+/*      let element = document.querySelector('.statistics');
+      element.style.backgroundImage = `url('${this.backgroundImagePath}')`;*/
       this.$fireStore.collection("users").doc("1").collection("moodTracking")
         .orderBy('time').onSnapshot(querySnapshot => {
         this.$store.commit('statistics/emptyMoods');
