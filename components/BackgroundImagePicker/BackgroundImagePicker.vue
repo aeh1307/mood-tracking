@@ -1,16 +1,16 @@
 <template class="backgroundPhotosDisplayContainer">
   <div class="backgroundPhotosDisplay">
     <div class="photoRow">
-      <div><img v-on:click="this.changeBackground" id="bali" class="backgroundPhoto row1" src="../../assets/bali.jpg"
+      <div><img v-on:click="this.changeBackground" id="bali" class="backgroundPhoto row1" src="~/assets/bali.jpg"
                 alt="green nature in Bali"></div>
       <div><img v-on:click="this.changeBackground" id="pinkBeach" class="backgroundPhoto row1"
-                src="../../assets/pinkishBeach.jpg" alt="Beach"></div>
+                src="~/assets/pinkishBeach.jpg" alt="Beach"></div>
     </div>
     <div class="photoRow">
       <div><img v-on:click="this.changeBackground" id="lakeMountain" class="backgroundPhoto row2"
-                src="../../assets/water.jpg" alt="lake and mountain"></div>
+                src="~/assets/water.jpg" alt="lake and mountain"></div>
       <div><img v-on:click="this.changeBackground" id="oceanSun" class="backgroundPhoto row2"
-                src="../../assets/ocean.jpg" alt="ocean"></div>
+                src="~/assets/ocean.jpg" alt="ocean"></div>
     </div>
 
   </div>
@@ -29,36 +29,36 @@
       changeBackground(e) {
         switch (e.target.id) {
           case 'bali':
-            this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/bali.jpg');
-            this.$store.commit('settings/setShowBackgroundImagePicker', false)
-            break;
+              this.$store.commit('settings/setBackgroundImagePath', 'baliBackgroundImage');
+              this.$store.commit('settings/setShowBackgroundImagePicker', false);
+          break;
           case 'pinkBeach':
-            this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/pinkishBeach.jpg');
-            this.$store.commit('settings/setShowBackgroundImagePicker', false)
+            this.$store.commit('settings/setBackgroundImagePath', 'pinkBeachBackgroundImage');
+            this.$store.commit('settings/setShowBackgroundImagePicker', false);
             break;
           case 'lakeMountain':
-            this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/water.jpg');
-            this.$store.commit('settings/setShowBackgroundImagePicker', false)
+            this.$store.commit('settings/setBackgroundImagePath', 'lakeMountainBackgroundImage');
+            this.$store.commit('settings/setShowBackgroundImagePicker', false);
             break;
           case 'oceanSun':
-            this.$store.commit('settings/setBackgroundImagePath', '_nuxt/assets/ocean.jpg');
-            this.$store.commit('settings/setShowBackgroundImagePicker', false)
+            this.$store.commit('settings/setBackgroundImagePath', 'oceanSunBackgroundImage');
+            this.$store.commit('settings/setShowBackgroundImagePicker', false);
             break;
         }
       },
     },
     mounted() {
       switch(this.backgroundImagePath){
-        case '_nuxt/assets/bali.jpg':
+        case 'baliBackgroundImage':
           document.querySelector('#bali').style.border = 'solid 3px #3CBB75';
           break;
-        case '_nuxt/assets/pinkishBeach.jpg':
+        case 'pinkBeachBackgroundImage':
           document.querySelector('#pinkBeach').style.border = 'solid 3px #3CBB75';
           break;
-        case '_nuxt/assets/water.jpg':
+        case 'lakeMountainBackgroundImage':
           document.querySelector('#lakeMountain').style.border = 'solid 3px #3CBB75';
           break;
-        case '_nuxt/assets/ocean.jpg':
+        case 'oceanSunBackgroundImage':
           document.querySelector('#oceanSun').style.border = 'solid 3px #3CBB75';
           break;
       }

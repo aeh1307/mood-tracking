@@ -28,7 +28,9 @@ export default {
   /*
   ** Global CSS
   */
-  css: [],
+  css: [
+    '~/css/global.css'
+  ],
   /*
   ** Plugins to load before mounting the App
   */
@@ -62,10 +64,10 @@ export default {
     services: {
       auth: true,
       // or
-  /*    auth: {
-        persistence: 'local', // default
-*/
-        // it is recommended to configure either a mutation or action but you can set both
+      /*    auth: {
+            persistence: 'local', // default
+    */
+      // it is recommended to configure either a mutation or action but you can set both
       initialize: {
         onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
         onAuthStateChangedAction: 'onAuthStateChangedAction',
@@ -83,40 +85,41 @@ export default {
         serverLogin: true
       },
       firestore: true,
-        workbox: {
-          importScripts: [
-            '/firebase-auth-sw.js'
-            ],
-          dev: false
-        }
+      workbox: {
+        importScripts: [
+          '/firebase-auth-sw.js'
+        ],
+        dev: false
+      },
+      storage: true
     }
   },
   vuetify: {
     theme: {
       light: true,
-        themes:
-      {
-        light: {
-          primary: '#1976D2',
-          secondary: '#424242',
-          accent: '#82B1FF',
-          error: '#FF5252',
-          info: '#2196F3',
-          success: '#4CAF50',
-          warning: '#FFC107',
-          white: '#FEFEFE',
+      themes:
+        {
+          light: {
+            primary: '#1976D2',
+            secondary: '#424242',
+            accent: '#82B1FF',
+            error: '#FF5252',
+            info: '#2196F3',
+            success: '#4CAF50',
+            warning: '#FFC107',
+            white: '#FEFEFE',
+          }
         }
-      }
     }
   },
-/*
-** Build configuration
-*/
-build: {
   /*
-  ** You can extend webpack config here
+  ** Build configuration
   */
-  extend(config, ctx) {
+  build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+    }
   }
-}
 }

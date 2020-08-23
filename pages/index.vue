@@ -21,12 +21,12 @@
     watch: {
       backgroundImagePath: function (val) {
         let element = document.querySelector('.mainContainer');
-        element.style.backgroundImage = `url('${val}')`;
+        element.className = `mainContainer ${val}`;
       },
     },
     mounted() {
       let element = document.querySelector('.mainContainer');
-      element.style.backgroundImage = `url('${this.backgroundImagePath}')`;
+      element.className = `mainContainer ${this.backgroundImagePath}`;
     }
   }
 </script>
@@ -39,7 +39,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: no-repeat center fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   background-size: cover;
   height: 100vh;
 }

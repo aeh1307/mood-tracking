@@ -1,5 +1,5 @@
 export const state = () => ({
-  backgroundImagePath: '_nuxt/assets/bali.jpg',
+  backgroundImagePath: 'baliBackgroundImage',
   showBackgroundImagePicker: false,
 })
 

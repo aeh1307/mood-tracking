@@ -40,6 +40,9 @@
           console.log(errorCode, errorMessage);
         });
       },
+    },
+    mounted() {
+
     }
   }
 
