@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "webpack-cli": "^3.3.12"
   }
 }
