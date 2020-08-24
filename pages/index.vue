@@ -2,62 +2,30 @@
   <div>
 <!--    <Reminder/>--> <!-- TODO: comment in -->
     <div class="mainContainer">
+      <BackgroundImage/>
     </div>
   </div>
 
   </template>
 <script>
-
+  import BackgroundImage from "~/components/backgroundImage/BackgroundImage";
   import MapMarker from "../components/mapMarker/MapMarker";
   import Reminder from "../components/reminder/Reminder";
   export default {
     components: {
+      BackgroundImage,
       MapMarker,
       Reminder,
     },
-    computed: {
-      backgroundImagePath: { get() { return this.$store.getters['settings/backgroundImagePath']}},
-    },
-    watch: {
-      backgroundImagePath: function (val) {
-        let element = document.querySelector('.mainContainer');
-        element.className = `mainContainer ${val}`;
-      },
-    },
-    mounted() {
-      let element = document.querySelector('.mainContainer');
-      element.className = `mainContainer ${this.backgroundImagePath}`;
-    }
+
   }
 </script>
 
 
 <style scoped>
 .mainContainer {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 100vh;
-}
-.baliBackgroundImage {
-  background-image: url('~assets/bali.jpg');
+/*  height: 100vh;*/
 }
 
-.pinkBeachBackgroundImage {
-  background-image:  url('~assets/pinkishBeach.jpg');
-}
-
-.lakeMountainBackgroundImage {
-  background-image:  url('~assets/water.jpg');
-}
-.oceanSunBackgroundImage {
-  background-image:  url('~assets/ocean.jpg');
-}
 
 </style>

@@ -16,9 +16,9 @@
 <script>
   import MainMenu from "../components/mainMenu/MainMenu";
   import TopMenu from "../components/topMenu/TopMenu";
-  import ConfirmationBubble from "../components/ConfirmationBubble/ConfirmationBubble";
-  import FeedbackBubble from "../components/FeedbackBubble/FeedbackBubble";
-  import BackgroundImagePicker from "../components/BackgroundImagePicker/BackgroundImagePicker";
+  import ConfirmationBubble from "../components/confirmationBubble/ConfirmationBubble";
+  import FeedbackBubble from "../components/feedbackBubble/FeedbackBubble";
+  import BackgroundImagePicker from "../components/backgroundImagePicker/BackgroundImagePicker";
   import Login from "../components/login/Login.Vue";
 
   export default {
