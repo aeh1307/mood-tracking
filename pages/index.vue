@@ -45,4 +45,19 @@
   background-size: cover;
   height: 100vh;
 }
+.baliBackgroundImage {
+  background-image: url('~assets/bali.jpg');
+}
+
+.pinkBeachBackgroundImage {
+  background-image:  url('~assets/pinkishBeach.jpg');
+}
+
+.lakeMountainBackgroundImage {
+  background-image:  url('~assets/water.jpg');
+}
+.oceanSunBackgroundImage {
+  background-image:  url('~assets/ocean.jpg');
+}
+
 </style>
