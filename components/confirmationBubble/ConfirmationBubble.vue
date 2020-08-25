@@ -10,8 +10,8 @@
           Degree/intensity: <span class="trackingInformationEmphasized">{{ this.degreeOfEmotion }}</span> ?
         </span>
             </div>
-            <div><span>Add notes <v-icon @click="this.addNote">fas fa-plus-circle</v-icon></span></div>
-            <v-textarea v-if="seeNotes" value="Write your notes here ..." v-model="notes" filled></v-textarea>
+          <!--  <div><span>Add notes <v-icon @click="this.addNote">fas fa-plus-circle</v-icon></span></div>
+            <v-textarea v-if="seeNotes" value="Write your notes here ..." v-model="notes" filled></v-textarea>-->
             <div class="buttonSection">
               <v-btn width="90px" text color="#DE6465" rounded class="editButton cancelButton"
                      @click="this.cancelMoodTracking">Cancel

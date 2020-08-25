@@ -2,14 +2,16 @@
   <div class="topMenu">
     <div class="container">
 
-      <div class="custom-select" v-if="isStatisticPage">
+  <!--    <div class="custom-select" v-if="isStatisticPage">
         <select id="selectInput" class="select-items" @change="switchPage" v-model="selectedPage">
           <option class="itemOptions" value="Calendar">Calendar</option>
           <option class="itemOptions" value="Details">Details</option>
           <option class="itemOptions" value="Stats">Stats</option>
           <option class="itemOptions" value="Achievements">Achievements</option>
         </select>
-      </div>
+      </div>-->
+
+        <div class="calendar" v-if="isStatisticPage">Calendar</div>
 <!--      <div class="custom-select text-white" v-if="isStatisticPage">
         <v-app color="transparent" class="transparent text-white">
           <v-card class="vCard text-white" color="transparent">
@@ -32,10 +34,10 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
         <div class="menuOptions">
-          <a class="constraint">Profile settings</a>
+        <!--  <a class="constraint">Profile settings</a>
           <a class="constraint">General settings</a>
           <a class="constraint">Goals</a>
-          <a class="constraint">Reminders</a>
+          <a class="constraint">Reminders</a>-->
           <a v-on:click="chooseBackground">Customize Background Photo</a>
         </div>
       </div>
@@ -247,6 +249,15 @@ export default {
   font-size: 30px;
   left: 10px;
   position: absolute;
+}
+
+.calendar {
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  font-family: 'Manrope', sans-serif;
+  position: relative;
 }
 
 .custom-select {

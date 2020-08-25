@@ -14,38 +14,38 @@
     </v-date-picker>
     <div class="moodSection" v-if="showMoodSection">
       <div class="moods">
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.tenseNervousDateDegree !== 0">
           <v-icon class="emojiIcon tenseNervousIcon">fas fa-frown-open</v-icon>
-          <div class="degreeTracked">{{ this.tenseNervousDateDegree }}</div>
+          <div class="degreeTracked" >{{ this.tenseNervousDateDegree }}</div>
         </div>
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.irritatedAnnoyedDateDegree !== 0">
           <v-icon class="emojiIcon irritatedAnnoyedIcon">fas fa-angry</v-icon>
           <div class="degreeTracked">{{ this.irritatedAnnoyedDateDegree }}</div>
         </div>
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.excitedLivelyDateDegree !== 0">
           <v-icon class="emojiIcon excitedLivelyIcon">fas fa-grin-stars</v-icon>
           <div class="degreeTracked">{{ this.excitedLivelyDateDegree }}</div>
         </div>
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.cheerfulHappyDateDegree !== 0">
           <v-icon class="emojiIcon cheerfulHappyIcon">fas fa-laugh-beam</v-icon>
           <div class="degreeTracked">{{ this.cheerfulHappyDateDegree }}</div>
         </div>
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.boredWearyDateDegree !== 0">
           <v-icon class="emojiIcon boredWearyIcon">fas fa-meh</v-icon>
           <div class="degreeTracked">{{ this.boredWearyDateDegree }}</div>
         </div>
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.gloomySadDateDegree !== 0">
           <v-icon class="emojiIcon gloomySadIcon">fas fa-frown</v-icon>
           <div class="degreeTracked">{{ this.gloomySadDateDegree }}</div>
         </div>
-        <div class="moodStats">
+        <div class="moodStats" v-if="this.relaxedCalmDateDegree !== 0">
           <v-icon class="emojiIcon relaxedCalmIcon">fas fa-smile-beam</v-icon>
           <div class="degreeTracked">{{ this.relaxedCalmDateDegree }}</div>
         </div>
       </div>
-      <div class="buttonSection" v-on:click="this.showDetails">
+      <!--<div class="buttonSection" v-on:click="this.showDetails">
         <button class="showDetailsButton"><span>View Details</span></button>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
