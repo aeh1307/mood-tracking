@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
+    <v-container class="emojiDescriptionContainer">
     <div class="emojiDescription">
       <span class="captionText">{{this.emojiDescription}}</span>
     </div>
-  </div>
+    </v-container>
 </template>
 
 <script>
   export default {
-    name: "EmojiDescription.vue",
+    name: 'EmojiDescription.vue',
     computed: {
       swipeElement: {
         get() { return this.$store.getters['moodtracker/swipeElement']}
@@ -49,7 +49,7 @@
 </script>
 
 <style scoped>
-  .container {
+  .emojiDescriptionContainer {
     display: flex;
     justify-content: center;
     position: absolute;

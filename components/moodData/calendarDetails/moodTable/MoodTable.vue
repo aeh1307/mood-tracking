@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="selectedDate">
-      Tracked moods {{this.selectedDate[2]}}.{{this.selectedDate[1]}}.{{this.selectedDate[0]}}
+      Tracked moods {{ this.selectedDate[2] }}.{{ this.selectedDate[1] }}.{{ this.selectedDate[0] }}
     </div>
 
     <table class="moodTable table table-striped table-bordered table-sm">
@@ -15,14 +15,22 @@
         There are no tracked mood on the day you have selected.
       </div>
 
-      <tr v-bind:key="filteredMood.id" :id="filteredMood.id" class="tableRow" v-for="filteredMood in filteredMoods" v-if="filteredMoods.length > 0" >
-        <td><v-icon class="emojiIcon" :id="`icon-${filteredMood.id}`" :style="`color: ${findEmojiIcon(filteredMood).color}`">{{findEmojiIcon(filteredMood).icon}}</v-icon></td>
+      <tr v-bind:key="filteredMood.id" :id="filteredMood.id" class="tableRow" v-for="filteredMood in filteredMoods"
+          v-if="filteredMoods.length > 0">
+        <td>
+          <v-icon class="emojiIcon" :id="`icon-${filteredMood.id}`"
+                  :style="`color: ${findEmojiIcon(filteredMood).color}`">{{ findEmojiIcon(filteredMood).icon }}
+          </v-icon>
+        </td>
         <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
           <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>
         </td>
         <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
-        <td id="timeRow" class="tableRowCells">{{ ('0' + new Date(filteredMood.time).getHours()).toString()
-          .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0,2)}}</td>
+        <td id="timeRow" class="tableRowCells">{{
+            ('0' + new Date(filteredMood.time).getHours()).toString()
+              .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
+          }}
+        </td>
         <div class="actionSection">
           <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
           <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>
@@ -36,12 +44,24 @@
 export default {
   name: 'MoodTable.vue',
   computed: {
-    moods: { get(){ return this.$store.getters['statistics/moods'] } },
-    selectedDate: { get(){ return this.$store.getters['statistics/selectedDate'] } },
-    selectedId: { get(){ return this.$store.getters['statistics/selectedId'] } },
+    moods: {
+      get() {
+        return this.$store.getters['statistics/moods']
+      }
+    },
+    selectedDate: {
+      get() {
+        return this.$store.getters['statistics/selectedDate']
+      }
+    },
+    selectedId: {
+      get() {
+        return this.$store.getters['statistics/selectedId']
+      }
+    },
   },
-  data(){
-    return{
+  data() {
+    return {
       filteredMoods: [],
     }
   },
@@ -57,7 +77,7 @@ export default {
     openEditMoodWindow: function (selectedDateMood) {
       this.$store.commit('statistics/setShowEditMoodWindow', true);
       this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
-      this.$store.commit('statistics/setSelectedId',selectedDateMood.id);
+      this.$store.commit('statistics/setSelectedId', selectedDateMood.id);
       this.$store.commit('statistics/setSelectedDegree', selectedDateMood.degreeOfEmotion); //number
       this.$store.commit('statistics/setSelectedEmotion', selectedDateMood.emotion); // string
       this.$store.commit('statistics/setSelectedTime', ('0' + new Date(selectedDateMood.time).getHours()).toString()
@@ -70,18 +90,17 @@ export default {
 
     viewNotes: function (filterMood) {
       console.log(filterMood.notes)
-      if(filterMood.notes !== ''){
+      if (filterMood.notes !== '') {
         console.log("Notes");
       }
-      if(filterMood.notes === ''){
+      if (filterMood.notes === '') {
         console.log("NO notes");
       }
 
     },
     findEmojiIcon(selectedDateMood) {
-      /*        let iconEl = document.querySelector(`#icon-${selectedDateMood.id}`);*/
       let emojiIconObj = {};
-      switch(selectedDateMood.emotion){
+      switch (selectedDateMood.emotion) {
         case 'Tense/Nervous':
           emojiIconObj.icon = 'fas fa-frown-open';
           emojiIconObj.color = "#3CBB75";
@@ -97,15 +116,15 @@ export default {
         case 'Cheerful/Happy':
           emojiIconObj.icon = 'fas fa-laugh-beam';
           emojiIconObj.color = '#F7CB50';
-          return  emojiIconObj;
+          return emojiIconObj;
         case 'Bored/Weary':
           emojiIconObj.icon = 'fas fa-meh';
           emojiIconObj.color = '#8B42CC';
-          return  emojiIconObj;
+          return emojiIconObj;
         case 'Gloomy/Sad':
           emojiIconObj.icon = 'fas fa-frown';
           emojiIconObj.color = '#3D3D3D';
-          return  emojiIconObj;
+          return emojiIconObj;
         case 'Relaxed/Calm':
           emojiIconObj.icon = 'fas fa-smile-beam';
           emojiIconObj.color = '#425CCC';
@@ -114,7 +133,7 @@ export default {
     },
     filterMoods() {
       let selectedYear = this.selectedDate[0]
-      let selectedMonth =this.selectedDate[1]
+      let selectedMonth = this.selectedDate[1]
       let selectedDay = this.selectedDate[2]
 
       this.filteredMoods = this.moods.filter(trackedMood => {
@@ -129,11 +148,11 @@ export default {
     },
   },
   watch: {
-    moods: function(){
+    moods: function () {
       this.filterMoods();
     }
   },
-  mounted(){
+  mounted() {
     this.filterMoods();
   }
 }
@@ -146,7 +165,6 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: white;
-  /*height: 56vh;*/
   overflow: auto;
 }
 
@@ -156,6 +174,7 @@ export default {
   padding: 10px;
   background-color: white;
 }
+
 .tableHeader {
   font-size: 16px;
   font-weight: 600;
@@ -226,6 +245,7 @@ export default {
   justify-content: flex-end;
   padding-right: 10px;
 }
+
 .trashIcon, .editIcon {
   color: #454444;
   font-size: 18px;

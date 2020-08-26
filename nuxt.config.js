@@ -1,7 +1,9 @@
-/*const colors = require('vuetify/es5/util/colors').default*/
+const colors = require('vuetify/es5/util/colors').default
 
 export default {
   mode: 'universal',
+  components: true,
+  target: 'server',
   /*
   ** Headers of the page
   */
@@ -37,7 +39,6 @@ export default {
     '@/plugins/vue-swipe.js',
     '@/plugins/vue2-touch-events.js',
     '@/plugins/apexcharts.js',
-    '@/plugins/vue-lazyload.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -114,10 +115,11 @@ export default {
   ** Build configuration
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
+  },
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: true
     }
   }
 }

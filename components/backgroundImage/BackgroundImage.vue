@@ -1,8 +1,5 @@
 <template>
-  <div class="backgroundImage">
-
-  </div>
-
+  <div class="backgroundImage"></div>
 </template>
 <script>
 export default {

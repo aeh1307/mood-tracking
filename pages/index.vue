@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--    <Reminder/>--> <!-- TODO: comment in -->
-    <div class="mainContainer">
+    <div>
       <BackgroundImage/>
     </div>
   </div>
@@ -17,15 +17,9 @@
       MapMarker,
       Reminder,
     },
-
   }
 </script>
 
 
 <style scoped>
-.mainContainer {
-/*  height: 100vh;*/
-}
-
-
 </style>

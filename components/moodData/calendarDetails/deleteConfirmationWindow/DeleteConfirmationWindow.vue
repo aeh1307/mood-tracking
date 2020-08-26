@@ -1,17 +1,21 @@
 <template>
-  <div class="flexWrapper" >
+  <div class="flexWrapper">
     <v-app>
-        <v-dialog v-model="dialog" persistent max-width="260">
-          <v-card class="dialogCard" light min-height="180">
-              <div class="informationText">
-                Are you sure you want to delete the tracked mood?
-              </div>
-              <div class="buttonSection">
-                <v-btn width="90px" text color="#DE6465"rounded class="editButton cancelButton" @click="this.cancelMoodDeletion">Cancel</v-btn> <!-- Must be v-btn -->
-                <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton" @click="this.confirmMoodDeletion">Confirm</v-btn> <!-- Must be v-btn -->
-              </div>
-          </v-card>
-        </v-dialog>
+      <v-dialog v-model="dialog" persistent max-width="260">
+        <v-card class="dialogCard" light min-height="180">
+          <div class="informationText">
+            Are you sure you want to delete the tracked mood?
+          </div>
+          <div class="buttonSection">
+            <v-btn width="90px" text color="#DE6465" rounded class="editButton cancelButton"
+                   @click="this.cancelMoodDeletion">Cancel
+            </v-btn>
+            <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton"
+                   @click="this.confirmMoodDeletion">Confirm
+            </v-btn>
+          </div>
+        </v-card>
+      </v-dialog>
     </v-app>
   </div>
 
@@ -21,10 +25,14 @@
 export default {
   name: 'DeleteConfirmationWindow.vue',
   computed: {
-    selectedId: { get() { return this.$store.getters['statistics/selectedId']}}
+    selectedId: {
+      get() {
+        return this.$store.getters['statistics/selectedId']
+      }
+    }
   },
   data() {
-    return{
+    return {
       dialog: true,
     }
   },
@@ -60,6 +68,7 @@ export default {
   padding-top: 25%;
 
 }
+
 .dialogCard {
   display: flex;
   flex-direction: column;
@@ -80,7 +89,7 @@ export default {
 }
 
 .buttonSection {
-  display:flex;
+  display: flex;
   justify-content: center;
   padding: 15px 15px 20px;
 }

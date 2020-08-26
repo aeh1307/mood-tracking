@@ -1,6 +1,6 @@
 <template>
   <div class="topMenu">
-    <div class="container">
+    <v-container class="topMenuContainer">
 
   <!--    <div class="custom-select" v-if="isStatisticPage">
         <select id="selectInput" class="select-items" @change="switchPage" v-model="selectedPage">
@@ -41,13 +41,13 @@
           <a v-on:click="chooseBackground">Customize Background Photo</a>
         </div>
       </div>
-    </div>
+    </v-container>
 
   </div>
 </template>
 <script>
 export default {
-  name: "TopMenu.vue",
+  name: 'TopMenu.vue',
   computed: {
     isStatisticPage() {
       if (this.$route.path.match("^/$")) {
@@ -157,10 +157,7 @@ export default {
 <style scoped>
 .topMenu {
   position: fixed;
-  /* background-color: rgb(46 119 191);*/
   background: linear-gradient(to right, #24C6DC 0%, #514A9D 100%);
-  /*background-color: rgb(42 106 170);*/
-  opacity: 100%;
   min-width: 100%;
   max-width: 100%;
   height: 55px;
@@ -171,19 +168,8 @@ export default {
 .theme--light.v-select .v-select__selection--comma {
   color: white !important;
 }
-/*.topMenu::after {
-  content: "";
-  background: #fefefe;
-  opacity: 0.2;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}*/
 
-.container {
+.topMenuContainer {
   min-width: 100%;
   min-height: 100%;
   position: absolute;
@@ -257,7 +243,8 @@ export default {
   color: white;
   font-size: 18px;
   font-family: 'Manrope', sans-serif;
-  position: relative;
+ /* position: relative;*/
+/*  min-height: 55px;*/
 }
 
 .custom-select {

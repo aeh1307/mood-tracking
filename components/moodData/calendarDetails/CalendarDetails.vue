@@ -27,8 +27,6 @@ export default {
 </script>
 <style scoped>
 .calendarMoodDetails {
- /* background-color: #cbcaca;*/
- /* height: 75vh;*/
   min-width: 100vw;
   max-width: 100vw;
   max-height: 100vh;

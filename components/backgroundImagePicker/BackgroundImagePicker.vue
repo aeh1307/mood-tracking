@@ -17,7 +17,7 @@
 </template>
 <script>
   export default {
-    name: "BackgroundImage.vue",
+    name: 'BackgroundImage.vue',
     computed: {
       backgroundImagePath: {
         get() {
@@ -107,9 +107,6 @@
     margin-top: 5px;
     margin-bottom: 20px;
   }
-/*  #bali{
-    border: solid 3px #3CBB75;
-  }*/
 
   #bali, #pinkBeach, #lakeMountain, #oceanSun {
     border: solid 3px white;

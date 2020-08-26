@@ -1,51 +1,55 @@
 <template>
   <div class="flexWrapper">
-      <v-app>
-          <v-dialog v-model="dialog" persistent max-width="240">
-            <v-card class="dialogCard">
-              <v-form
-                data-app
-                class="editForm"
-                ref="form"
-                v-model="valid"
-                :lazy-validation="lazy"
-                color="#fefefe"
-              >
-                <div>
-                  <v-select
-                    v-model="newSelectedEmotion"
-                    :items="emotions"
-                    label="Emotion"
-                    required
-                    return-object
-                    id="selectEmotion"
-                    class="v-list-item--link theme--light"
-                  ></v-select>
+    <v-app>
+      <v-dialog v-model="dialog" persistent max-width="240">
+        <v-card class="dialogCard">
+          <v-form
+            data-app
+            class="editForm"
+            ref="form"
+            v-model="valid"
+            :lazy-validation="lazy"
+            color="#fefefe"
+          >
+            <div>
+              <v-select
+                v-model="newSelectedEmotion"
+                :items="emotions"
+                label="Emotion"
+                required
+                return-object
+                id="selectEmotion"
+                class="v-list-item--link theme--light"
+              ></v-select>
 
-                  <v-select
-                    v-model="newSelectedDegree"
-                    :items="numbers"
-                    item-text="degree"
-                    label="Degree"
-                    required
-                    return-object
-                  ></v-select>
+              <v-select
+                v-model="newSelectedDegree"
+                :items="numbers"
+                item-text="degree"
+                label="Degree"
+                required
+                return-object
+              ></v-select>
 
-                  <v-text-field
-                    v-model="newSelectedTime"
-                    label="Time"
-                    required
-                    type="time"
-                  ></v-text-field>
-                </div>
-                <div class="buttonSection">
-                  <v-btn width="90px" text color="#DE6465"rounded class="editButton cancelButton" @click="this.cancelEdit">Cancel</v-btn> <!-- Must be v-btn -->
-                  <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton" @click="this.editMood">Save</v-btn> <!-- Must be v-btn -->
-                </div>
-              </v-form>
-            </v-card>
-            </v-dialog>
-      </v-app>
+              <v-text-field
+                v-model="newSelectedTime"
+                label="Time"
+                required
+                type="time"
+              ></v-text-field>
+            </div>
+            <div class="buttonSection">
+              <v-btn width="90px" text color="#DE6465" rounded class="editButton cancelButton" @click="this.cancelEdit">
+                Cancel
+              </v-btn> <!-- Must be v-btn -->
+              <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton" @click="this.editMood">
+                Save
+              </v-btn> <!-- Must be v-btn -->
+            </div>
+          </v-form>
+        </v-card>
+      </v-dialog>
+    </v-app>
   </div>
 
 </template>
@@ -53,16 +57,44 @@
 export default {
   name: 'EditMoodWindow.vue',
   computed: {
-    selectedId: { get(){ return this.$store.getters['statistics/selectedId']}},
-    selectedEmotion: { get(){ return this.$store.getters['statistics/selectedEmotion']}},
-    selectedDegree: { get(){ return this.$store.getters['statistics/selectedDegree']}},
-    selectedTime: { get(){ return this.$store.getters['statistics/selectedTime']}},
-    selectedDate:  { get(){ return this.$store.getters['statistics/selectedDate']}},
-    showEditMoodWindow: { get(){ return this.$store.getters['statistics/showEditMoodWindow']}},
-    findSelectedMonth: { get(){ return this.$store.getters['statistics/findSelectedMonth']}},
+    selectedId: {
+      get() {
+        return this.$store.getters['statistics/selectedId']
+      }
+    },
+    selectedEmotion: {
+      get() {
+        return this.$store.getters['statistics/selectedEmotion']
+      }
+    },
+    selectedDegree: {
+      get() {
+        return this.$store.getters['statistics/selectedDegree']
+      }
+    },
+    selectedTime: {
+      get() {
+        return this.$store.getters['statistics/selectedTime']
+      }
+    },
+    selectedDate: {
+      get() {
+        return this.$store.getters['statistics/selectedDate']
+      }
+    },
+    showEditMoodWindow: {
+      get() {
+        return this.$store.getters['statistics/showEditMoodWindow']
+      }
+    },
+    findSelectedMonth: {
+      get() {
+        return this.$store.getters['statistics/findSelectedMonth']
+      }
+    },
   },
   data() {
-    return{
+    return {
       dialog: true,
       newSelectedEmotion: this.$store.getters['statistics/selectedEmotion'],
       newSelectedDegree: this.$store.getters['statistics/selectedDegree'],
@@ -111,9 +143,7 @@ export default {
     }
   },
   methods: {
-    editMood: function (){
-     // console.log(this.selectedId, this.selectedEmotion, this.selectedDegree, this.selectedTime);
-     //  console.log(this.$store.getters['statistics/selectedEmotion']);
+    editMood: function () {
       // TODO: fix: issue if month is november or december have to account for 2 digits.
       // TODO: rearrange so date is stored as timestamp and not millisecondtimestamp formated as number in firebase.
       this.$fireStore.collection('users').doc('1').collection('moodTracking').doc(this.selectedId).set({
@@ -121,7 +151,6 @@ export default {
         emotion: this.newSelectedEmotion,
         time: new Date(`${this.selectedDate[2]} ${this.findSelectedMonth} ${this.selectedDate[0]} ${this.newSelectedTime} UTC+02:00`).getTime()
       })
-
 
       this.$store.commit('statistics/setSelectedTime', this.newSelectedTime);
       this.$store.commit('statistics/setSelectedEmotion', this.newSelectedEmotion);
@@ -145,7 +174,6 @@ export default {
 </script>
 <style scoped>
 
-/* Confirmation bubble styling: */
 .flexWrapper {
   display: flex;
   justify-content: center;
@@ -187,10 +215,12 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.buttonSection{
+
+.buttonSection {
   display: flex;
   justify-content: center;
 }
+
 .editButton {
   color: white;
   text-transform: none;
