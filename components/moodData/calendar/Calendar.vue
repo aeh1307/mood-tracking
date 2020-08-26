@@ -201,7 +201,7 @@ export default {
 }
 
 .moodSection {
-  margin-top: 43vh;
+  margin-top: 230px;
   width: 100vw;
   display: flex;
   flex-direction: column;
