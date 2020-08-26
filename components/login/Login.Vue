@@ -31,7 +31,29 @@ export default {
   methods: {
     logIn(email, password) {
       let store = this.$store;
-      this.$fireAuth.signInWithEmailAndPassword(email, password).then(function () {
+      let router = this.$router
+      this.$fireAuth.signInWithEmailAndPassword(email, password).then(response => {
+        console.log(response.user.uid)
+        this.$fireStore.collection("users").doc(response.user.uid).collection("moodTracking")
+          .orderBy('time').onSnapshot(querySnapshot => {
+          this.$store.commit('statistics/emptyMoods');
+          let trackedMoods = []
+          querySnapshot.forEach(doc => {
+            // Degree of emotion, emotion, time, id:
+            let trackedMood = {
+              degreeOfEmotion: doc.data().degreeOfEmotion,
+              emotion: doc.data().emotion,
+              time: doc.data().time,
+              notes: doc.data().notes,
+              id: doc.id
+            }
+            trackedMoods.push(trackedMood)
+          })
+          this.$store.commit('statistics/addMoods', trackedMoods)
+        })
+
+        router.push('/')
+
         store.commit('users/setIsLoggedIn', true);
       }).catch(function (error) {
         let errorCode = error.code;

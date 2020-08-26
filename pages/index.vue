@@ -17,6 +17,8 @@
       MapMarker,
       Reminder,
     },
+    mounted() {
+    },
   }
 </script>
 
