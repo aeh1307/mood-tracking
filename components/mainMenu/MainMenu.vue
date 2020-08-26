@@ -23,17 +23,14 @@
 
 <style scoped>
   .container {
-    max-width: 100vw;
+    min-width: 100vw;
+    min-height: 100vh;
+
   }
   .mainMenu {
     position: fixed;
-/*    background: linear-gradient(to left, #f64f59 , #c471ed , #12c2e9);*/
-/*    background: linear-gradient(to left, #f64f59,#c471ed , #00dbde);*/
-
     background: linear-gradient(to right, #24C6DC , #514A9D);
     opacity: 100%;
-    /*background-color: rgb(42 106 170);*/
-   /* background-color: rgb(46 119 191);*/
     min-width: 100%;
     max-width: 100%;
     bottom: 0;
@@ -64,8 +61,16 @@
     flex-direction: column;
     text-decoration: none;
     color: white;
-
   }
+/*
+  .statistics {
+    margin-left: -75px;
+  }
+
+  .contact {
+    margin-right: -70px;
+  }*/
+
   .iconCaption {
     font-family: 'Manrope', sans-serif;
     font-size: 16px;

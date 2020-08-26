@@ -74,10 +74,11 @@
   }
 
   .backgroundPhotosDisplay {
-    top: 54px;
+    top: 55px;
     width: 100%;
-    height: 435px;
-    position: absolute;
+    height: 95%;
+    z-index: 99;
+    position: fixed;
     display: flex;
     flex-direction: column;
     background-color: white;

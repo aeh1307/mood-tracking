@@ -160,8 +160,26 @@
       }.bind(null, this.$store, this.swiper));
     },
     methods: {
-      startCounter(){
+      test(){
+        const swiperElements = document.getElementsByClassName('swiperSlides');
+        swiperElements.addEventListener('mousedown', e => {
+          this.$store.commit('moodtracker/setCount', 0)
+          if(!this.interval){
+            this.interval = setInterval(() => this.$store.commit('moodtracker/incrementCount'), 500)
+          }
+        });
 
+        swiperElements.addEventListener('mouseup', e => {
+          if(this.count >= 1){
+            this.$store.commit('moodtracker/setShowConfirmationBubble', true)
+          }else{
+            this.$store.commit('moodtracker/setShowConfirmationBubble', false)
+          }
+          clearInterval(this.interval)
+          this.interval = false
+        });
+      },
+      startCounter(){
         this.$store.commit('moodtracker/setCount', 0)
         if(!this.interval){
          this.interval = setInterval(() => this.$store.commit('moodtracker/incrementCount'), 500)
@@ -186,6 +204,8 @@
   .moodTracker {
     width: 100px;
     margin-bottom: 90px;
+    position: relative;
+    margin-left: -8px; /*TODO: FIX*/
   }
  .outerCircle {
    position: relative;

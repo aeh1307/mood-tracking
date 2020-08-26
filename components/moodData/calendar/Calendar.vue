@@ -196,12 +196,13 @@ export default {
 }*/
 
 .v-date-picker {
-  top: -55px;
+  top: 11vh;
   width: 290px;
+  position: absolute;
 }
 
 .moodSection {
-  margin-top: -45px;
+  margin-top: 43vh;
 /*  background-color: white;*/
   width: 100vw;
   display:flex;
@@ -227,13 +228,12 @@ export default {
   border-radius: 4px;
   padding: 5px 2px;
   margin-top: 0;
-  width: 290px;
+  max-width: 290px;
 }
 
 .moodStats {
   display: flex;
   flex-direction: column;
-  width: 277px;
   margin: 0 3px;
   color: dimgrey;
   font-weight: 600;
@@ -242,6 +242,7 @@ export default {
 .emojiIcon {
   padding: 5px;
   font-size: 30px;
+  width: 37px;
   font-weight: bold;
 /*  background: white;
   border-radius: 50%;*/
@@ -256,8 +257,8 @@ export default {
   height: 20px;
   position:absolute;
   opacity: 1.0;
-  top: 10px;
-  left: 10px;
+  top: 9px;
+  left: 9px;
   bottom: 0;
   right: 0;
   z-index: -1;
@@ -266,6 +267,7 @@ export default {
 .degreeTracked {
   text-align: center;
   font-size: 16px;
+  width: 37px;
 }
 
 .tenseNervousIcon {
