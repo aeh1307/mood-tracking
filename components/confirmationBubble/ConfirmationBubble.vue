@@ -74,9 +74,9 @@ export default {
       }, 3000)
       this.$store.commit('moodtracker/setNotes', '');
     },
-    addNote: function() {
+ /*   addNote: function() {
       this.seeNotes = true;
-    }
+    }*/
   }
 }
 </script>
