@@ -35,7 +35,7 @@ export default {
       this.$fireAuth.signInWithEmailAndPassword(email, password).then(response => {
         console.log(response.user.uid)
         this.$fireStore.collection("users").doc(response.user.uid).collection("moodTracking")
-          .orderBy('time').onSnapshot(querySnapshot => {
+          .orderBy('time').get().then(querySnapshot => {
           this.$store.commit('statistics/emptyMoods');
           let trackedMoods = []
           querySnapshot.forEach(doc => {

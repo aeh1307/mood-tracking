@@ -39,6 +39,7 @@
           <a class="constraint">Goals</a>
           <a class="constraint">Reminders</a>-->
           <a v-on:click="chooseBackground">Customize Background Photo</a>
+          <a v-on:click="logOut">Log Out</a>
         </div>
       </div>
     </v-container>
@@ -144,6 +145,15 @@ export default {
         this.statsView();
       }
     },
+    logOut: function () {
+      let store = this.$store;
+      this.$fireAuth.signOut().then(function() {
+        store.commit('users/setIsLoggedIn', false);
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
+    }
   },
   watch: {
     selectedPage: function (){
