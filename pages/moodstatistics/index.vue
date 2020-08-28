@@ -20,11 +20,24 @@ export default {
       this.$store.commit('statistics/setShowStat', false);
     },
   },
-  fetch() {
-
-    /*      let element = document.querySelector('.statistics');
-          element.style.backgroundImage = `url('${this.backgroundImagePath}')`;*/
-
+  async fetch() {
+    await this.$fireStore.collection("users").doc(this.$fireAuth.currentUser.uid).collection("moodTracking")
+      .orderBy('time').get().then(querySnapshot => {
+      this.$store.commit('statistics/emptyMoods');
+      let trackedMoods = []
+      querySnapshot.forEach(doc => {
+        // Degree of emotion, emotion, time, id:
+        let trackedMood = {
+          degreeOfEmotion: doc.data().degreeOfEmotion,
+          emotion: doc.data().emotion,
+          time: doc.data().time,
+          notes: doc.data().notes,
+          id: doc.id
+        }
+        trackedMoods.push(trackedMood)
+      })
+      this.$store.commit('statistics/addMoods', trackedMoods)
+    })
   },
   mounted() {
     this.calendarView()
