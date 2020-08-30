@@ -23,7 +23,7 @@
           </v-icon>
         </td>
         <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
-          <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>
+        <!--  <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>-->
         </td>
         <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
         <td id="timeRow" class="tableRowCells">{{
@@ -88,7 +88,7 @@ export default {
       selectedMoodEl.style.backgroundColor = '#b1f8cc';
     },
 
-    viewNotes: function (filterMood) {
+/*    viewNotes: function (filterMood) {
       console.log(filterMood.notes)
       if (filterMood.notes !== '') {
         console.log("Notes");
@@ -97,7 +97,7 @@ export default {
         console.log("NO notes");
       }
 
-    },
+    },*/
     findEmojiIcon(selectedDateMood) {
       let emojiIconObj = {};
       switch (selectedDateMood.emotion) {

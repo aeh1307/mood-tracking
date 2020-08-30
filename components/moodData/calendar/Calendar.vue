@@ -43,9 +43,9 @@
           <div class="degreeTracked">{{ this.relaxedCalmDateDegree }}</div>
         </div>
       </div>
-      <!--<div class="buttonSection" v-on:click="this.showDetails">
+      <div class="buttonSection" v-on:click="this.showDetails">
         <button class="showDetailsButton"><span>View Details</span></button>
-      </div>-->
+      </div>
     </div>
   </div>
 </template>
@@ -64,7 +64,7 @@ export default {
         return this.$store.getters['statistics/showMoodSection']
       },
     },
-    /*selectedDate: { get(){return this.$store.getters['statistics/selectedDate']}},*/
+/*    selectedDate: { get(){return this.$store.getters['statistics/selectedDate']}},*/
     selectedDateMoods: {
       get() {
         return this.$store.getters['statistics/selectedDateMoods']
@@ -174,7 +174,7 @@ export default {
       this.$store.commit('statistics/setShowCalendarMoodDetails', true);
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
-      this.$store.commit('statistics/setShowStat', false);
+    /*  this.$store.commit('statistics/setShowStat', false);*/
       this.$store.commit('statistics/setSelectedPage', 'Details');
     },
   }
