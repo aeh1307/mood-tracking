@@ -223,8 +223,6 @@ export default {
 
 .tableRow {
   border-top: 1px solid #e3e3e3;
-  border-bottom: 1px solid #e3e3e3;
-  /*  padding-left: 5px;*/
   margin-top: 1px;
   display: flex;
   max-width: 100%;

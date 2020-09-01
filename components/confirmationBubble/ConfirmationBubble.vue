@@ -7,7 +7,7 @@
               Would you like to track
               <span class="trackingInformation">
           Emotion: <span class="trackingInformationEmphasized">{{ this.emojiDescription }}</span>
-          Degree/intensity: <span class="trackingInformationEmphasized">{{ this.degreeOfEmotion }}</span> ?
+          Degree/intensity: <span class="trackingInformationEmphasized">{{ this.degreeOfEmotion }}</span>
         </span>
             </div>
           <!--  <div><span>Add notes <v-icon @click="this.addNote">fas fa-plus-circle</v-icon></span></div>
