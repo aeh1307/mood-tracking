@@ -4,9 +4,9 @@
     <v-date-picker
       class="v-date-picker"
       single
-      v-model="selectedDate"
+      v-model="userSelectedDate"
       :events="functionEvents"
-      @change="showDateInfo"
+      @change="dateChosen"
       :picker-date.sync="pickerDate"
       no-title
       dark
@@ -14,7 +14,7 @@
     >
     </v-date-picker>
     <div class="moodSection" v-if="moodsCurrentMonth.length !== 0">
-<!--      <div class="moodSectionCaption">Moods this month</div>-->
+      <!--      <div class="moodSectionCaption">Moods this month</div>-->
       <div class="moods">
         <div class="moodStats" v-if="this.tenseNervousDateDegree !== 0">
           <v-icon class="emojiIcon tenseNervousIcon">fas fa-frown-open</v-icon>
@@ -78,7 +78,7 @@ export default {
     return {
       moodsCurrentMonth: [],
       filteredMoods: [],
-      selectedDate: null,
+      userSelectedDate: null,
       date: new Date(),
       documentId: '',
       tenseNervousDateDegree: 0,
@@ -168,12 +168,15 @@ export default {
 
     // TODO: separate switch into own method, use filter to find entries for selected date, see filterMoods in MoodTable
     showDateInfo: function () {
+
       this.$store.commit('statistics/emptySelectedDateMoods');
-      let selectedDate = this.selectedDate ? this.selectedDate.split("-") : this.date.toString().split("-");
-      this.$store.commit('statistics/setSelectedDate', selectedDate);
-      let selectedYear = selectedDate[0]
-      let selectedMonth = selectedDate[1]
-      let selectedDay = selectedDate[2]
+      if (!this.userSelectedDate) return;
+      let userSelectedDate = this.userSelectedDate.split("-");
+      this.$store.commit('statistics/setSelectedDate', userSelectedDate);
+
+      let selectedYear = userSelectedDate[0]
+      let selectedMonth = userSelectedDate[1]
+      let selectedDay = userSelectedDate[2]
 
       this.filteredMoods = this.moods.filter(trackedMood => {
         let dateFromDB = new Date(trackedMood.time).toString().split(" ")
@@ -183,8 +186,12 @@ export default {
         return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay))
       })
 
-      this.$store.commit('statistics/setShowCalendarMoodDetails', true)
     },
+    dateChosen: function () {
+      this.showDateInfo()
+      this.$store.commit('statistics/setShowCalendarMoodDetails', true)
+
+    }
 
   }
 }

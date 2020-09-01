@@ -5,7 +5,7 @@ export const state = () => ({
   showCalendarMoodDetails: false,
   showStats: false,
   showDatePicker: true,
-  selectedDate: new Date().toISOString().slice(0, 10),
+  selectedDate: null,
   moods: [],
   selectedDateMoods: [],
   moodsCurrentMonth: [],
