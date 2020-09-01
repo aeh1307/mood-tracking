@@ -40,7 +40,7 @@ export default {
     confirmMoodDeletion: function () {
       let deleteId = this.selectedId;
       let store = this.$store;
-      this.$fireStore.collection('users').doc('1').collection('moodTracking')
+      this.$fireStore.collection('users').doc(this.$fireAuth.currentUser.uid).collection('moodTracking')
         .doc(this.selectedId).delete().then(function () {
         console.log(`The mood: ${deleteId} was successfully deleted!`);
         store.commit('statistics/deleteMood', deleteId)

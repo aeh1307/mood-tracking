@@ -1,43 +1,56 @@
 <template>
-  <div>
-    <div class="selectedDate">
-      Tracked moods {{ this.selectedDate[2] }}.{{ this.selectedDate[1] }}.{{ this.selectedDate[0] }}
-    </div>
+  <v-app>
+    <v-dialog v-model="dialog" persistent max-width="320">
+      <v-card class="dialogCard" light height="500">
+        <v-toolbar elevation="0">
+          <v-btn icon dark @click="this.closeDetails">
+            <v-icon color="grey">mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title class="selectedDate">Tracked moods {{ this.selectedDate[2] }}.{{
+              this.selectedDate[1]
+            }}.{{ this.selectedDate[0] }}
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+        </v-toolbar>
+        <div class="tableSection">
+          <table class="moodTable table table-striped table-bordered table-sm">
+            <thead class="tableHeader">
+            <td id="emotionHeader" class="tableHeaderColumnNames">Emotion</td>
+            <td id="degreeHeader" class="tableHeaderColumnNames">Degree</td>
+            <td id="timeHeader" class="tableHeaderColumnNames">Time</td>
+            </thead>
 
-    <table class="moodTable table table-striped table-bordered table-sm">
-      <thead class="tableHeader">
-      <td id="emotionHeader" class="tableHeaderColumnNames">Emotion</td>
-      <td id="degreeHeader" class="tableHeaderColumnNames">Degree</td>
-      <td id="timeHeader" class="tableHeaderColumnNames">Time</td>
-      </thead>
+            <div class="noTrackedMoodsText" v-if="filteredMoods.length === 0">
+              There are no tracked mood on the day you have selected.
+            </div>
 
-      <div class="noTrackedMoodsText" v-if="filteredMoods.length === 0">
-        There are no tracked mood on the day you have selected.
-      </div>
-
-      <tr v-bind:key="filteredMood.id" :id="filteredMood.id" class="tableRow" v-for="filteredMood in filteredMoods"
-          v-if="filteredMoods.length > 0">
-        <td>
-          <v-icon class="emojiIcon" :id="`icon-${filteredMood.id}`"
-                  :style="`color: ${findEmojiIcon(filteredMood).color}`">{{ findEmojiIcon(filteredMood).icon }}
-          </v-icon>
-        </td>
-        <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
-          <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>
-        </td>
-        <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
-        <td id="timeRow" class="tableRowCells">{{
-            ('0' + new Date(filteredMood.time).getHours()).toString()
-              .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
-          }}
-        </td>
-        <div class="actionSection">
-          <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
-          <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>
+            <tr v-bind:key="filteredMood.id" :id="filteredMood.id" class="tableRow"
+                v-for="filteredMood in filteredMoods"
+                v-if="filteredMoods.length > 0">
+              <td>
+                <v-icon class="emojiIcon" :id="`icon-${filteredMood.id}`"
+                        :style="`color: ${findEmojiIcon(filteredMood).color}`">{{ findEmojiIcon(filteredMood).icon }}
+                </v-icon>
+              </td>
+              <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
+                <!--  <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>-->
+              </td>
+              <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
+              <td id="timeRow" class="tableRowCells">{{
+                  ('0' + new Date(filteredMood.time).getHours()).toString()
+                    .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
+                }}
+              </td>
+              <div class="actionSection">
+                <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
+                <!--    <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>-->
+              </div>
+            </tr>
+          </table>
         </div>
-      </tr>
-    </table>
-  </div>
+      </v-card>
+    </v-dialog>
+  </v-app>
 
 </template>
 <script>
@@ -62,6 +75,7 @@ export default {
   },
   data() {
     return {
+      dialog: true,
       filteredMoods: [],
     }
   },
@@ -88,16 +102,16 @@ export default {
       selectedMoodEl.style.backgroundColor = '#b1f8cc';
     },
 
-    viewNotes: function (filterMood) {
-      console.log(filterMood.notes)
-      if (filterMood.notes !== '') {
-        console.log("Notes");
-      }
-      if (filterMood.notes === '') {
-        console.log("NO notes");
-      }
+    /*    viewNotes: function (filterMood) {
+          console.log(filterMood.notes)
+          if (filterMood.notes !== '') {
+            console.log("Notes");
+          }
+          if (filterMood.notes === '') {
+            console.log("NO notes");
+          }
 
-    },
+        },*/
     findEmojiIcon(selectedDateMood) {
       let emojiIconObj = {};
       switch (selectedDateMood.emotion) {
@@ -146,6 +160,10 @@ export default {
       })
 
     },
+    closeDetails: function() {
+      this.dialog = false;
+      this.$store.commit('statistics/setShowCalendarMoodDetails', false);
+    }
   },
   watch: {
     moods: function () {
@@ -165,14 +183,15 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: white;
-  overflow: auto;
+  overflow: hidden;
+  width: 300px;
 }
 
 .selectedDate {
   font-size: 18px;
   text-align: center;
-  padding: 10px;
-  background-color: white;
+  padding: 5px !important;
+  background-color: #fefefe;
 }
 
 .tableHeader {
@@ -180,8 +199,11 @@ export default {
   font-weight: 600;
   color: #5a5b60;
   padding-left: 40px;
-  width: 100vw;
-  border-bottom: 1px solid #e3e3e3;
+  width: 300px;
+}
+
+.tableSection {
+  width: 300px;
 }
 
 .tableHeaderColumnNames {
@@ -189,11 +211,12 @@ export default {
 }
 
 .tableRow {
-  border: 1px solid #e3e3e3;
-  padding-bottom: 15px;
-  padding-left: 10px;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  padding-left: 5px;
   margin-top: 1px;
   display: flex;
+  width: 310px;
   height: 65px;
   justify-content: center;
   align-items: center;
@@ -207,14 +230,19 @@ export default {
 }
 
 .noTrackedMoodsText {
+  display: flex;
+  justify-self: center;
   font-size: 16px;
-  padding: 12px;
+  width: 300px;
+  padding: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
   text-align: center;
   background-color: white;
 }
 
 #emotionRow, #emotionHeader {
-  min-width: 115px;
+  min-width: 100px;
 }
 
 .emotionText {
@@ -233,7 +261,7 @@ export default {
 }
 
 #timeRow, #timeHeader {
-  min-width: 74px;
+  min-width: 65px;
 }
 
 #timeRow {
@@ -255,4 +283,5 @@ export default {
 .viewNotes {
   padding-top: 3px;
 }
+
 </style>

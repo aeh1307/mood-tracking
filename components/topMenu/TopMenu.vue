@@ -2,7 +2,7 @@
   <div class="topMenu">
     <v-container class="topMenuContainer">
 
-  <!--    <div class="custom-select" v-if="isStatisticPage">
+<!--      <div class="custom-select" v-if="isStatisticPage">
         <select id="selectInput" class="select-items" @change="switchPage" v-model="selectedPage">
           <option class="itemOptions" value="Calendar">Calendar</option>
           <option class="itemOptions" value="Details">Details</option>
@@ -11,7 +11,8 @@
         </select>
       </div>-->
 
-        <div class="calendar" v-if="isStatisticPage">Calendar</div>
+      <div class="calendar" v-if="isStatisticPage && this.selectedPage === 'Calendar'">Calendar</div>
+      <div class="calendar" v-if="isStatisticPage && this.selectedPage === 'Details'">Details</div>
 <!--      <div class="custom-select text-white" v-if="isStatisticPage">
         <v-app color="transparent" class="transparent text-white">
           <v-card class="vCard text-white" color="transparent">
@@ -76,18 +77,18 @@ export default {
         return this.$store.getters['statistics/showCalendarMoodDetails']
       }
     },
-    selectedPage: {
+   /* selectedPage: {
       get() {
         return this.$store.getters['statistics/selectedPage']
       },
       set(value){
         this.$store.commit('statistics/setSelectedPage', value);
       }
-    },
+    },*/
   },
   data() {
     return {
-/*      selectedPage: this.$store.getters['statistics/selectedPage'],*/
+      selectedPage: this.$store.getters['statistics/selectedPage'],
       statPages: [
         'Calendar',
         'Details',

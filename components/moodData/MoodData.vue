@@ -1,6 +1,6 @@
 <template>
   <div class="moodData">
-   <!-- <CalendarDetails v-if="showCalendarMoodDetails"/>-->
+    <CalendarDetails v-if="showCalendarMoodDetails"/>
     <Calendar v-if="showCalendar"/>
   <!--  <Stats v-if="showStats"/>-->
   </div>

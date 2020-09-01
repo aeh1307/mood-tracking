@@ -147,12 +147,13 @@ export default {
 
       // TODO: fix: issue if month is november or december have to account for 2 digits.
       // TODO: rearrange so date is stored as timestamp and not millisecondtimestamp formated as number in firebase.
-      this.$fireStore.collection('users').doc("1").collection('moodTracking').doc(this.selectedId).set({
+      this.$fireStore.collection('users').doc(this.$fireAuth.currentUser.uid).collection('moodTracking').doc(this.selectedId).set({
         degreeOfEmotion: this.newSelectedDegree,
         emotion: this.newSelectedEmotion,
         time: new Date(`${this.selectedDate[2]} ${this.findSelectedMonth} ${this.selectedDate[0]} ${this.newSelectedTime} UTC+02:00`).getTime()
       })
 
+      console.log(this.findSelectedMonth);
       this.$store.commit('statistics/setSelectedTime', this.newSelectedTime);
       this.$store.commit('statistics/setSelectedEmotion', this.newSelectedEmotion);
       this.$store.commit('statistics/setSelectedDegree', this.newSelectedDegree);

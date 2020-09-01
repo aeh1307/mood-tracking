@@ -1,7 +1,7 @@
 <template>
   <div class="flexWrapper">
     <v-app>
-        <v-dialog v-model="dialog" persistent max-width="260">
+        <v-dialog v-model="dialog" max-width="260">
           <v-card class="dialogCard" light min-height="180">
             <div class="informationText">
               Would you like to track
