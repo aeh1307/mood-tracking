@@ -39,6 +39,7 @@
   .informationText {
     padding-bottom: 10px;
     font-family: 'Manrope', sans-serif;
+    font-size: 17px;
     display: flex;
     flex-direction: column;
     height: 100%;

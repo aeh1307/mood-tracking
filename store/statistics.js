@@ -8,6 +8,7 @@ export const state = () => ({
   selectedDate: new Date().toISOString().slice(0, 10),
   moods: [],
   selectedDateMoods: [],
+  moodsCurrentMonth: [],
 
   showDeleteConfirmationWindow: false,
   showEditMoodWindow: false,
@@ -16,8 +17,9 @@ export const state = () => ({
   selectedDegree: '',
   selectedTime: '',
   findSelectedMonth: '',
-
   selectedPage: 'Calendar',
+
+  showDetails: false,
 })
 
 
@@ -43,11 +45,17 @@ export const getters = {
   selectedDateMoods: state => {
     return state.selectedDateMoods;
   },
+  moodsCurrentMonth: state => {
+    return state.moodsCurrentMonth;
+  },
   selectedPage: state => {
     return state.selectedPage;
   },
   moods: state => {
     return state.moods;
+  },
+  showDetails: state => {
+    return state.showDetails
   },
   showDeleteConfirmationWindow: state => {
     return state.showDeleteConfirmationWindow;
@@ -131,6 +139,12 @@ export const mutations = {
   },
   emptySelectedDateMoods(state){
     state.selectedDateMoods = []
+  },
+  emptyMoodsCurrentMonth(state){
+    state.moodsCurrentMonth = []
+  },
+  setShowDetails(state, boolean){
+    state.showDetails = boolean
   },
   addMoods(state, moodList){
     state.moods = moodList
