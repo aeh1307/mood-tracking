@@ -97,9 +97,58 @@ export default {
   },
   watch: {
     moods: function () {
-      this.showDateInfo()
+      this.showDateInfo();
+      this.updateMoodsCurrentMonth(this.pickerDate);
     },
     pickerDate: function (val) {
+      this.updateMoodsCurrentMonth(val);
+    }
+
+  },
+  methods: {
+    // Move this to watch??
+    // Marks all dates that contain tracked mood with the color pink.
+    functionEvents(date) {
+      let foundDate = this.moods.find(trackedMood => {
+        let convertedDBTime = new Date(trackedMood.time).toISOString().substring(0, 10)
+        return convertedDBTime === date;
+      })
+      if (foundDate) {
+        /* return '#FF69B4'*/
+        /*        return '#58d6f1'*/
+        return '#24C6DC'
+      }
+      return null
+    },
+    // Shows a overview over the different moods that are tracked on the date the user select in the calendar.
+
+    // TODO: separate switch into own method, use filter to find entries for selected date, see filterMoods in MoodTable
+    showDateInfo: function () {
+
+      this.$store.commit('statistics/emptySelectedDateMoods');
+      if (!this.userSelectedDate) return;
+      let userSelectedDate = this.userSelectedDate.split("-");
+      this.$store.commit('statistics/setSelectedDate', userSelectedDate);
+
+      let selectedYear = userSelectedDate[0]
+      let selectedMonth = userSelectedDate[1]
+      let selectedDay = userSelectedDate[2]
+
+      this.filteredMoods = this.moods.filter(trackedMood => {
+        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
+        let trackedDay = dateFromDB[2]
+        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
+        let trackedYear = dateFromDB[3]
+        return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay))
+      })
+
+    },
+    dateChosen: function () {
+      this.showDateInfo()
+      this.$store.commit('statistics/setShowCalendarMoodDetails', true)
+
+    },
+    updateMoodsCurrentMonth: function (val) {
 
       this.moodsCurrentMonth = [];
       // Selected month:
@@ -146,51 +195,6 @@ export default {
             break;
         }
       })
-    }
-
-  },
-  methods: {
-    // Move this to watch??
-    // Marks all dates that contain tracked mood with the color pink.
-    functionEvents(date) {
-      let foundDate = this.moods.find(trackedMood => {
-        let convertedDBTime = new Date(trackedMood.time).toISOString().substring(0, 10)
-        return convertedDBTime === date;
-      })
-      if (foundDate) {
-        /* return '#FF69B4'*/
-        /*        return '#58d6f1'*/
-        return '#24C6DC'
-      }
-      return null
-    },
-    // Shows a overview over the different moods that are tracked on the date the user select in the calendar.
-
-    // TODO: separate switch into own method, use filter to find entries for selected date, see filterMoods in MoodTable
-    showDateInfo: function () {
-
-      this.$store.commit('statistics/emptySelectedDateMoods');
-      if (!this.userSelectedDate) return;
-      let userSelectedDate = this.userSelectedDate.split("-");
-      this.$store.commit('statistics/setSelectedDate', userSelectedDate);
-
-      let selectedYear = userSelectedDate[0]
-      let selectedMonth = userSelectedDate[1]
-      let selectedDay = userSelectedDate[2]
-
-      this.filteredMoods = this.moods.filter(trackedMood => {
-        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
-        let trackedDay = dateFromDB[2]
-        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
-        let trackedYear = dateFromDB[3]
-        return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay))
-      })
-
-    },
-    dateChosen: function () {
-      this.showDateInfo()
-      this.$store.commit('statistics/setShowCalendarMoodDetails', true)
-
     }
 
   }

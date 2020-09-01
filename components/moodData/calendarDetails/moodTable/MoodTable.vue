@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-dialog v-model="dialog" persistent max-width="320">
+    <v-dialog class="dialogBox" v-model="dialog" persistent max-width="320">
       <v-card class="dialogCard" light height="500">
         <v-toolbar elevation="0">
           <v-btn icon dark @click="this.closeDetails">
@@ -17,7 +17,7 @@
             <thead class="tableHeader">
             <td id="emotionHeader" class="tableHeaderColumnNames">Emotion</td>
             <td id="degreeHeader" class="tableHeaderColumnNames">Degree</td>
-            <td id="timeHeader" class="tableHeaderColumnNames">Time</td>
+            <!--    <td id="timeHeader" class="tableHeaderColumnNames">Time</td>-->
             </thead>
 
             <div class="noTrackedMoodsText" v-if="filteredMoods.length === 0">
@@ -32,15 +32,22 @@
                         :style="`color: ${findEmojiIcon(filteredMood).color}`">{{ findEmojiIcon(filteredMood).icon }}
                 </v-icon>
               </td>
-              <td id="emotionRow" class="tableRowCells"><b class="emotionText">{{ filteredMood.emotion }}</b>
+              <td id="emotionRow" class="tableRowCells">
+                <b class="emotionText">{{ filteredMood.emotion }}</b>
                 <!--  <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>-->
+                <div> {{
+                    ('0' + new Date(filteredMood.time).getHours()).toString()
+                      .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
+                  }}
+                </div>
+
               </td>
               <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
-              <td id="timeRow" class="tableRowCells">{{
-                  ('0' + new Date(filteredMood.time).getHours()).toString()
-                    .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
-                }}
-              </td>
+              <!--   <td id="timeRow" class="tableRowCells">{{
+                     ('0' + new Date(filteredMood.time).getHours()).toString()
+                       .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
+                   }}
+                 </td>-->
               <div class="actionSection">
                 <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
                 <!--    <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>-->
@@ -160,7 +167,7 @@ export default {
       })
 
     },
-    closeDetails: function() {
+    closeDetails: function () {
       this.dialog = false;
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
     }
@@ -179,12 +186,16 @@ export default {
 
 <style scoped>
 
+.dialogCard {
+  overflow-y: scroll;
+}
+
 .moodTable {
   display: flex;
   flex-direction: column;
   background-color: white;
   overflow: hidden;
-  width: 300px;
+  /*  min-width: 100vw;*/
 }
 
 .selectedDate {
@@ -198,12 +209,12 @@ export default {
   font-size: 16px;
   font-weight: 600;
   color: #5a5b60;
-  padding-left: 40px;
-  width: 300px;
+  padding-left: 35px;
+  /*  width: 300px;*/
 }
 
 .tableSection {
-  width: 300px;
+  /*  width: 300px;*/
 }
 
 .tableHeaderColumnNames {
@@ -213,13 +224,14 @@ export default {
 .tableRow {
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
-  padding-left: 5px;
+  /*  padding-left: 5px;*/
   margin-top: 1px;
   display: flex;
-  width: 310px;
-  height: 65px;
+  max-width: 100%;
+  height: 80px;
   justify-content: center;
   align-items: center;
+  justify-self: center;
   color: #454444;
 }
 
@@ -232,8 +244,9 @@ export default {
 .noTrackedMoodsText {
   display: flex;
   justify-self: center;
+  align-self: center;
   font-size: 16px;
-  width: 300px;
+  width: 250px;
   padding: 14px;
   margin-left: 5px;
   margin-right: 5px;
@@ -242,7 +255,7 @@ export default {
 }
 
 #emotionRow, #emotionHeader {
-  min-width: 100px;
+  min-width: 120px;
 }
 
 .emotionText {
@@ -282,6 +295,12 @@ export default {
 
 .viewNotes {
   padding-top: 3px;
+}
+
+@media only screen and (max-width: 330px) {
+  .dialogCard {
+
+  }
 }
 
 </style>
