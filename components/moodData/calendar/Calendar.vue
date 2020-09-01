@@ -14,6 +14,7 @@
     >
     </v-date-picker>
     <div class="moodSection" v-if="moodsCurrentMonth.length !== 0">
+<!--      <div class="moodSectionCaption">Moods this month</div>-->
       <div class="moods">
         <div class="moodStats" v-if="this.tenseNervousDateDegree !== 0">
           <v-icon class="emojiIcon tenseNervousIcon">fas fa-frown-open</v-icon>
@@ -215,6 +216,10 @@ export default {
   flex-direction: column;
   align-items: center;
   color: dimgrey;
+}
+
+.moodSectionCaption {
+  font-size: 16px;
 }
 
 .moods {
