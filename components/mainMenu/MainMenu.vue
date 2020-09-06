@@ -6,6 +6,7 @@
         <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
         <p class="iconCaption">Statistics</p></nuxt-link>
       <MoodTracker/>
+
       <a href="https://lifekeys.no/" class="contact"><img class="lifekeys" src="@/assets/lifekeysLogo.png"/>
         <p class="iconCaption">Contact</p></a>
     </div>
@@ -48,7 +49,9 @@ export default {
   flex-direction: column;
   text-decoration: none;
   color: white;
+  position: relative;
 }
+
 
 .iconCaption {
   font-family: 'Manrope', sans-serif;

@@ -1,32 +1,34 @@
 <template>
   <div class="moodTracker">
-    <div class="outerCircle">
-      <ul class="circlePartContainer">
-        <li>
-          <div class="circlePart1 circlePart"></div>
-        </li>
-        <li>
-          <div  class="circlePart2 circlePart"></div>
-        </li>
-        <li>
-          <div class="circlePart3 circlePart"></div>
-        </li>
-        <li>
-          <div class="circlePart4 circlePart"></div>
-        </li>
-        <li>
-          <div class="circlePart5 circlePart"></div>
-        </li>
-        <li>
-          <div class="circlePart6 circlePart"></div>
-        </li>
-        <li>
-          <div class="circlePart7 circlePart"></div>
-        </li>
-      </ul>
-     <div>
+  <div class="outerCircle">
+    <ul class="circlePartContainer">
+      <li>
+        <div class="circlePart1 circlePart"></div>
+      </li>
+      <li>
+        <div  class="circlePart2 circlePart"></div>
+      </li>
+      <li>
+        <div class="circlePart3 circlePart"></div>
+      </li>
+      <li>
+        <div class="circlePart4 circlePart"></div>
+      </li>
+      <li>
+        <div class="circlePart5 circlePart"></div>
+      </li>
+      <li>
+        <div class="circlePart6 circlePart"></div>
+      </li>
+      <li>
+        <div class="circlePart7 circlePart"></div>
+      </li>
+    </ul>
+    <div class="innerCircle"></div>
+    <div>
+  <div class="moodSelector">
        <!--TODO: change from touchhold to longtap when the new version is out-->
-       <swiper class="innerCircle active:interval" ref="mySwiper" :options="swiperOptions">
+       <swiper class="swiperSlider active:interval" ref="mySwiper" :options="swiperOptions">
 <!--         <swiper-slide><div @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="swipeContainer"><v-icon class="swipeArrow">fas fa-angle-double-left</v-icon><v-icon class="swipeArrow">fas fa-angle-double-right</v-icon></div></swiper-slide>-->
          <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji tenseNervousEmoji">fas fa-frown-open {{count}}</v-icon></swiper-slide>
          <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon></swiper-slide>
@@ -39,7 +41,7 @@
      </div>
     </div>
   </div>
-
+  </div>
 </template>
 
 <script>
@@ -50,8 +52,11 @@
       return {
         swiperOptions: {
           loop: false,
-          spaceBetween: 15,
           slidesPerView: 1,
+        /*  slidesPerGroup: 6,*/
+          spaceBetween: 1,
+   /*       lazyLoading: true,*/
+/*          watchSlidesVisibility: true,*/
         },
         interval: false,
       }
@@ -116,7 +121,7 @@
           node[4].firstChild.style.background = 'white';
           node[5].firstChild.style.background = 'white';
           node[6].firstChild.style.background = 'white';
-          emoji.style.border = '2px solid white';
+          emoji.style.border = '2px solid transparent';
         }
 
         if(val >= 1){
@@ -148,11 +153,86 @@
           node[6].firstChild.style.background = color;
           this.$store.commit('moodtracker/setDegreeOfEmotion', 7)
         }
+      },
+      swipeElement: function(val) {
+        switch(val){
+          case 0: // Tense/Nervous
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '70px';
+
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '50px';
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '50px';
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '50px';
+            document.querySelector('.boredWearyEmoji').style.fontSize = '50px'
+            document.querySelector('.gloomySadEmoji').style.fontSize = '50px';
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '50px';
+            break;
+          case 1: // Irritated/Annoyed
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '70px';
+
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '50px';
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '50px';
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '50x';
+            document.querySelector('.boredWearyEmoji').style.fontSize = '50px'
+            document.querySelector('.gloomySadEmoji').style.fontSize = '50px';
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '50px';
+            break;
+          case 2: // Excited/Lively
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '70px';
+
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '50px';
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '50px';
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '50px';
+            document.querySelector('.boredWearyEmoji').style.fontSize = '50px'
+            document.querySelector('.gloomySadEmoji').style.fontSize = '50px';
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '50px';
+            break;
+          case 3:// Cheerful/Happy
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '70px';
+
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '50px';
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '50px';
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '50px';
+            document.querySelector('.boredWearyEmoji').style.fontSize = '50px'
+            document.querySelector('.gloomySadEmoji').style.fontSize = '50px';
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '50px';
+            break;
+          case 4: // Bored/Weary ==
+            document.querySelector('.boredWearyEmoji').style.fontSize = '70px';
+
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '50px';
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '50px';
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '50px';
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '50px';
+            document.querySelector('.gloomySadEmoji').style.fontSize = '50px';
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '50px';
+            break;
+          case 5:// Gloomy/Sad
+            document.querySelector('.gloomySadEmoji').style.fontSize = '70px';
+
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '50px';
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '50px';
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '50px';
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '50px';
+            document.querySelector('.boredWearyEmoji').style.fontSize = '50px'
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '50px';
+            break;
+          case 6:// Relaxed/Calm
+            document.querySelector('.relaxedCalmEmoji').style.fontSize = '70px';
+
+            document.querySelector('.tenseNervousEmoji').style.fontSize = '50px';
+            document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '50px';
+            document.querySelector('.excitedLivelyEmoji').style.fontSize = '50px';
+            document.querySelector('.cheerfulHappyEmoji').style.fontSize = '50px';
+            document.querySelector('.boredWearyEmoji').style.fontSize = '50px'
+            document.querySelector('.gloomySadEmoji').style.fontSize = '50px';
+            break;
+        }
       }
     },
     mounted() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.swiper.slideTo(3, 300, false)
+      document.querySelector('.cheerfulHappyEmoji').style.fontSize = '70px';
       this.swiper.on('slideChange', function (store, swiper){
         store.commit('moodtracker/setShowConfirmationBubble', false)
         store.commit('moodtracker/setCount', 0)
@@ -160,7 +240,7 @@
       }.bind(null, this.$store, this.swiper));
     },
     methods: {
-      test(){
+      /*test(){
         const swiperElements = document.getElementsByClassName('swiperSlides');
         swiperElements.addEventListener('mousedown', e => {
           this.$store.commit('moodtracker/setCount', 0)
@@ -178,7 +258,7 @@
           clearInterval(this.interval)
           this.interval = false
         });
-      },
+      },*/
       startCounter(){
         this.$store.commit('moodtracker/setCount', 0)
         if(!this.interval){
@@ -201,28 +281,41 @@
 
 
 <style scoped>
-  .moodTracker {
+
+.moodTracker{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 145px;
+}
+
+  .moodSelector {
     width: 100px;
-    margin-bottom: 90px;
-    position: relative;
+    overflow: visible;
+    left: 40%;
+/*    overflow-x: visible;
+    overflow-y: visible;*/
+    max-height: 100px;
+    margin-bottom: 160px;
+    position: fixed;
     margin-left: -8px; /*TODO: FIX*/
   }
  .outerCircle {
    position: relative;
    border: 1px solid black;
    padding: 0;
-   margin: 1em auto;
    width: 100px;
    height: 100px;
    border-radius: 50%;
    list-style: none;
    overflow: hidden;
    display: flex;
+   margin-bottom: 160px;
  }
  .circlePartContainer {
    position: relative;
    width: 100px;
    height: 100px;
+   overflow: visible;
  }
 
  li {
@@ -241,6 +334,7 @@
 
  }
  .circlePart {
+   overflow: visible;
    position: absolute;
    left: -100%;
    width: 260%;
@@ -304,31 +398,61 @@
     left: 7px;
   }
 
+  .swiperSlider{
+    width: 85px;
+    height: 85px;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+  }
+
   .swiperSlides {
     display: flex;
     justify-content: center;
+   /* min-width: 65px;*/
+    width: 60px;
+    overflow-x: visible;
+    z-index: 99;
   }
 
   .emoji {
-    font-size: 70px;
+    z-index: 99;
+    font-size: 50px;
     position: relative;
-    overflow-y: visible;
     border-radius: 50%;
     width: 70px;
     height: 70px;
     justify-content: center;
     align-self: center;
-    animation: shake 1.0s cubic-bezier(.36,.07,.19,.97) both;
-    animation-iteration-count: 3;
+/*    animation: shake 1.0s cubic-bezier(.36,.07,.19,.97) both;
+    animation-iteration-count: 3;*/
   }
 
-  .swipeContainer {
+  .emoji::after {
+    content: "";
+    background: white;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    opacity: 1.0;
+    top: 15px;
+    left: 15px;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  .swiper-container {
+    overflow: visible;
+  }
+
+/*  .swipeContainer {
     display: flex;
     justify-content: center;
     align-content: center;
-  }
+  }*/
 
-  .swipeArrow {
+/*  .swipeArrow {
     font-size: 30px;
     padding-top: 30%;
     padding-left: 13px;
@@ -336,7 +460,7 @@
     display: flex;
     align-self: center;
 
-  }
+  }*/
 
   .tenseNervousEmoji {
     color: #3CBB75;
