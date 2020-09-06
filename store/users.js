@@ -7,34 +7,17 @@ export const getters = {
   isLoggedIn: state => {
     return state.isLoggedIn
   },
+  getUser: state => {
+    return state.user
+  }
 }
 
 
 export const mutations = {
-
-  ON_AUTH_STATE_CHANGED_MUTATION: (state, { authUser, claims }) => {
-    if (!authUser) {
-      // claims = null
-
-      // perform logout operations
-    } else {
-      console.log("ON AUTH TEST");
-      const { uid, email, emailVerified } = authUser
-      state.user = { uid, email, emailVerified }
-    }
-  },
-
-  onAuthStateChangedAction: (ctx, { authUser, claims }) => {
-    if (!authUser) {
-      // claims = null
-
-      // Perform logout operations
-    } else {
-      // Do something with the authUser and the claims object...
-    }
-  },
-
   setIsLoggedIn(state, boolean) {
     state.isLoggedIn = boolean
+  },
+  setUser(state, user) {
+    state.user = user;
   }
 }

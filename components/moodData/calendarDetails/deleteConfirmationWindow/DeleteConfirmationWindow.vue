@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { auth, db } from '~/plugins/firebase-client-init';
 export default {
   name: 'DeleteConfirmationWindow.vue',
   computed: {
@@ -40,7 +41,7 @@ export default {
     confirmMoodDeletion: function () {
       let deleteId = this.selectedId;
       let store = this.$store;
-      this.$fireStore.collection('users').doc(this.$fireAuth.currentUser.uid).collection('moodTracking')
+      db.collection('users').doc(auth.currentUser.uid).collection('moodTracking')
         .doc(this.selectedId).delete().then(function () {
         console.log(`The mood: ${deleteId} was successfully deleted!`);
         store.commit('statistics/deleteMood', deleteId)

@@ -12,6 +12,7 @@
   import MapMarker from "../components/mapMarker/MapMarker";
   import Reminder from "../components/reminder/Reminder";
   export default {
+
     components: {
       BackgroundImage,
       MapMarker,

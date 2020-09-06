@@ -39,6 +39,7 @@ export default {
     '@/plugins/vue-swipe.js',
     '@/plugins/vue2-touch-events.js',
     '@/plugins/apexcharts.js',
+    { src: '~/plugins/auth-cookie', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -46,26 +47,28 @@ export default {
   buildModules: [
     '@nuxtjs/vuetify',
   ],
+  serverMiddleware: ['~/serverMiddleware/validateFirebaseIdToken'],
+
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/firebase'],
-  firebase: {
-    config: {
+  // modules: ['@nuxtjs/firebase'],
+  // firebase: {
+    /*config: {
       apiKey: "AIzaSyDLs3DwRPPGYB3E44xCjTjAO_BtPVO5SCk",
       authDomain: "moodtracking-a5513.firebaseapp.com",
       databaseURL: "https://moodtracking-a5513.firebaseio.com",
       projectId: "moodtracking-a5513",
       storageBucket: "moodtracking-a5513.appspot.com",
       messagingSenderId: "401126265609",
-      appId: "1:401126265609:web:b078abe077b29f5d7b39d8"
-    },
-    services: {
+      appId: "1:401126265609:web:b078abe077b29f5d7b39d8",
+    },*/
+   /* services: {
       auth: true,
       // or
-      /*    auth: {
+      /!*    auth: {
             persistence: 'local', // default
-    */
+    *!/
       // it is recommended to configure either a mutation or action but you can set both
       initialize: {
         onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
@@ -91,8 +94,8 @@ export default {
         dev: false
       },
       storage: true
-    }
-  },
+    }*/
+  // },
   vuetify: {
     theme: {
       light: true,

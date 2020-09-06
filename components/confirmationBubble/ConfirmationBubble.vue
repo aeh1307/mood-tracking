@@ -22,10 +22,12 @@
             </div>
           </v-card>
         </v-dialog>
+
     </v-app>
   </div>
 </template>
 <script>
+import { auth, db } from '~/plugins/firebase-client-init';
 export default {
   name: "ConfirmationBubble.vue",
   computed: {
@@ -63,7 +65,7 @@ export default {
     confirmMoodTracking: function() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.$store.commit('moodtracker/setShowFeedbackBubble', true)
-      this.$fireStore.collection('users').doc(this.$fireAuth.currentUser.uid).collection('moodTracking').add({
+      db.collection('users').doc(auth.currentUser.uid).collection('moodTracking').add({
         emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now(), notes: this.notes,
       }).then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -73,6 +75,8 @@ export default {
         this.$store.commit('moodtracker/setCount', 0)
       }, 3000)
       this.$store.commit('moodtracker/setNotes', '');
+
+
     },
  /*   addNote: function() {
       this.seeNotes = true;

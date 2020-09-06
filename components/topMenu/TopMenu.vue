@@ -48,6 +48,7 @@
   </div>
 </template>
 <script>
+import { auth } from '~/plugins/firebase-client-init';
 export default {
   name: 'TopMenu.vue',
   computed: {
@@ -148,7 +149,7 @@ export default {
     },
     logOut: function () {
       let store = this.$store;
-      this.$fireAuth.signOut().then(function() {
+      auth.signOut().then(function() {
         store.commit('users/setIsLoggedIn', false);
         // Sign-out successful.
       }).catch(function(error) {

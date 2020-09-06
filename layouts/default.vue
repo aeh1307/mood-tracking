@@ -14,6 +14,8 @@
   </div>
 </template>
 <script>
+  import { auth, db } from '~/plugins/firebase-client-init';
+  import { getUserFromCookie } from '@/helpers';
   import MainMenu from "~/components/mainMenu/MainMenu";
   import TopMenu from "~/components/topMenu/TopMenu";
   import ConfirmationBubble from "~/components/confirmationBubble/ConfirmationBubble";
@@ -22,6 +24,41 @@
   import Login from "~/components/login/Login.Vue";
 
   export default {
+    beforeCreate() {
+      if (process.client) {
+        db.collection("users").doc(this.$store.getters["users/getUser"].user_id).collection("moodTracking")
+          .orderBy('time').onSnapshot(querySnapshot => {
+          this.$store.commit('statistics/emptyMoods');
+          let trackedMoods = []
+          querySnapshot.forEach(doc => {
+            // Degree of emotion, emotion, time, id:
+            let trackedMood = {
+              degreeOfEmotion: doc.data().degreeOfEmotion,
+              emotion: doc.data().emotion,
+              time: doc.data().time,
+              notes: doc.data().notes,
+              id: doc.id
+            }
+            trackedMoods.push(trackedMood)
+          })
+          this.$store.commit('statistics/addMoods', trackedMoods)
+        })
+      }
+    },
+    asyncData( {req} ){
+      if(process.client) {
+        auth.currentUser.getIdToken().then(user => {
+          if(user){
+            this.$store.commit('users/setIsLoggedIn', true);
+          }else{
+            this.$store.commit('users/setIsLoggedIn', false);
+          }
+          console.log("client: ", this.isLoggedIn)
+        })
+
+      }
+
+    },
     components: {
       MainMenu,
       TopMenu,
@@ -35,7 +72,9 @@
       showFeedbackBubble: { get() {return this.$store.getters['moodtracker/showFeedbackBubble']}},
       showBackgroundImagePicker: { get() {return this.$store.getters['settings/showBackgroundImagePicker']}},
       isLoggedIn: { get() {return this.$store.getters['users/isLoggedIn']}},
-    }
+    },
+
+
   }
 
 

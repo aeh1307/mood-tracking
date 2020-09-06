@@ -15,6 +15,7 @@
 
 
 <script>
+import { auth, db } from '~/plugins/firebase-client-init';
 export default {
   name: 'Login.vue',
   data() {
@@ -32,25 +33,9 @@ export default {
     logIn(email, password) {
       let store = this.$store;
       let router = this.$router
-      this.$fireAuth.signInWithEmailAndPassword(email, password).then(response => {
+      auth.signInWithEmailAndPassword(email, password).then(response => {
         console.log(response.user.uid)
-        this.$fireStore.collection("users").doc(response.user.uid).collection("moodTracking")
-          .orderBy('time').onSnapshot(querySnapshot => {
-          this.$store.commit('statistics/emptyMoods');
-          let trackedMoods = []
-          querySnapshot.forEach(doc => {
-            // Degree of emotion, emotion, time, id:
-            let trackedMood = {
-              degreeOfEmotion: doc.data().degreeOfEmotion,
-              emotion: doc.data().emotion,
-              time: doc.data().time,
-              notes: doc.data().notes,
-              id: doc.id
-            }
-            trackedMoods.push(trackedMood)
-          })
-          this.$store.commit('statistics/addMoods', trackedMoods)
-        })
+
 
         router.push('/')
 
