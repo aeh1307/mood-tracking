@@ -1,12 +1,12 @@
 <template>
   <div class="mainMenu">
-    <EmojiDescription/>
+<!--    <EmojiDescription/>-->
     <div class="navigation">
       <nuxt-link to="/moodstatistics/statistics" class="statistics">
         <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
         <p class="iconCaption">Statistics</p></nuxt-link>
       <MoodTracker/>
-      <a href="https://lifekeys.no/" class="contact"><img class="lifekeys" src="@/assets/lifekeysLogo.png"/>
+      <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
         <p class="iconCaption">Contact</p></a>
     </div>
   </div>
@@ -28,11 +28,11 @@ export default {
 <style scoped>
 .mainMenu {
   position: fixed;
-  background: linear-gradient(to right, #24C6DC, #514A9D);
+  background: linear-gradient(to right, #24c6dc, #514A9D);
   min-width: 100%;
   max-width: 100%;
   bottom: 0;
-  height: 25vw;
+  height: 110px;
 }
 
 .navigation {
@@ -55,9 +55,9 @@ export default {
   font-size: 16px;
 }
 
-.lifekeys {
+.messageIcon {
   height: 45px;
-  width: 32px;
+  width: 45px;
   align-self: center;
 }
 
@@ -65,5 +65,6 @@ export default {
   color: #F5F5F5;
   font-size: 35px;
 }
+
 
 </style>
