@@ -1,6 +1,6 @@
 <template>
   <div class="mainMenu">
-    <EmojiDescription/>
+<!--    <EmojiDescription/>-->
     <div class="navigation">
       <nuxt-link to="/moodstatistics/statistics" class="statistics">
         <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
@@ -33,7 +33,7 @@ export default {
   min-width: 100%;
   max-width: 100%;
   bottom: 0;
-  height: 25vw;
+  height: 110px;
 }
 
 .navigation {
@@ -49,18 +49,16 @@ export default {
   flex-direction: column;
   text-decoration: none;
   color: white;
-  position: relative;
 }
-
 
 .iconCaption {
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
 }
 
-.lifekeys {
+.messageIcon {
   height: 45px;
-  width: 32px;
+  width: 45px;
   align-self: center;
 }
 
@@ -68,5 +66,6 @@ export default {
   color: #F5F5F5;
   font-size: 35px;
 }
+
 
 </style>
