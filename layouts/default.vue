@@ -4,7 +4,6 @@
         <Login/>
       </div>
       <div v-if="isLoggedIn">
-        <h1>Test</h1>
         <TopMenu/>
         <nuxt/>
         <BackgroundImagePicker is="BackgroundImagePicker" v-if="showBackgroundImagePicker"/>
