@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-dialog class="dialogBox" v-model="dialog" persistent max-width="320">
+    <!-- TODO: remove persistent for dialog box to close when clicking outside-->
+    <v-dialog v-model="dialog" persistent max-width="320">
       <v-card class="dialogCard" light height="500">
         <v-toolbar elevation="0">
           <v-btn icon dark @click="this.closeDetails">
@@ -168,7 +169,7 @@ export default {
 
     },
     closeDetails: function () {
-      this.dialog = false;
+ /*     this.dialog = false;*/
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
     }
   },
