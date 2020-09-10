@@ -2,12 +2,17 @@
   <div class="mainMenu">
 <!--    <EmojiDescription/>-->
     <div class="navigation">
-      <nuxt-link to="/moodstatistics/statistics" class="statistics">
-        <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
-        <p class="iconCaption">Statistics</p></nuxt-link>
+      <div class="statisticsContainer">
+        <nuxt-link to="/moodstatistics/statistics" class="statistics">
+          <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
+          <p class="iconCaption">Statistics</p></nuxt-link>
+      </div>
+
       <MoodTracker/>
-      <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
-        <p class="iconCaption">Contact</p></a>
+      <div class="contactContainer">
+        <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
+          <p class="iconCaption">Contact</p></a>
+      </div>
     </div>
   </div>
 </template>
@@ -40,7 +45,17 @@ export default {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.statisticsContainer {
+  left: 25px;
+  position: absolute;
+}
+
+.contactContainer {
+  right: 25px;
+  position: absolute;
 }
 
 .contact, .statistics {
@@ -58,6 +73,7 @@ export default {
 .messageIcon {
   height: 45px;
   width: 45px;
+  display: flex;
   align-self: center;
 }
 
