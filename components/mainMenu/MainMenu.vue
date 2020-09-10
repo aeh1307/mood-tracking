@@ -2,13 +2,17 @@
   <div class="mainMenu">
 <!--    <EmojiDescription/>-->
     <div class="navigation">
-      <nuxt-link to="/moodstatistics/statistics" class="statistics">
-        <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
-        <p class="iconCaption">Statistics</p></nuxt-link>
-      <MoodTracker/>
+      <div class="statisticsContainer">
+        <nuxt-link to="/moodstatistics/statistics" class="statistics">
+          <v-icon class="heartIcon">fas fa-heartbeat</v-icon>
+          <p class="iconCaption">Statistics</p></nuxt-link>
+      </div>
 
-      <a href="https://lifekeys.no/" class="contact"><img class="lifekeys" src="@/assets/lifekeysLogo.png"/>
-        <p class="iconCaption">Contact</p></a>
+      <MoodTracker/>
+      <div class="contactContainer">
+        <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
+          <p class="iconCaption">Contact</p></a>
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +33,7 @@ export default {
 <style scoped>
 .mainMenu {
   position: fixed;
-  background: linear-gradient(to right, #24C6DC, #514A9D);
+  background: linear-gradient(to right, #24c6dc, #514A9D);
   min-width: 100%;
   max-width: 100%;
   bottom: 0;
@@ -41,7 +45,17 @@ export default {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.statisticsContainer {
+  left: 25px;
+  position: absolute;
+}
+
+.contactContainer {
+  right: 25px;
+  position: absolute;
 }
 
 .contact, .statistics {
@@ -59,6 +73,7 @@ export default {
 .messageIcon {
   height: 45px;
   width: 45px;
+  display: flex;
   align-self: center;
 }
 
