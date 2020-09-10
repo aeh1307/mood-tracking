@@ -173,25 +173,25 @@ export default {
       this.moodsCurrentMonth.forEach(filteredMood => {
         switch (filteredMood.emotion) {
           case 'Tense/Nervous':
-            this.tenseNervousDateDegree = this.tenseNervousDateDegree + filteredMood.degreeOfEmotion;
+            this.tenseNervousDateDegree = this.tenseNervousDateDegree + 1;
             break;
           case 'Irritated/Annoyed':
-            this.irritatedAnnoyedDateDegree = this.irritatedAnnoyedDateDegree + filteredMood.degreeOfEmotion;
+            this.irritatedAnnoyedDateDegree = this.irritatedAnnoyedDateDegree + 1;
             break;
           case 'Excited/Lively':
-            this.excitedLivelyDateDegree = this.excitedLivelyDateDegree + filteredMood.degreeOfEmotion;
+            this.excitedLivelyDateDegree = this.excitedLivelyDateDegree + 1;
             break;
           case 'Cheerful/Happy':
-            this.cheerfulHappyDateDegree = this.cheerfulHappyDateDegree + filteredMood.degreeOfEmotion;
+            this.cheerfulHappyDateDegree = this.cheerfulHappyDateDegree + 1;
             break;
           case 'Bored/Weary':
-            this.boredWearyDateDegree = this.boredWearyDateDegree + filteredMood.degreeOfEmotion;
+            this.boredWearyDateDegree = this.boredWearyDateDegree + 1;
             break;
           case 'Gloomy/Sad':
-            this.gloomySadDateDegree = this.gloomySadDateDegree + filteredMood.degreeOfEmotion;
+            this.gloomySadDateDegree = this.gloomySadDateDegree + 1;
             break;
           case 'Relaxed/Calm':
-            this.relaxedCalmDateDegree = this.relaxedCalmDateDegree + filteredMood.degreeOfEmotion;
+            this.relaxedCalmDateDegree = this.relaxedCalmDateDegree + 1;
             break;
         }
       })
