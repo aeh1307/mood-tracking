@@ -2,11 +2,20 @@
   <div class="moodTracker">
 
     <div class="emotionOverview" v-if="showEmotionOverview">
+      <div class="touchZones">
+        <div class="touchZoneTenseNervous" v-on:click="closeEmotionOverview"></div>
+        <div class="touchZoneExcitedLively" v-on:click="closeEmotionOverview"></div>
+        <div class="touchZoneCheerfulHappy" v-on:click="closeEmotionOverview"></div>
+        <div class="touchZoneRelaxedCalm" v-on:click="closeEmotionOverview"></div>
+        <div class="touchZoneGloomySad" v-on:click="closeEmotionOverview"></div>
+        <div class="touchZoneBoredWeary" v-on:click="closeEmotionOverview"></div>
+        <div class="touchZoneIrritatedAnnoyed" v-on:click="closeEmotionOverview"></div>
+      </div>
       <ul class="circleEmojiContainer">
         <li class="emojiListElement">
           <div class="circlePart1 circlePart">
-            <v-icon class="emoji tenseNervousEmoji">fas fa-frown-open</v-icon>
-          </div>
+              <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
+            </div>
         </li>
         <li class="emojiListElement">
           <div class="circlePart3 circlePart">
@@ -25,7 +34,6 @@
         </li>
         <li class="emojiListElement">
           <div class="circlePart8 circlePart">
-
           </div>
         </li>
         <li class="emojiListElement">
@@ -92,6 +100,9 @@ export default {
     },
     closeEmotionOverview() {
       this.showEmotionOverview = false;
+    },
+    selectEmotion() {
+      console.log('TESSSSSSSSST');
     }
   }
 }
@@ -103,8 +114,8 @@ export default {
 .moodTracker {
   width: 100px;
   margin-bottom: 120px;
-  position: relative;
-  margin-left: -8px; /*TODO: FIX*/
+  position: absolute;
+ /* margin-left: -12px;*/ /*TODO: FIX*/
   display: flex;
   justify-content: center;
 }
@@ -119,7 +130,7 @@ export default {
   display: flex;
   /* align-items: center;*/
   /*  justify-content: center;*/
-  bottom: -239px;
+  bottom: -250px;
   overflow: visible;
 }
 
@@ -138,7 +149,6 @@ export default {
   display: flex;
   justify-content: center;
   position: absolute;
-/*  border: 1px solid white;*/
 }
 
 .emoji {
@@ -148,10 +158,8 @@ export default {
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  justify-content: center;
-  align-self: center;
-  display: block;
-  left: 25px;
+  left: 26px;
+  /*left: 25px;*/
   top: -45px;
 /*  border: 2px solid red;*/
 }
@@ -159,16 +167,115 @@ export default {
 .emoji::after {
   content: "";
   background: white;
-  width: 47px;
-  height: 47px;
+  border: 8px solid transparent;
+  width: 59px;
+  height: 59px;
   position: absolute;
   opacity: 1.0;
-  top: 14px;
-  left: 10px;
+  top: 5px;
+  left: 6px;
   bottom: 0;
   right: 0;
   z-index: -1;
 }
+
+.touchZones {
+  width:280px;
+  height:280px;
+  position: absolute;
+}
+
+/* Should be 95px from left(not 93px). to correspond to select emoji button.*/
+.touchZoneTenseNervous {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  left: 95px;
+  top: -43px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+
+.touchZoneIrritatedAnnoyed {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  top: -2px;
+  left: -2px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+.touchZoneExcitedLively {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  top: -3px;
+  left: 192px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+.touchZoneCheerfulHappy {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  top: 94px;
+  left: 233px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+.touchZoneBoredWeary{
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  top: 94px;
+  left: -42px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+/* TODO: is the excited lively icon 2 px higher than irritated/annoyed*/
+.touchZoneRelaxedCalm {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  left: 192px;
+  top: 192px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+.touchZoneGloomySad {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  left: -2px;
+  top: 192px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  z-index: 99;
+}
+
+
+
+
+
 
 .bar1, .bar2 {
   width: 30px;
@@ -191,7 +298,7 @@ export default {
   position: absolute;
   border: 1px solid #514A9D;
   padding: 0;
-  bottom: -55px;
+  bottom: -60px;
   min-width: 110px;
   min-height: 110px;
   border-radius: 50%;
@@ -302,35 +409,81 @@ li {
   /*   border: 1px solid black;*/
 }
 
+/* TODO: Fix safari issue, transform where not working in last version ...*/
+/* {
+
+  -ms-transform: translateY(85px);
+  -webkit-transform: translateY(85px);
+  -moz-transform: translateY(85px);
+  -o-transform: translateY(85px);
+  transform: translateY(85px);
+  z-index: 1000;
+  position: relative;
+  display: inline-block;
+
+}*/
+
 li:first-child {
+  -ms-transform: rotate(0deg) skewY(0deg);
+  -webkit-transform: rotate(0deg) skewY(0deg);
+  -moz-transform: rotate(0deg) skewY(0deg);
+  -o-transform: rotate(0deg) skewY(0deg);
   transform: rotate(0deg) skewY(0deg);
 }
 
 li:nth-child(2) {
+  -ms-transform: rotate(45deg) skewY(0deg);
+  -webkit-transform: rotate(45deg) skewY(0deg);
+  -moz-transform: rotate(45deg) skewY(0deg);
+  -o-transform: rotate(45deg) skewY(0deg);
   transform: rotate(45deg) skewY(0deg);
 }
 
 li:nth-child(3) {
+  -ms-transform: rotate(90deg) skewY(0deg);
+  -webkit-transform: rotate(90deg) skewY(0deg);
+  -moz-transform: rotate(90deg) skewY(0deg);
+  -o-transform: rotate(90deg) skewY(0deg);
   transform: rotate(90deg) skewY(0deg);
 }
 
 li:nth-child(4) {
+  -ms-transform: rotate(135deg) skewY(0deg);
+  -webkit-transform: rotate(135deg) skewY(0deg);
+  -moz-transform: rotate(135deg) skewY(0deg);
+  -o-transform: rotate(135deg) skewY(0deg);
   transform: rotate(135deg) skewY(0deg);
 }
 
 li:nth-child(5) {
+  -ms-transform: rotate(180deg) skewY(0deg);
+  -webkit-transform: rotate(180deg) skewY(0deg);
+  -moz-transform: rotate(180deg) skewY(0deg);
+  -o-transform: rotate(180deg) skewY(0deg);
   transform: rotate(180deg) skewY(0deg);
 }
 
 li:nth-child(6) {
+  -ms-transform: rotate(225deg) skewY(0deg);
+  -webkit-transform: rotate(225deg) skewY(0deg);
+  -moz-transform: rotate(225deg) skewY(0deg);
+  -o-transform: rotate(225deg) skewY(0deg);
   transform: rotate(225deg) skewY(0deg);
 }
 
 li:nth-child(7) {
+  -ms-transform: rotate(270deg) skewY(0deg);
+  -webkit-transform: rotate(270deg) skewY(0deg);
+  -moz-transform: rotate(270deg) skewY(0deg);
+  -o-transform: rotate(270deg) skewY(0deg);
   transform: rotate(270deg) skewY(0deg);
 }
 
 li:nth-child(8) {
+  -ms-transform: rotate(315deg) skewY(0deg);
+  -webkit-transform: rotate(315deg) skewY(0deg);
+  -moz-transform: rotate(315deg) skewY(0deg);
+  -o-transform: rotate(315deg) skewY(0deg);
   transform: rotate(315deg) skewY(0deg);
 }
 
