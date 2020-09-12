@@ -1,44 +1,14 @@
 <template>
   <div class="topMenu">
     <v-container class="topMenuContainer">
-
-<!--      <div class="custom-select" v-if="isStatisticPage">
-        <select id="selectInput" class="select-items" @change="switchPage" v-model="selectedPage">
-          <option class="itemOptions" value="Calendar">Calendar</option>
-          <option class="itemOptions" value="Details">Details</option>
-          <option class="itemOptions" value="Stats">Stats</option>
-          <option class="itemOptions" value="Achievements">Achievements</option>
-        </select>
-      </div>-->
-
       <div class="calendar" v-if="isStatisticPage && this.selectedPage === 'Calendar'">Calendar</div>
       <div class="calendar" v-if="isStatisticPage && this.selectedPage === 'Details'">Details</div>
-<!--      <div class="custom-select text-white" v-if="isStatisticPage">
-        <v-app color="transparent" class="transparent text-white">
-          <v-card class="vCard text-white" color="transparent">
-            <v-select
-              @change="this.switchPage"
-              v-model="selectedPage"
-              class="custom text-white"
-              :items="statPages"
-              color="white"
-              item-text="white"
-              :width="100"
-            >
-            </v-select>
-          </v-card>
-        </v-app>
-      </div>-->
       <v-icon class="backButton" v-if="isStatisticPage" v-on:click="goBack">fas fa-chevron-left</v-icon>
       <div class="hamburgerMenu" v-on:click="openMenu">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
         <div class="menuOptions">
-        <!--  <a class="constraint">Profile settings</a>
-          <a class="constraint">General settings</a>
-          <a class="constraint">Goals</a>
-          <a class="constraint">Reminders</a>-->
           <a v-on:click="chooseBackground">Customize Background Photo</a>
           <a v-on:click="logOut">Log Out</a>
         </div>
@@ -77,14 +47,6 @@ export default {
         return this.$store.getters['statistics/showCalendarMoodDetails']
       }
     },
-   /* selectedPage: {
-      get() {
-        return this.$store.getters['statistics/selectedPage']
-      },
-      set(value){
-        this.$store.commit('statistics/setSelectedPage', value);
-      }
-    },*/
   },
   data() {
     return {
@@ -148,16 +110,16 @@ export default {
     },
     logOut: function () {
       let store = this.$store;
-      this.$fireAuth.signOut().then(function() {
+      this.$fireAuth.signOut().then(function () {
         store.commit('users/setIsLoggedIn', false);
         // Sign-out successful.
-      }).catch(function(error) {
+      }).catch(function (error) {
         // An error happened.
       });
     }
   },
   watch: {
-    selectedPage: function (){
+    selectedPage: function () {
       let element = document.getElementById('selectInput');
       element.value = this.selectedPage;
       this.switchPage();
@@ -254,18 +216,6 @@ export default {
   color: white;
   font-size: 18px;
   font-family: 'Manrope', sans-serif;
- /* position: relative;*/
-/*  min-height: 55px;*/
-}
-
-.custom-select {
- /* min-width: 250px;*/
-  margin: 0 auto;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  font-family: 'Manrope', sans-serif;
-  position: relative;
 }
 
 .custom-select select {
@@ -287,38 +237,12 @@ export default {
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  /*border-color: #fff transparent transparent transparent;*/
 }
+
 /* Point the arrow upwards when the select box is open (active): */
 #selectInput .select-arrow-active:after {
   border-color: transparent transparent #fff transparent;
   top: 7px;
-}
-
-
-.select-selected {
-  background-color: #5a5b60;
-}
-
-.itemOptions {
-  background-color: white;
-  color: black;
-}
-
-.select-items  {
-  text-align: center;
-}
-.constraint {
-  background-color: #c8c8ca;
-}
-
-.transparent {
-  background-color: transparent !important;
-  border-style: none !important;
-}
-
-.vCard {
-  box-shadow: none;
 }
 
 </style>

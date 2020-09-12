@@ -20,12 +20,6 @@ export default {
       this.$store.commit('statistics/setShowStat', false);
     },
   },
-  fetch() {
-
-    /*      let element = document.querySelector('.statistics');
-          element.style.backgroundImage = `url('${this.backgroundImagePath}')`;*/
-
-  },
   mounted() {
     this.calendarView()
   }

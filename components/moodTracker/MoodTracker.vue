@@ -202,31 +202,31 @@
 
 <style scoped>
   .moodTracker {
-    width: 100px;
-    margin-bottom: 90px;
+    width: 115px;
+    margin-bottom: 115px;
     position: relative;
-    margin-left: -8px; /*TODO: FIX*/
+    margin-left: -8px;
   }
  .outerCircle {
    position: relative;
    border: 1px solid black;
    padding: 0;
    margin: 1em auto;
-   width: 100px;
-   height: 100px;
+   width: 110px;
+   height: 110px;
    border-radius: 50%;
    list-style: none;
    overflow: hidden;
    display: flex;
  }
  .circlePartContainer {
-   position: relative;
-   width: 100px;
-   height: 100px;
+   position: absolute;
+   width: 115px;
+   height: 115px;
  }
 
  li {
-   overflow: hidden;
+   overflow-x: hidden;
    position: absolute;
    top: 0;
    right: 0;
@@ -244,11 +244,11 @@
    position: absolute;
    left: -100%;
    width: 260%;
-   height: 300%;
+   height: 310%;
    text-align: center;
    transform: skewY(60deg) rotate(15deg);
    padding-top: 20px;
-/*   border: 1px solid black;*/
+   border: 1px solid black;
  }
 
   li:first-child {
@@ -294,8 +294,8 @@
     background: white;
   }
   .innerCircle {
-    width: 85px;
-    height: 85px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
     background: white;
     position: absolute;
@@ -310,32 +310,15 @@
   }
 
   .emoji {
-    font-size: 70px;
+    font-size: 80px;
     position: relative;
     overflow-y: visible;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    justify-content: center;
+    width: 80px;
+    height: 80px;
     align-self: center;
     animation: shake 1.0s cubic-bezier(.36,.07,.19,.97) both;
     animation-iteration-count: 3;
-  }
-
-  .swipeContainer {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .swipeArrow {
-    font-size: 30px;
-    padding-top: 30%;
-    padding-left: 13px;
-    padding-right: 13px;
-    display: flex;
-    align-self: center;
-
   }
 
   .tenseNervousEmoji {

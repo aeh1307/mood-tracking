@@ -18,7 +18,6 @@ export const state = () => ({
   selectedTime: '',
   findSelectedMonth: '',
   selectedPage: 'Calendar',
-
   showDetails: false,
 })
 
