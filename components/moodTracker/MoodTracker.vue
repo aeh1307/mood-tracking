@@ -219,8 +219,8 @@
  }
  .circlePartContainer {
    position: absolute;
-   width: 115px;
-   height: 115px;
+   width: 120px;
+   height: 120px;
  }
 
  li {
