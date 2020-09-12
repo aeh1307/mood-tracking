@@ -5,7 +5,11 @@
 export default {
   name: 'BackgroundImage.vue',
   computed: {
-    backgroundImagePath: { get() { return this.$store.getters['settings/backgroundImagePath']}},
+    backgroundImagePath: {
+      get() {
+        return this.$store.getters['settings/backgroundImagePath']
+      }
+    },
   },
   watch: {
     backgroundImagePath: function (val) {
@@ -35,13 +39,14 @@ export default {
 }
 
 .pinkBeachBackgroundImage {
-  background-image:  url('~assets/pinkishBeach.jpg');
+  background-image: url('~assets/pinkishBeach.jpg');
 }
 
 .lakeMountainBackgroundImage {
-  background-image:  url('~assets/water.jpg');
+  background-image: url('~assets/water.jpg');
 }
+
 .oceanSunBackgroundImage {
-  background-image:  url('~assets/ocean.jpg');
+  background-image: url('~assets/ocean.jpg');
 }
 </style>

@@ -17,7 +17,6 @@ export default {
       this.$store.commit('statistics/setShowCalendar', true);
       this.$store.commit('statistics/setShowMoodSection', true);
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
-      this.$store.commit('statistics/setShowStat', false);
     },
   },
   mounted() {

@@ -37,11 +37,6 @@ export default {
         return this.$store.getters['statistics/showCalendar']
       }
     },
-    showStats: {
-      get() {
-        return this.$store.getters['statistics/showStats']
-      }
-    },
     showCalendarMoodDetails: {
       get() {
         return this.$store.getters['statistics/showCalendarMoodDetails']
@@ -73,7 +68,6 @@ export default {
     goBack: function () {
       this.$router.push(this.$router.options.base);
       this.$store.commit('statistics/setShowCalendar', true);
-      this.$store.commit('statistics/setShowStat', false);
       this.$store.commit('statistics/setSelectedPage', 'Calendar');
     },
     chooseBackground: function () {
@@ -83,16 +77,13 @@ export default {
       this.$store.commit('statistics/setShowCalendar', true);
       this.$store.commit('statistics/setShowMoodSection', true);
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
-      this.$store.commit('statistics/setShowStat', false);
     },
     detailView() {
       this.$store.commit('statistics/setShowCalendarMoodDetails', true);
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
-      this.$store.commit('statistics/setShowStat', false);
     },
     statsView() {
-      this.$store.commit('statistics/setShowStat', true);
       this.$store.commit('statistics/setShowCalendar', false);
       this.$store.commit('statistics/setShowMoodSection', false);
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
@@ -136,10 +127,6 @@ export default {
   height: 55px;
   overflow: hidden;
   z-index: 1;
-}
-
-.theme--light.v-select .v-select__selection--comma {
-  color: white !important;
 }
 
 .topMenuContainer {
@@ -216,33 +203,6 @@ export default {
   color: white;
   font-size: 18px;
   font-family: 'Manrope', sans-serif;
-}
-
-.custom-select select {
-  color: #fefefe;
-  background-color: transparent;
-  text-align-last: center;
-}
-
-#selectInput:focus {
-  outline: none;
-}
-
-/* Style the arrow inside the select element: */
-#selectInput:after {
-  position: absolute;
-  content: "";
-  top: 19px;
-  right: 50px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-}
-
-/* Point the arrow upwards when the select box is open (active): */
-#selectInput .select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
 }
 
 </style>

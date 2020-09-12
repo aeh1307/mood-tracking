@@ -1,6 +1,5 @@
 <template>
   <div class="calendarView">
-    <!-- TODO: add dark ?-->
     <v-date-picker
       class="v-date-picker"
       single
@@ -14,7 +13,6 @@
     >
     </v-date-picker>
     <div class="moodSection" v-if="moodsCurrentMonth.length !== 0">
-      <!--      <div class="moodSectionCaption">Moods this month</div>-->
       <div class="moods">
         <div class="moodStats" v-if="this.tenseNervousDateDegree !== 0">
           <v-icon class="emojiIcon tenseNervousIcon">fas fa-frown-open</v-icon>
@@ -106,23 +104,19 @@ export default {
 
   },
   methods: {
-    // Move this to watch??
-    // Marks all dates that contain tracked mood with the color pink.
+    // Marks all dates that contain tracked mood with color.
     functionEvents(date) {
       let foundDate = this.moods.find(trackedMood => {
         let convertedDBTime = new Date(trackedMood.time).toISOString().substring(0, 10)
         return convertedDBTime === date;
       })
       if (foundDate) {
-        /* return '#FF69B4'*/
-        /*        return '#58d6f1'*/
         return '#24C6DC'
       }
       return null
     },
     // Shows a overview over the different moods that are tracked on the date the user select in the calendar.
 
-    // TODO: separate switch into own method, use filter to find entries for selected date, see filterMoods in MoodTable
     showDateInfo: function () {
 
       this.$store.commit('statistics/emptySelectedDateMoods');
@@ -229,10 +223,6 @@ export default {
   color: dimgrey;
 }
 
-.moodSectionCaption {
-  font-size: 16px;
-}
-
 .moods {
   display: flex;
   justify-content: center;
@@ -305,29 +295,6 @@ export default {
 
 .relaxedCalmIcon {
   color: #425CCC;
-}
-
-.buttonSection {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.showDetailsButton {
-  background-color: dimgrey;
-  padding: 4px 10px;
-  border-radius: 10px;
-  margin: 2px;
-  transition: all 0.5s;
-  font-family: 'Manrope', sans-serif;
-  color: white;
-  font-size: 16px;
-}
-
-.noTrackedMoodsText {
-  font-size: 16px;
-  padding: 12px;
-  text-align: center;
-  width: 290px;
 }
 
 </style>

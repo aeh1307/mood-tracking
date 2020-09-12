@@ -27,7 +27,6 @@
      <div>
        <!--TODO: change from touchhold to longtap when the new version is out-->
        <swiper class="innerCircle active:interval" ref="mySwiper" :options="swiperOptions">
-<!--         <swiper-slide><div @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="swipeContainer"><v-icon class="swipeArrow">fas fa-angle-double-left</v-icon><v-icon class="swipeArrow">fas fa-angle-double-right</v-icon></div></swiper-slide>-->
          <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji tenseNervousEmoji">fas fa-frown-open {{count}}</v-icon></swiper-slide>
          <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon></swiper-slide>
          <swiper-slide class="swiperSlides"><v-icon @mousedown="startCounter" @mouseleave="stop" @mouseup="stop" @touchstart="startCounter" @touchend="stop" @touchcancel="stop" class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon></swiper-slide>
@@ -43,7 +42,6 @@
 </template>
 
 <script>
-
   export default {
     name: "MoodTracker.vue",
     data() {
@@ -233,9 +231,6 @@
    width: 50%;
    height: 50%;
    transform-origin: 0% 100%;
-/*   border-right: 1px solid black;
-   border-bottom: 1px solid black;
-   border-top: 1px solid black;*/
    border-left: 1px solid black;
 
 
@@ -366,6 +361,5 @@
       transform: translate3d(4px, 0, 0);
     }
   }
-
 
 </style>

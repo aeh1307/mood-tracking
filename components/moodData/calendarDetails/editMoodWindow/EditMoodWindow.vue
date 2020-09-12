@@ -41,10 +41,10 @@
             <div class="buttonSection">
               <v-btn width="90px" text color="#DE6465" rounded class="editButton cancelButton" @click="this.cancelEdit">
                 Cancel
-              </v-btn> <!-- Must be v-btn -->
+              </v-btn>
               <v-btn width="90px" color="#3CBB75" rounded class="editButton confirmationButton" @click="this.editMood">
                 Save
-              </v-btn> <!-- Must be v-btn -->
+              </v-btn>
             </div>
           </v-form>
         </v-card>

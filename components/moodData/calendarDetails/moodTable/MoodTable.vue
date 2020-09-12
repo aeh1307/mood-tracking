@@ -17,7 +17,6 @@
             <thead class="tableHeader">
             <td id="emotionHeader" class="tableHeaderColumnNames">Emotion</td>
             <td id="degreeHeader" class="tableHeaderColumnNames">Degree</td>
-            <!--    <td id="timeHeader" class="tableHeaderColumnNames">Time</td>-->
             </thead>
 
             <div class="noTrackedMoodsText" v-if="filteredMoods.length === 0">
@@ -43,11 +42,6 @@
 
               </td>
               <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
-              <!--   <td id="timeRow" class="tableRowCells">{{
-                     ('0' + new Date(filteredMood.time).getHours()).toString()
-                       .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
-                   }}
-                 </td>-->
               <div class="actionSection">
                 <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
                 <!--    <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>-->
@@ -99,10 +93,10 @@ export default {
       this.$store.commit('statistics/setShowEditMoodWindow', true);
       this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
       this.$store.commit('statistics/setSelectedId', selectedDateMood.id);
-      this.$store.commit('statistics/setSelectedDegree', selectedDateMood.degreeOfEmotion); //number
-      this.$store.commit('statistics/setSelectedEmotion', selectedDateMood.emotion); // string
+      this.$store.commit('statistics/setSelectedDegree', selectedDateMood.degreeOfEmotion);
+      this.$store.commit('statistics/setSelectedEmotion', selectedDateMood.emotion);
       this.$store.commit('statistics/setSelectedTime', ('0' + new Date(selectedDateMood.time).getHours()).toString()
-        .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0, 2)); // string
+        .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0, 2));
 
       let selectedMoodEl = document.getElementById(this.selectedId);
       selectedMoodEl.style.border = '1px solid #3CBB75';
@@ -195,7 +189,6 @@ export default {
   flex-direction: column;
   background-color: white;
   overflow: hidden;
-  /*  min-width: 100vw;*/
 }
 
 .selectedDate {
@@ -210,15 +203,6 @@ export default {
   font-weight: 600;
   color: #5a5b60;
   padding-left: 35px;
-  /*  width: 300px;*/
-}
-
-.tableSection {
-  /*  width: 300px;*/
-}
-
-.tableHeaderColumnNames {
-  /*min-width: 100px;*/
 }
 
 .tableRow {
@@ -271,14 +255,6 @@ export default {
   padding-right: 20px;
 }
 
-#timeRow, #timeHeader {
-  min-width: 65px;
-}
-
-#timeRow {
-  padding-left: 10px;
-}
-
 .actionSection {
   display: flex;
   justify-content: flex-end;
@@ -289,10 +265,6 @@ export default {
   color: #454444;
   font-size: 18px;
   padding: 4px;
-}
-
-.viewNotes {
-  padding-top: 3px;
 }
 
 @media only screen and (max-width: 330px) {

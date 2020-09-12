@@ -3,7 +3,6 @@ export const state = () => ({
   showCalendar: true,
   showMoodSection: true,
   showCalendarMoodDetails: false,
-  showStats: false,
   showDatePicker: true,
   selectedDate: null,
   moods: [],
@@ -31,9 +30,6 @@ export const getters = {
   },
   showMoodSection: state => {
     return state.showMoodSection
-  },
-  showStats: state => {
-    return state.showStats;
   },
   showDatePicker: state => {
     return state.showDatePicker;
@@ -124,9 +120,6 @@ export const mutations = {
   setShowMoodSection(state, boolean){
     state.showMoodSection = boolean
   },
-  setShowStat(state, boolean){
-    state.showStats = boolean
-  },
   setShowDatePicker(state, boolean){
     state.showDatePicker = boolean
   },
@@ -138,12 +131,6 @@ export const mutations = {
   },
   emptySelectedDateMoods(state){
     state.selectedDateMoods = []
-  },
-  emptyMoodsCurrentMonth(state){
-    state.moodsCurrentMonth = []
-  },
-  setShowDetails(state, boolean){
-    state.showDetails = boolean
   },
   addMoods(state, moodList){
     state.moods = moodList

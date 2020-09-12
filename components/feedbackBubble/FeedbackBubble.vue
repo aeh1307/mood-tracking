@@ -68,10 +68,6 @@
     background-color: white;
     font-size: 45px;
     position: relative;
-   /* top: -25px;*/
-  /*  border-radius: 100%;*/
-   /* padding: 5px;
-    top: -30px;*/
   }
 
 </style>
