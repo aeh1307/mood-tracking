@@ -43,7 +43,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/vuetify',
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
@@ -51,41 +51,30 @@ export default {
   modules: ['@nuxtjs/firebase'],
   firebase: {
     config: {
-      apiKey: "AIzaSyDLs3DwRPPGYB3E44xCjTjAO_BtPVO5SCk",
-      authDomain: "moodtracking-a5513.firebaseapp.com",
-      databaseURL: "https://moodtracking-a5513.firebaseio.com",
-      projectId: "moodtracking-a5513",
-      storageBucket: "moodtracking-a5513.appspot.com",
-      messagingSenderId: "401126265609",
-      appId: "1:401126265609:web:b078abe077b29f5d7b39d8"
+      apiKey: process.env.APIKEY,
+      authDomain: process.env.AUTHDOMAIN,
+      databaseURL: process.env.DATABASEURL,
+      projectId: process.env.PROJECTID,
+      storageBucket:process.env.STORAGEBUCKET,
+      messagingSenderId: process.env.MESSAGINGSENDERID,
+      appId: process.env.APPID
     },
     services: {
       auth: true,
-      // or
-      /*    auth: {
-            persistence: 'local', // default
-    */
-      // it is recommended to configure either a mutation or action but you can set both
       initialize: {
         onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
         onAuthStateChangedAction: 'onAuthStateChangedAction',
       },
       ssr: {
-        // nuxt aliases are supported
-        credential: '~/secrets/serviceAccount.json',
-
-        // The service worker session automatically ignores external resources, static files and HMR calls
-        // If you need to ignore additional routes, define them here
         ignorePaths: [
-          '/admin', // path is ignored if url.pathname.startsWith('/admin')
-          /^api/ // path is ignored if url.pathname without the leading slash (/) matches the RegExp
+          '/admin',
+          /^api/
         ],
         serverLogin: true
       },
       firestore: true,
       workbox: {
         importScripts: [
-          '/firebase-auth-sw.js'
         ],
         dev: false
       },

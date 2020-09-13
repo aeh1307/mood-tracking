@@ -22,10 +22,8 @@ export default {
   name: 'TopMenu.vue',
   computed: {
     isStatisticPage() {
-      if (this.$route.path.match("^/$")) {
-        return false;
-      }
-      return true;
+      return !this.$route.path.match("^/$");
+
     },
     showBackgroundImagePicker: {
       get() {

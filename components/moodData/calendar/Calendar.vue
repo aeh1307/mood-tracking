@@ -155,7 +155,7 @@ export default {
         let trackedYear = dateFromDB[3]
         return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth))
       })
-//For mood section, selected month:
+      //For mood section, selected month:
       this.tenseNervousDateDegree = 0;
       this.irritatedAnnoyedDateDegree = 0;
       this.excitedLivelyDateDegree = 0;

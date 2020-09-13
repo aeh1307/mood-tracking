@@ -33,7 +33,6 @@
               </td>
               <td id="emotionRow" class="tableRowCells">
                 <b class="emotionText">{{ filteredMood.emotion }}</b>
-                <!--  <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>-->
                 <div> {{
                     ('0' + new Date(filteredMood.time).getHours()).toString()
                       .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
@@ -44,7 +43,6 @@
               <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
               <div class="actionSection">
                 <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
-                <!--    <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>-->
               </div>
             </tr>
           </table>
@@ -83,36 +81,11 @@ export default {
   methods: {
     deleteMood: function (docId) {
       this.$store.commit('statistics/setShowDeleteConfirmationWindow', true);
-      this.$store.commit('statistics/setShowEditMoodWindow', false);
       this.$store.commit('statistics/setSelectedId', docId);
       let selectedMoodEl = document.getElementById(this.selectedId);
       selectedMoodEl.style.border = '1px solid #DE6465';
       selectedMoodEl.style.backgroundColor = '#f5b1b2';
     },
-    openEditMoodWindow: function (selectedDateMood) {
-      this.$store.commit('statistics/setShowEditMoodWindow', true);
-      this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
-      this.$store.commit('statistics/setSelectedId', selectedDateMood.id);
-      this.$store.commit('statistics/setSelectedDegree', selectedDateMood.degreeOfEmotion);
-      this.$store.commit('statistics/setSelectedEmotion', selectedDateMood.emotion);
-      this.$store.commit('statistics/setSelectedTime', ('0' + new Date(selectedDateMood.time).getHours()).toString()
-        .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0, 2));
-
-      let selectedMoodEl = document.getElementById(this.selectedId);
-      selectedMoodEl.style.border = '1px solid #3CBB75';
-      selectedMoodEl.style.backgroundColor = '#b1f8cc';
-    },
-
-    /*    viewNotes: function (filterMood) {
-          console.log(filterMood.notes)
-          if (filterMood.notes !== '') {
-            console.log("Notes");
-          }
-          if (filterMood.notes === '') {
-            console.log("NO notes");
-          }
-
-        },*/
     findEmojiIcon(selectedDateMood) {
       let emojiIconObj = {};
       switch (selectedDateMood.emotion) {
@@ -261,7 +234,7 @@ export default {
   padding-right: 10px;
 }
 
-.trashIcon, .editIcon {
+.trashIcon {
   color: #454444;
   font-size: 18px;
   padding: 4px;
