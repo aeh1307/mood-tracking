@@ -204,6 +204,7 @@
     margin-bottom: 125px;
     position: relative;
     margin-left: -8px;
+    overflow: hidden;
   }
  .outerCircle {
    position: relative;
@@ -214,18 +215,18 @@
    height: 125px;
    border-radius: 50%;
    list-style: none;
-   overflow-x: hidden;
-   -webkit-overflow: hidden;
+   overflow: hidden;
    display: flex;
  }
  .circlePartContainer {
-   position: absolute;
+   position: relative;
    width: 125px;
    height: 125px;
+   overflow: hidden;
  }
 
  li {
-   overflow-x: hidden;
+   overflow: hidden;
    position: absolute;
    top: 0;
    right: 0;
@@ -238,9 +239,10 @@
 
  }
  .circlePart {
+   overflow: hidden;
    position: absolute;
    left: -100%;
-   width: 280%;
+   width: 290%;
    height: 310%;
    text-align: center;
    transform: skewY(60deg) rotate(15deg);
@@ -252,51 +254,65 @@
   li:first-child {
     transform: rotate(0deg) skewY(-39deg);
     -webkit-transform:rotate(0deg) skewY(-39deg);
+    overflow: hidden;
   }
   li:nth-child(2) {
     transform: rotate(51.4285714286deg) skewY(-39deg);
     -webkit-transform: rotate(51.4285714286deg) skewY(-39deg);
+      overflow: hidden;
   }
   li:nth-child(3) {
     transform: rotate(102.8571428572deg) skewY(-39deg);
     -webkit-transform: rotate(102.8571428572deg) skewY(-39deg);
+      overflow: hidden;
   }
   li:nth-child(4) {
     transform: rotate(154.2857142858deg) skewY(-39deg);
     -webkit-transform: rotate(154.2857142858deg) skewY(-39deg);
+      overflow: hidden;
   }
   li:nth-child(5) {
     transform: rotate(205.7142857144deg) skewY(-39deg);
     -webkit-transform: rotate(205.7142857144deg) skewY(-39deg);
+      overflow: hidden;
   }
   li:nth-child(6) {
     transform: rotate(257.142857143deg) skewY(-39deg);
     -webkit-transform: rotate(257.142857143deg) skewY(-39deg);
+      overflow: hidden;
   }
   li:nth-child(7) {
     transform: rotate(308.5714285716deg) skewY(-39deg);
     -webkit-transform: rotate(308.5714285716deg) skewY(-39deg);
+      overflow: hidden;
   }
   li:first-child .circlePart {
     background: #ffffff;
+    overflow: hidden;
   }
   li:nth-child(2) .circlePart {
     background: white;
+      overflow: hidden;
   }
   li:nth-child(3) .circlePart {
     background: white;
+      overflow: hidden;
   }
   li:nth-child(4) .circlePart {
     background: white;
+      overflow: hidden;
   }
   li:nth-child(5) .circlePart {
     background: white;
+      overflow: hidden;
   }
   li:nth-child(6) .circlePart {
     background: white;
+      overflow: hidden;
   }
   li:nth-child(7) .circlePart {
     background: white;
+      overflow: hidden;
   }
   .innerCircle {
     width: 110px;
