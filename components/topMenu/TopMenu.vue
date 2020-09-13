@@ -8,10 +8,10 @@
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
-        <ul class="menuOptions">
-          <li><a v-on:click="chooseBackground">Customize Background Photo</a></li>
-          <li><a v-on:click="logOut">Log Out</a></li>
-        </ul>
+        <div class="menuOptions">
+          <a v-on:click="chooseBackground">Customize Background Photo</a>
+          <a v-on:click="logOut">Log Out</a>
+        </div>
       </div>
     </v-container>
 

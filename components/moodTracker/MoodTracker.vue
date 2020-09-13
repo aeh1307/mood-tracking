@@ -240,7 +240,7 @@
  .circlePart {
    position: absolute;
    left: -100%;
-   width: 260%;
+   width: 280%;
    height: 310%;
    text-align: center;
    transform: skewY(60deg) rotate(15deg);
