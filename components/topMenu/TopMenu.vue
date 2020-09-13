@@ -59,10 +59,10 @@ export default {
       let hamburger = this.$el.querySelector('.hamburgerMenu');
       let dropdown = this.$el.querySelector('.menuOptions');
       hamburger.classList.toggle("change");
-      if (dropdown.style.display === "block") {
-        dropdown.style.display = "none";
+      if (dropdown.style.visibility === "visible") {
+        dropdown.style.visibility = "hidden";
       } else {
-        dropdown.style.display = "block";
+        dropdown.style.visibility = "visible";
       }
     },
     goBack: function () {
@@ -167,7 +167,7 @@ export default {
 }
 
 .menuOptions {
-  display: none;
+  visibility: hidden;
   position: absolute;
   background-color: white;
   min-width: 100vw;
