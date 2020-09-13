@@ -200,7 +200,7 @@
 
 <style scoped>
   .moodTracker {
-    width: 125px;
+    width: 130px;
     margin-bottom: 125px;
     position: relative;
     margin-left: -8px;
@@ -210,8 +210,8 @@
    border: 1px solid black;
    padding: 0;
    margin: 1em auto;
-   width: 120px;
-   height: 120px;
+   width: 125px;
+   height: 125px;
    border-radius: 50%;
    list-style: none;
    overflow-x: hidden;
@@ -220,8 +220,8 @@
  }
  .circlePartContainer {
    position: absolute;
-   width: 120px;
-   height: 120px;
+   width: 125px;
+   height: 125px;
  }
 
  li {
@@ -299,8 +299,8 @@
     background: white;
   }
   .innerCircle {
-    width: 105px;
-    height: 105px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     background: white;
     position: absolute;
@@ -315,12 +315,12 @@
   }
 
   .emoji {
-    font-size: 90px;
+    font-size: 95px;
     position: relative;
     overflow-y: visible;
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
+    width: 95px;
+    height: 95px;
     align-self: center;
     animation: shake 1.0s cubic-bezier(.36,.07,.19,.97) both;
     animation-iteration-count: 3;
