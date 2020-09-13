@@ -143,6 +143,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: center;
+  z-index: 99;
 }
 
 .bar1, .bar2, .bar3 {
