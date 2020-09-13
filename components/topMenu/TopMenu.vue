@@ -8,10 +8,10 @@
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
-        <div class="menuOptions">
-          <a v-on:click="chooseBackground">Customize Background Photo</a>
-          <a v-on:click="logOut">Log Out</a>
-        </div>
+        <ul class="menuOptions">
+          <li><a v-on:click="chooseBackground">Customize Background Photo</a></li>
+          <li><a v-on:click="logOut">Log Out</a></li>
+        </ul>
       </div>
     </v-container>
 
@@ -59,10 +59,10 @@ export default {
       let hamburger = this.$el.querySelector('.hamburgerMenu');
       let dropdown = this.$el.querySelector('.menuOptions');
       hamburger.classList.toggle("change");
-      if (dropdown.style.visibility === "visible") {
-        dropdown.style.visibility = "hidden";
+      if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
       } else {
-        dropdown.style.visibility = "visible";
+        dropdown.style.display = "block";
       }
     },
     goBack: function () {
@@ -167,7 +167,7 @@ export default {
 }
 
 .menuOptions {
-  visibility: hidden;
+  display: none;
   position: absolute;
   background-color: white;
   min-width: 100vw;
