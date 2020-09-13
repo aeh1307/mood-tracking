@@ -14,8 +14,8 @@
       <ul class="circleEmojiContainer">
         <li class="emojiListElement">
           <div class="circlePart1 circlePart">
-              <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
-            </div>
+            <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
+          </div>
         </li>
         <li class="emojiListElement">
           <div class="circlePart3 circlePart">
@@ -115,9 +115,9 @@ export default {
   width: 100px;
   margin-bottom: 120px;
   position: absolute;
- /* margin-left: -12px;*/ /*TODO: FIX*/
-  display: flex;
-  justify-content: center;
+/*  display: flex;
+  align-self: center;*/
+/*  justify-content: center;*/
 }
 
 .emotionOverview {
@@ -128,8 +128,10 @@ export default {
   position: absolute;
   margin-bottom: 260px;
   display: flex;
-  /* align-items: center;*/
-  /*  justify-content: center;*/
+/*  align-items: center;*/
+/*  justify-content: center;
+  align-self: center;
+  justify-self: center;*/
   bottom: -250px;
   overflow: visible;
 }
@@ -161,7 +163,7 @@ export default {
   left: 26px;
   /*left: 25px;*/
   top: -45px;
-/*  border: 2px solid red;*/
+  /*  border: 2px solid red;*/
 }
 
 .emoji::after {
@@ -180,8 +182,8 @@ export default {
 }
 
 .touchZones {
-  width:280px;
-  height:280px;
+  width: 280px;
+  height: 280px;
   position: absolute;
 }
 
@@ -235,7 +237,7 @@ export default {
   z-index: 99;
 }
 
-.touchZoneBoredWeary{
+.touchZoneBoredWeary {
   width: 90px;
   height: 90px;
   position: absolute;
@@ -273,12 +275,8 @@ export default {
 }
 
 
-
-
-
-
 .bar1, .bar2 {
-  width: 30px;
+  width: 35px;
   height: 4px;
   background-color: #3f3f41;
   margin: 3px 0;
@@ -299,8 +297,8 @@ export default {
   border: 1px solid #514A9D;
   padding: 0;
   bottom: -60px;
-  min-width: 110px;
-  min-height: 110px;
+  min-width: 120px;
+  min-height: 120px;
   border-radius: 50%;
   list-style: none;
   overflow: hidden;
@@ -311,8 +309,8 @@ export default {
 }
 
 .innerCircle {
-  min-width: 95px;
-  min-height: 95px;
+  min-width: 105px;
+  min-height: 105px;
   border-radius: 50%;
   background: white;
   position: absolute;
@@ -400,7 +398,7 @@ li {
 .circlePart {
   position: absolute;
   left: -90%;
-  top:30px;
+  top: 30px;
   width: 260%;
   height: 300%;
   text-align: center;
