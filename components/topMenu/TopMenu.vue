@@ -125,7 +125,6 @@ export default {
   min-width: 100%;
   max-width: 100%;
   height: 55px;
-  overflow: hidden;
   z-index: 1;
 }
 
