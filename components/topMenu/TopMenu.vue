@@ -29,7 +29,6 @@
           </v-card>
         </v-app>
       </div>-->
-      <v-icon class="backButton" v-if="isStatisticPage" v-on:click="goBack">fas fa-chevron-left</v-icon>
       <div class="hamburgerMenu" v-on:click="openMenu">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -52,10 +51,7 @@ export default {
   name: 'TopMenu.vue',
   computed: {
     isStatisticPage() {
-      if (this.$route.path.match("^/$")) {
-        return false;
-      }
-      return true;
+      return !this.$route.path.match("^/$");
     },
     showBackgroundImagePicker: {
       get() {
@@ -107,12 +103,6 @@ export default {
       } else {
         dropdown.style.display = "block";
       }
-    },
-    goBack: function () {
-      this.$router.push(this.$router.options.base);
-      this.$store.commit('statistics/setShowCalendar', true);
-      this.$store.commit('statistics/setShowStat', false);
-      this.$store.commit('statistics/setSelectedPage', 'Calendar');
     },
     chooseBackground: function () {
       this.$store.commit('settings/setShowBackgroundImagePicker', true)
@@ -172,12 +162,7 @@ export default {
   min-width: 100%;
   max-width: 100%;
   height: 55px;
-  overflow: hidden;
   z-index: 1;
-}
-
-.theme--light.v-select .v-select__selection--comma {
-  color: white !important;
 }
 
 .topMenuContainer {
@@ -240,26 +225,21 @@ export default {
   font-size: 14px;
 }
 
-.backButton {
-  color: white;
-  top: 10px;
-  font-size: 30px;
-  left: 10px;
-  position: absolute;
-}
-
 .calendar {
   margin: 0 auto;
   text-align: center;
   color: white;
   font-size: 18px;
   font-family: 'Manrope', sans-serif;
- /* position: relative;*/
-/*  min-height: 55px;*/
 }
 
-.custom-select {
- /* min-width: 250px;*/
+
+/*.theme--light.v-select .v-select__selection--comma {
+  color: white !important;
+}*/
+
+/*.custom-select {
+ !* min-width: 250px;*!
   margin: 0 auto;
   text-align: center;
   color: white;
@@ -278,7 +258,7 @@ export default {
   outline: none;
 }
 
-/* Style the arrow inside the select element: */
+!* Style the arrow inside the select element: *!
 #selectInput:after {
   position: absolute;
   content: "";
@@ -287,9 +267,9 @@ export default {
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  /*border-color: #fff transparent transparent transparent;*/
+  !*border-color: #fff transparent transparent transparent;*!
 }
-/* Point the arrow upwards when the select box is open (active): */
+!* Point the arrow upwards when the select box is open (active): *!
 #selectInput .select-arrow-active:after {
   border-color: transparent transparent #fff transparent;
   top: 7px;
@@ -319,7 +299,7 @@ export default {
 
 .vCard {
   box-shadow: none;
-}
+}*/
 
 </style>
 

@@ -8,10 +8,14 @@
           <p class="iconCaption">Statistics</p></nuxt-link>
       </div>
 
-      <MoodTracker/>
+      <MoodTracker class="moodTrackerVisibility"/>
+      <div class="moodTrackingButton" v-on:click="goToMoodTracking">
+        <v-icon class="cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
+        <div class="iconCaption">Mood Tracking</div>
+      </div>
       <div class="contactContainer">
-        <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
-          <p class="iconCaption">Contact</p></a>
+      <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
+        <p class="iconCaption">Contact</p></a>
       </div>
     </div>
   </div>
@@ -23,9 +27,50 @@ import EmojiDescription from "../emojiDescription/EmojiDescription";
 
 export default {
   name: 'MainMenu.vue',
+  data(){
+    return {
+      showMoodTracker: false,
+    }
+  },
   components: {
     MoodTracker,
     EmojiDescription,
+  },
+  methods: {
+    goToMoodTracking: function () {
+      this.$router.push(this.$router.options.base);
+      this.$store.commit('statistics/setShowCalendar', true);
+      this.$store.commit('statistics/setShowStat', false);
+      this.$store.commit('statistics/setSelectedPage', 'Calendar');
+    },
+  },
+  watch: {
+    $route: function() {
+      let moodTracker = document.querySelector('.moodTrackerVisibility');
+      let moodTrackingButton = document.querySelector('.moodTrackingButton');
+      if (this.$route.path === "/") {
+        moodTracker.style.display = "block";
+        moodTrackingButton.style.display = "none";
+        this.showMoodTracker = true
+      } else  {
+        moodTracker.style.display = "none";
+        moodTrackingButton.style.display = "block";
+        this.showMoodTracker = false
+      }
+    }
+  },
+  mounted() {
+    let moodTracker = document.querySelector('.moodTrackerVisibility');
+    let moodTrackingButton = document.querySelector('.moodTrackingButton');
+    if (this.$route.path === "/") {
+      moodTracker.style.display = "block";
+      moodTrackingButton.style.display = "none";
+      this.showMoodTracker = true
+    } else  {
+      moodTracker.style.display = "none";
+      moodTrackingButton.style.display = "block";
+      this.showMoodTracker = false
+    }
   }
 }
 </script>
@@ -38,6 +83,10 @@ export default {
   max-width: 100%;
   bottom: 0;
   height: 110px;
+}
+
+.moodTrackerVisibility {
+  visibility: visible;
 }
 
 .navigation {
@@ -68,6 +117,7 @@ export default {
 .iconCaption {
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
+  text-align: center;
 }
 
 .messageIcon {
@@ -81,6 +131,22 @@ export default {
   color: #F5F5F5;
   font-size: 35px;
 }
+.cheerfulHappyEmoji{
+  display: flex;
+  color: #F5F5F5;
+  font-size: 35px;
+}
+
+.moodTrackingButton {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  border-left: 1px solid #F5F5F5;
+  border-right: 1px solid #F5F5F5;
+  padding: 10px;
+}
+
 
 
 </style>
