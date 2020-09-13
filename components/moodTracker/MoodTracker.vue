@@ -214,7 +214,8 @@
    height: 120px;
    border-radius: 50%;
    list-style: none;
-   overflow: hidden;
+   overflow-x: hidden;
+   -webkit-overflow: hidden;
    display: flex;
  }
  .circlePartContainer {
@@ -231,6 +232,7 @@
    width: 50%;
    height: 50%;
    transform-origin: 0% 100%;
+   -webkit-transform-origin: 0% 100%;
    border-left: 1px solid black;
 
 
@@ -242,6 +244,7 @@
    height: 310%;
    text-align: center;
    transform: skewY(60deg) rotate(15deg);
+   -webkit-transform: skewY(60deg) rotate(15deg);
    padding-top: 20px;
    border: 1px solid black;
  }

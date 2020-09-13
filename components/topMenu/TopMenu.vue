@@ -143,7 +143,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: center;
-  z-index: 99;
 }
 
 .bar1, .bar2, .bar3 {
@@ -177,6 +176,7 @@ export default {
   padding: 0;
   top: 145%;
   right: -65%;
+  z-index: 99;
 }
 
 .menuOptions a {
