@@ -78,6 +78,7 @@ export default {
 .login::after {
   content: "";
   background: linear-gradient(to right, #24C6DC, #514A9D);
+/*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
   opacity: 0.4;
   top: 0;
   left: 0;

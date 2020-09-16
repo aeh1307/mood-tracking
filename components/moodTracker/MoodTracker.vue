@@ -76,7 +76,7 @@
           <v-container fluid>
             <v-row>
               <v-col cols="15" class="colDegree">
-            <!--     <v-subheader class="sliderLabel">Degree/Intensity:</v-subheader>-->
+                <!--     <v-subheader class="sliderLabel">Degree/Intensity:</v-subheader>-->
                 <v-slider
                   v-model="degreeOfEmotion"
                   :thumb-size="24"
@@ -125,10 +125,13 @@ export default {
   name: "MoodTracker.vue",
   data() {
     return {
-/*      showEmotionOverview: false,*/
-      ex1: {label: 'color', val: 25, color: 'red'},
+      /*      showEmotionOverview: false,*/
+     /* ex1: {label: 'color', val: 25, color: '#3c1053'},
       ex2: {label: 'track-color', val: 75, color: "white"},
-      ex3: {label: 'thumb-color', val: 50, color: 'rgba(255, 0, 0, 0.5)'},
+      ex3: {label: 'thumb-color', val: 50, color: '#3c1053'},*/
+      ex1: {label: 'color', val: 25, color: '#514A9D'},
+      ex2: {label: 'track-color', val: 75, color: "white"},
+      ex3: {label: 'thumb-color', val: 50, color: '#514A9D'},
       degreeOfEmotion: this.$store.getters['moodtracker/degreeOfEmotion'],
       threeScaleDegree: ['Low', 'Medium', 'High'],
     }
@@ -159,55 +162,56 @@ export default {
       this.$store.commit('moodtracker/setEmojiDescription', '');
     },
     selectEmotion(e) {
+      document.querySelector('#tenseNervous').style.border = 'none';
+      document.querySelector('#excitedLively').style.border = 'none';
+      document.querySelector('#cheerfulHappy').style.border = 'none';
+      document.querySelector('#relaxedCalm').style.border = 'none';
+      document.querySelector('#gloomySad').style.border = 'none';
+      document.querySelector('#boredWeary').style.border = 'none';
+      document.querySelector('#irritatedAnnoyed').style.border = 'none';
+
       let selectedEmotionEl = document.querySelector(`#${e.target.id}`);
       switch (e.target.id) {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
-          selectedEmotionEl.style.border = '5px solid #3CBB75';
-          selectedEmotionEl.style.background = '#3CBB75';
-          selectedEmotionEl.style.zIndex = '0';
+          selectedEmotionEl.style.border = '8px solid #3CA475';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
-         /* selectedEmotionEl.style.border = '5px solid #EB7955';*/
-            selectedEmotionEl.style.background = '#EB7955';
-          selectedEmotionEl.style.zIndex = '0';
+          selectedEmotionEl.style.border = '8px solid #C76A55';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
         case 'cheerfulHappy':
           this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
-          selectedEmotionEl.style.border = '8px solid #F7CB50';
-   /*         selectedEmotionEl.style.background = '#F7CB50';
-          selectedEmotionEl.style.zIndex = '0';*/
+          selectedEmotionEl.style.border = '8px solid #E3BA49';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
         case 'relaxedCalm':
           this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
-          selectedEmotionEl.style.border = '5px solid #425CCC';
-            selectedEmotionEl.style.background = '#425CCC';
-          selectedEmotionEl.style.zIndex = '0';
+          selectedEmotionEl.style.border = '8px solid #4231CC';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
         case 'gloomySad':
           this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
-          selectedEmotionEl.style.border = '5px solid #3D3D3D';
-            selectedEmotionEl.style.background = '#3D3D3D';
-          selectedEmotionEl.style.zIndex = '0';
+          selectedEmotionEl.style.border = '8px solid #202B2B';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
         case 'boredWeary':
           this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
-          selectedEmotionEl.style.border = '5px solid #8B42CC';
-            selectedEmotionEl.style.background = '#8B42CC';
-          selectedEmotionEl.style.zIndex = '0';
+          selectedEmotionEl.style.border = '8px solid #6B42CC';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
         case 'irritatedAnnoyed':
           this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
-          selectedEmotionEl.style.border = '5px solid #DE6465';
-            selectedEmotionEl.style.background = '#DE6465';
-          selectedEmotionEl.style.zIndex = '0';
+          selectedEmotionEl.style.border = '8px solid #AE6465';
+          // selectedEmotionEl.style.border = '6px solid #3c1053';
           break;
       }
 
     },
     openMoodTrackingConfirmationDialog() {
-      if(this.emojiDescription !== ''){
+      if (this.emojiDescription !== '') {
         this.$store.commit('moodtracker/setShowConfirmationBubble', true);
       }
     }
@@ -244,12 +248,12 @@ export default {
   left: 13%;
   overflow: visible;
   background: linear-gradient(to right, #24C6DC, #514A9D);
+  /*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
 }
 
 .v-application--wrap {
   min-height: 100px !important;
 }
-
 
 
 .circleEmojiContainer {
@@ -258,8 +262,8 @@ export default {
   height: 280px;
   transform: skewY(0deg) rotate(0deg);
   border-radius: 50%;
-  border: 5px solid #514A9D;
-
+/*    border: 5px solid #514A9D;*/
+  border: 5px solid #3c1053;
 }
 
 .emojiListElement {
@@ -287,12 +291,12 @@ export default {
   content: "";
   background: white;
   border: 10px solid transparent;
-  width: 60px;
-  height: 60px;
+  width: 62px;
+  height: 62px;
   position: absolute;
   opacity: 1.0;
-  top: 5px;
-  left: 5px;
+  top: 4px;
+  left: 4px;
   bottom: 0;
   right: 0;
   z-index: -1;
@@ -306,12 +310,12 @@ export default {
 
 /* Should be 95px from left(not 93px). to correspond to select emoji button.*/
 .touchZoneTenseNervous {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
-  left: 92px;
-  top: -42px;
+  left: 93px;
+  top: -41px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -319,48 +323,48 @@ export default {
 
 
 .touchZoneIrritatedAnnoyed {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
-  top: -2px;
-  left: -3px;
+  top: -1px;
+  left: -2px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneExcitedLively {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
-  top: -3px;
-  left: 191px;
+  top: -2px;
+  left: 192px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneCheerfulHappy {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
-  top: 93px;
-  left: 232px;
+  top: 94px;
+  left: 233px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneBoredWeary {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
   top: 96px;
-  left: -43px;
+  left: -42px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -368,24 +372,24 @@ export default {
 
 /* TODO: is the excited lively icon 2 px higher than irritated/annoyed*/
 .touchZoneRelaxedCalm {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
-  left: 192px;
-  top: 190px;
+  left: 193px;
+  top: 192px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneGloomySad {
-  width: 91px;
-  height: 91px;
+  width: 89px;
+  height: 89px;
   position: absolute;
   border-radius: 50%;
-  left: -2px;
-  top: 193px;
+  left: -1px;
+  top: 194px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -396,6 +400,7 @@ export default {
   width: 35px;
   height: 4px;
   background-color: #3f3f41;
+  /*background-color: #3c1053;*/
   margin: 3px 0;
   transition: 0.4s;
   justify-content: flex-end;
@@ -411,7 +416,8 @@ export default {
 
 .outerCircle {
   position: absolute;
-  border: 1px solid #514A9D;
+    border: 1px solid #514A9D;
+/*  border: 1px solid #3c1053;*/
   padding: 0;
   bottom: -45px;
   min-width: 120px;
@@ -424,7 +430,7 @@ export default {
   align-items: center;
   background-color: #fefefe;
   /*TODO: fix centering without using left*/
-  left:33%;
+  left: 33%;
 }
 
 .innerCircle {
@@ -433,7 +439,8 @@ export default {
   border-radius: 50%;
   background: white;
   position: relative;
-  border: 1px solid #514A9D;
+    border: 1px solid #514A9D;
+  /*border: 1px solid #ad5389;*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,10 +450,11 @@ export default {
   color: #3f3f41;
 }
 
-/*  .selectMoodText {
-    animation: shake 1.0s cubic-bezier(.36,.07,.19,.97) both;
-    animation-iteration-count: 3;
-  }*/
+.selectMoodText {
+  /*    color: #3c1053;*/
+  /*    animation: shake 1.0s cubic-bezier(.36,.07,.19,.97) both;
+      animation-iteration-count: 3;*/
+}
 
 .tenseNervousEmoji {
   color: #3CBB75;
@@ -521,9 +529,9 @@ li {
   top: 30px;
   width: 260%;
   height: 300%;
-/*  text-align: center;*/
+  /*  text-align: center;*/
   transform: skewY(0deg) rotate(15deg);
-/*     border: 1px solid black;*/
+  /*     border: 1px solid black;*/
 }
 
 .emojiCaptions {
@@ -628,9 +636,9 @@ li:nth-child(8) {
   position: absolute;
   width: 150px;
   height: 50px;
-  margin-bottom: 85px;
+  margin-bottom: 70px;
   text-align: center;
-/*  font-weight: 600;*/
+  /*  font-weight: 600;*/
   color: #fefefe;
 }
 
@@ -640,7 +648,7 @@ li:nth-child(8) {
   padding: 0;
   background-color: transparent;
   border-radius: 20%;
-  margin-top: 70px;
+  margin-top: 75px;
 }
 
 .colDegree {

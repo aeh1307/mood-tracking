@@ -117,6 +117,7 @@ export default {
         /* return '#FF69B4'*/
         /*        return '#58d6f1'*/
         return '#24C6DC'
+        // return '#ad5389';
       }
       return null
     },

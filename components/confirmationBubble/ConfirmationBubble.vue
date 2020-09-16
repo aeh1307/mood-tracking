@@ -110,8 +110,9 @@ export default {
 }
 
 .trackingInformationEmphasized {
-  font-weight: bold;
+  font-weight: 700;
   color: #1177b1;
+  /*color: #ad5389;*/
 }
 
 .buttonSection {
@@ -121,6 +122,8 @@ export default {
 
 .confirmationButton {
   background-color: #3CBB75;
+  /*background-color: #3c1053 !important;*/
+/*  background-color: #ad5389 !important;*/
   padding: 10px 20px;
   border-radius: 10px;
   margin: 5px;
@@ -133,6 +136,8 @@ export default {
   background-color: white;
   color: #DE6465;
   border: 1px solid #DE6465;
+  /*color:#3c1053 !important;*/
+  /*border: 1px solid #ad5389;*/
   padding: 10px 20px;
   border-radius: 10px;
   margin: 5px;
