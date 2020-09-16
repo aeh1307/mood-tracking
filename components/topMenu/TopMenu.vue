@@ -173,6 +173,7 @@ export default {
 .topMenu {
   position: fixed;
   background: linear-gradient(to right, #24C6DC 0%, #514A9D 100%);
+/*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
   min-width: 100%;
   max-width: 100%;
   height: 55px;

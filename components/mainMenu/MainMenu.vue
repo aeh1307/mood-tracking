@@ -79,6 +79,7 @@ export default {
 .mainMenu {
   position: fixed;
   background: linear-gradient(to right, #24c6dc, #514A9D);
+/*  background: linear-gradient(to right, #ad5389, #3c1053);*/
   min-width: 100%;
   max-width: 100%;
   bottom: 0;
