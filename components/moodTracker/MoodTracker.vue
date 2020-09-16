@@ -3,34 +3,43 @@
 
     <div class="emotionOverview" v-if="showEmotionOverview">
       <div class="touchZones">
-        <div class="touchZoneTenseNervous" v-on:click="closeEmotionOverview"></div>
-        <div class="touchZoneExcitedLively" v-on:click="closeEmotionOverview"></div>
-        <div class="touchZoneCheerfulHappy" v-on:click="closeEmotionOverview"></div>
-        <div class="touchZoneRelaxedCalm" v-on:click="closeEmotionOverview"></div>
-        <div class="touchZoneGloomySad" v-on:click="closeEmotionOverview"></div>
-        <div class="touchZoneBoredWeary" v-on:click="closeEmotionOverview"></div>
-        <div class="touchZoneIrritatedAnnoyed" v-on:click="closeEmotionOverview"></div>
+        <div id="tenseNervous" class="touchZoneTenseNervous" v-on:click="selectEmotion($event)"></div>
+        <div id="excitedLively" class="touchZoneExcitedLively" v-on:click="selectEmotion($event)"></div>
+
+        <div id="cheerfulHappy" class="touchZoneCheerfulHappy" v-on:click="selectEmotion($event)"></div>
+
+        <div id="relaxedCalm" class="touchZoneRelaxedCalm" v-on:click="selectEmotion($event)"></div>
+
+        <div id="gloomySad" class="touchZoneGloomySad" v-on:click="selectEmotion($event)"></div>
+
+        <div id="boredWeary" class="touchZoneBoredWeary" v-on:click="selectEmotion($event)"></div>
+
+        <div id="irritatedAnnoyed" class="touchZoneIrritatedAnnoyed" v-on:click="selectEmotion($event)"></div>
       </div>
       <ul class="circleEmojiContainer">
         <li class="emojiListElement">
           <div class="circlePart1 circlePart">
             <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
           </div>
+          <!--  <div class="emojiCaptions">Tense/Nervous</div>-->
         </li>
         <li class="emojiListElement">
           <div class="circlePart3 circlePart">
             <v-icon class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon>
           </div>
+          <!--          <div class="emojiCaptions">Excited/Lively</div>-->
         </li>
         <li class="emojiListElement">
           <div class="circlePart4 circlePart">
             <v-icon class="emoji cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
           </div>
+          <!--          <div class="emojiCaptions">Cheerful/Happy</div>-->
         </li>
         <li class="emojiListElement">
           <div class="circlePart7 circlePart">
             <v-icon class="emoji relaxedCalmEmoji">fas fa-smile-beam</v-icon>
           </div>
+          <!--   <div class="emojiCaptions">Relaxed/Calm</div>-->
         </li>
         <li class="emojiListElement">
           <div class="circlePart8 circlePart">
@@ -40,22 +49,60 @@
           <div class="circlePart6 circlePart">
             <v-icon class="emoji gloomySadEmoji">fas fa-frown</v-icon>
           </div>
+          <!--          <div class="emojiCaptions">Gloomy/Sad</div>-->
         </li>
         <li class="emojiListElement">
           <div class="circlePart5 circlePart">
             <v-icon class="emoji boredWearyEmoji">fas fa-meh</v-icon>
           </div>
+          <!--
+                    <div class="emojiCaptions">Bored/Weary</div>
+          -->
         </li>
         <li class="emojiListElement">
           <div class="circlePart2 circlePart">
             <v-icon class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon>
           </div>
+          <!--
+                    <div class="emojiCaptions">Irritated/Annoyed</div>
+          -->
         </li>
       </ul>
+      <div class="currentTrackingInfo">
+        <div v-if="this.emojiDescription === ''" class="selectedEmotion">No mood selected</div>
+        <div v-if="this.emojiDescription !== ''" class="selectedEmotion">{{ this.emojiDescription }}</div>
+        <!--        <div class="degreeTracker">-->
+        <v-app class="sliderWrapper">
+          <v-container fluid>
+            <v-row>
+              <v-col cols="15" class="colDegree">
+                 <v-subheader class="sliderLabel">Degree/Intensity:</v-subheader>
+                <v-slider
+                  v-model="degreeOfEmotion"
+                  :thumb-size="24"
+                  thumb-label="always"
+                  max="7"
+                  min="1"
+                  :track-color="ex2.color"
+                  :thumb-color="ex3.color"
+                  :color="ex1.color"
+                  class="slider"
+                >
+                </v-slider>
+
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-app>
+        <div>
+          <v-btn class="trackMoodButton" v-on:click="this.openMoodTrackingConfirmationDialog">Track mood</v-btn>
+        </div>
+      </div>
+
 
     </div>
 
-    <div v-if="showEmotionOverview" class="outerCircle" v-on:click="closeEmotionOverview">
+    <div v-if="this.showEmotionOverview" class="outerCircle" v-on:click="closeEmotionOverview">
       <div class="innerCircle">
         <div class="selectMoodText">
           <div class="bar1"></div>
@@ -63,7 +110,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!showEmotionOverview" class="outerCircle" v-on:click="openEmotionOverview">
+    <div v-if="!this.showEmotionOverview" class="outerCircle" v-on:click="openEmotionOverview">
       <div class="innerCircle">
         <div class="selectMoodText">Select <br/> Mood</div>
       </div>
@@ -78,16 +125,23 @@ export default {
   name: "MoodTracker.vue",
   data() {
     return {
-      showEmotionOverview: false,
+/*      showEmotionOverview: false,*/
+      ex1: {label: 'color', val: 25, color: 'red'},
+      ex2: {label: 'track-color', val: 75, color: "yellow"},
+      ex3: {label: 'thumb-color', val: 50, color: 'blue'},
+      degreeOfEmotion: this.$store.getters['moodtracker/degreeOfEmotion'],
+      threeScaleDegree: ['Low', 'Medium', 'High'],
     }
   },
   computed: {
-    /* swipeElement: {
-       get() {return this.$store.getters['moodtracker/swipeElement']}
-     },*/
-    count: {
+    emojiDescription: {
       get() {
-        return this.$store.getters['moodtracker/count']
+        return this.$store.getters['moodtracker/emojiDescription']
+      }
+    },
+    showEmotionOverview: {
+      get() {
+        return this.$store.getters['moodtracker/showEmotionOverview']
       }
     },
   },
@@ -96,15 +150,50 @@ export default {
   },
   methods: {
     openEmotionOverview() {
-      this.showEmotionOverview = true;
+      this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
+      this.$store.commit('moodtracker/setShowEmotionOverview', true);
     },
     closeEmotionOverview() {
-      this.showEmotionOverview = false;
+      this.$store.commit('moodtracker/setShowEmotionOverview', false);
+      this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
+      this.$store.commit('moodtracker/setEmojiDescription', '');
     },
-    selectEmotion() {
-      console.log('TESSSSSSSSST');
+    selectEmotion(e) {
+      switch (e.target.id) {
+        case 'tenseNervous':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
+          break;
+        case 'excitedLively':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
+          break;
+        case 'cheerfulHappy':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
+          break;
+        case 'relaxedCalm':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
+          break;
+        case 'gloomySad':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
+          break;
+        case 'boredWeary':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
+          break;
+        case 'irritatedAnnoyed':
+          this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
+          break;
+      }
+    },
+    openMoodTrackingConfirmationDialog() {
+      if(this.emojiDescription !== ''){
+        this.$store.commit('moodtracker/setShowConfirmationBubble', true);
+      }
     }
-  }
+  },
+  watch: {
+    degreeOfEmotion: function (val) {
+      this.$store.commit('moodtracker/setDegreeOfEmotion', val);
+    }
+  },
 }
 
 </script>
@@ -115,9 +204,11 @@ export default {
   width: 100px;
   margin-bottom: 120px;
   position: absolute;
-/*  display: flex;
-  align-self: center;*/
-/*  justify-content: center;*/
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .emotionOverview {
@@ -128,10 +219,6 @@ export default {
   position: absolute;
   margin-bottom: 260px;
   display: flex;
-/*  align-items: center;*/
-/*  justify-content: center;
-  align-self: center;
-  justify-self: center;*/
   bottom: -250px;
   overflow: visible;
 }
@@ -149,6 +236,7 @@ export default {
 .emojiListElement {
   list-style-type: none;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   position: absolute;
 }
@@ -313,7 +401,7 @@ export default {
   min-height: 105px;
   border-radius: 50%;
   background: white;
-  position: absolute;
+  position: relative;
   border: 1px solid #514A9D;
   display: flex;
   align-items: center;
@@ -393,6 +481,7 @@ li {
   height: 50%;
   transform-origin: 0% 100%;
   /*  border-left: 1px solid black;*/
+  text-align: center;
 }
 
 .circlePart {
@@ -405,6 +494,14 @@ li {
   transform: skewY(0deg) rotate(15deg);
   /*  margin: 20px;*/
   /*   border: 1px solid black;*/
+}
+
+.emojiCaptions {
+  background-color: #fefefe;
+  height: 20px;
+  width: 120px;
+  z-index: 99;
+  transform: skewY(0deg) rotate(50deg);
 }
 
 /* TODO: Fix safari issue, transform where not working in last version ...*/
@@ -485,33 +582,69 @@ li:nth-child(8) {
   transform: rotate(315deg) skewY(0deg);
 }
 
-/*
-li:first-child .circlePart {
-  background: #ffffff;
+
+.currentTrackingInfo {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Manrope', sans-serif;
 }
 
-li:nth-child(2) .circlePart {
-  background: white;
+.selectedEmotion {
+  position: absolute;
+  width: 150px;
+  height: 50px;
+  margin-bottom: 85px;
+  text-align: center;
+  font-weight: 600;
 }
 
-li:nth-child(3) .circlePart {
-  background: white;
+.sliderWrapper {
+  height: 100px;
+  width: 170px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 20%;
 }
 
-li:nth-child(4) .circlePart {
-  background: white;
+.colDegree {
+  height: 50px;
 }
 
-li:nth-child(5) .circlePart {
-  background: white;
+.container {
+  height: 50px;
+  border-radius: 30%;
+  background-color: transparent;
 }
 
-li:nth-child(6) .circlePart {
-  background: white;
+.sliderLabel {
+  padding-top: 2px;
 }
 
-li:nth-child(7) .circlePart {
-  background: white;
+.slider {
+  margin-top: 15px;
+}
+
+/*.degreeTracker{
+  position: absolute;
+  width: 180px;
+  text-align: center;
 }*/
+
+.trackMoodButton {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 15px;
+  transition: all 0.5s;
+  font-family: 'Manrope', sans-serif;
+  text-transform: none;
+  color: black;
+  bottom: -10px;
+}
 
 </style>
