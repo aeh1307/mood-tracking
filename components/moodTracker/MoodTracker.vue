@@ -1,5 +1,5 @@
 <template>
-  <div class="moodTracker">
+  <div class="moodTrackerWrapper">
 
     <div class="emotionOverview" v-if="showEmotionOverview">
       <div class="touchZones">
@@ -127,8 +127,8 @@ export default {
     return {
 /*      showEmotionOverview: false,*/
       ex1: {label: 'color', val: 25, color: 'red'},
-      ex2: {label: 'track-color', val: 75, color: "yellow"},
-      ex3: {label: 'thumb-color', val: 50, color: 'blue'},
+      ex2: {label: 'track-color', val: 75, color: "white"},
+      ex3: {label: 'thumb-color', val: 50, color: 'rgba(255, 0, 0, 0.5)'},
       degreeOfEmotion: this.$store.getters['moodtracker/degreeOfEmotion'],
       threeScaleDegree: ['Low', 'Medium', 'High'],
     }
@@ -159,29 +159,38 @@ export default {
       this.$store.commit('moodtracker/setEmojiDescription', '');
     },
     selectEmotion(e) {
+      let selectedEmotionEl = document.querySelector(`#${e.target.id}`);
       switch (e.target.id) {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
+          selectedEmotionEl.style.border = '5px solid #3CBB75';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
+          selectedEmotionEl.style.border = '8px solid #EB7955';
           break;
         case 'cheerfulHappy':
           this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
+          selectedEmotionEl.style.border = '8px solid #F7CB50';
           break;
         case 'relaxedCalm':
           this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
+          selectedEmotionEl.style.border = '8px solid #425CCC';
           break;
         case 'gloomySad':
           this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
+          selectedEmotionEl.style.border = '8px solid #3D3D3D';
           break;
         case 'boredWeary':
           this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
+          selectedEmotionEl.style.border = '8px solid #8B42CC';
           break;
         case 'irritatedAnnoyed':
           this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
+          selectedEmotionEl.style.border = '8px solid #DE6465';
           break;
       }
+
     },
     openMoodTrackingConfirmationDialog() {
       if(this.emojiDescription !== ''){
@@ -200,31 +209,37 @@ export default {
 
 
 <style scoped>
-.moodTracker {
-  width: 100px;
+.moodTrackerWrapper {
+  min-width: 100vw;
+  min-height: 40px;
   margin-bottom: 120px;
-  position: absolute;
+  position: relative;
   display: flex;
-  align-self: center;
-  justify-self: center;
-  justify-content: center;
-  align-content: center;
 }
 
 .emotionOverview {
   width: 280px;
+  min-width: 280px;
+  min-height: 280px;
   height: 280px;
   border-radius: 50%;
-  background-color: #8fe2ee;
   position: absolute;
-  margin-bottom: 260px;
   display: flex;
-  bottom: -250px;
+  bottom: 30px;
+  /*TODO: fix centering without using left*/
+  left: 40px;
   overflow: visible;
+  background: linear-gradient(to right, #24C6DC, #514A9D);
 }
 
+.v-application--wrap {
+  min-height: 100px !important;
+}
+
+
+
 .circleEmojiContainer {
-  position: relative;
+  position: absolute;
   width: 280px;
   height: 280px;
   transform: skewY(0deg) rotate(0deg);
@@ -384,7 +399,7 @@ export default {
   position: absolute;
   border: 1px solid #514A9D;
   padding: 0;
-  bottom: -60px;
+  bottom: -45px;
   min-width: 120px;
   min-height: 120px;
   border-radius: 50%;
@@ -394,6 +409,8 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #fefefe;
+  /*TODO: fix centering without using left*/
+  left: 120px;
 }
 
 .innerCircle {
@@ -600,7 +617,8 @@ li:nth-child(8) {
   height: 50px;
   margin-bottom: 85px;
   text-align: center;
-  font-weight: 600;
+/*  font-weight: 600;*/
+  color: #fefefe;
 }
 
 .sliderWrapper {
@@ -623,6 +641,8 @@ li:nth-child(8) {
 
 .sliderLabel {
   padding-top: 2px;
+  color: #fefefe;
+  font-weight: 300;
 }
 
 .slider {

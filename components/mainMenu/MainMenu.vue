@@ -14,7 +14,7 @@
         <div class="iconCaption">Mood Tracking</div>
       </div>
       <div class="contactContainer">
-      <a href="https://lifekeys.no/" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
+      <a href="" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
         <p class="iconCaption">Contact</p></a>
       </div>
     </div>
