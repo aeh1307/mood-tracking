@@ -76,7 +76,7 @@
           <v-container fluid>
             <v-row>
               <v-col cols="15" class="colDegree">
-                 <v-subheader class="sliderLabel">Degree/Intensity:</v-subheader>
+            <!--     <v-subheader class="sliderLabel">Degree/Intensity:</v-subheader>-->
                 <v-slider
                   v-model="degreeOfEmotion"
                   :thumb-size="24"
@@ -164,30 +164,44 @@ export default {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
           selectedEmotionEl.style.border = '5px solid #3CBB75';
+          selectedEmotionEl.style.background = '#3CBB75';
+          selectedEmotionEl.style.zIndex = '0';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
-          selectedEmotionEl.style.border = '8px solid #EB7955';
+         /* selectedEmotionEl.style.border = '5px solid #EB7955';*/
+            selectedEmotionEl.style.background = '#EB7955';
+          selectedEmotionEl.style.zIndex = '0';
           break;
         case 'cheerfulHappy':
           this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
           selectedEmotionEl.style.border = '8px solid #F7CB50';
+   /*         selectedEmotionEl.style.background = '#F7CB50';
+          selectedEmotionEl.style.zIndex = '0';*/
           break;
         case 'relaxedCalm':
           this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
-          selectedEmotionEl.style.border = '8px solid #425CCC';
+          selectedEmotionEl.style.border = '5px solid #425CCC';
+            selectedEmotionEl.style.background = '#425CCC';
+          selectedEmotionEl.style.zIndex = '0';
           break;
         case 'gloomySad':
           this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
-          selectedEmotionEl.style.border = '8px solid #3D3D3D';
+          selectedEmotionEl.style.border = '5px solid #3D3D3D';
+            selectedEmotionEl.style.background = '#3D3D3D';
+          selectedEmotionEl.style.zIndex = '0';
           break;
         case 'boredWeary':
           this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
-          selectedEmotionEl.style.border = '8px solid #8B42CC';
+          selectedEmotionEl.style.border = '5px solid #8B42CC';
+            selectedEmotionEl.style.background = '#8B42CC';
+          selectedEmotionEl.style.zIndex = '0';
           break;
         case 'irritatedAnnoyed':
           this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
-          selectedEmotionEl.style.border = '8px solid #DE6465';
+          selectedEmotionEl.style.border = '5px solid #DE6465';
+            selectedEmotionEl.style.background = '#DE6465';
+          selectedEmotionEl.style.zIndex = '0';
           break;
       }
 
@@ -227,7 +241,7 @@ export default {
   display: flex;
   bottom: 30px;
   /*TODO: fix centering without using left*/
-  left: 40px;
+  left: 13%;
   overflow: visible;
   background: linear-gradient(to right, #24C6DC, #514A9D);
 }
@@ -272,13 +286,13 @@ export default {
 .emoji::after {
   content: "";
   background: white;
-  border: 8px solid transparent;
-  width: 59px;
-  height: 59px;
+  border: 10px solid transparent;
+  width: 60px;
+  height: 60px;
   position: absolute;
   opacity: 1.0;
   top: 5px;
-  left: 6px;
+  left: 5px;
   bottom: 0;
   right: 0;
   z-index: -1;
@@ -292,12 +306,12 @@ export default {
 
 /* Should be 95px from left(not 93px). to correspond to select emoji button.*/
 .touchZoneTenseNervous {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
-  left: 95px;
-  top: -43px;
+  left: 92px;
+  top: -42px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -305,48 +319,48 @@ export default {
 
 
 .touchZoneIrritatedAnnoyed {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
   top: -2px;
-  left: -2px;
+  left: -3px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneExcitedLively {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
   top: -3px;
-  left: 192px;
+  left: 191px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneCheerfulHappy {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
-  top: 94px;
-  left: 233px;
+  top: 93px;
+  left: 232px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneBoredWeary {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
-  top: 94px;
-  left: -42px;
+  top: 96px;
+  left: -43px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -354,24 +368,24 @@ export default {
 
 /* TODO: is the excited lively icon 2 px higher than irritated/annoyed*/
 .touchZoneRelaxedCalm {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
   left: 192px;
-  top: 192px;
+  top: 190px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneGloomySad {
-  width: 90px;
-  height: 90px;
+  width: 91px;
+  height: 91px;
   position: absolute;
   border-radius: 50%;
   left: -2px;
-  top: 192px;
+  top: 193px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -410,7 +424,7 @@ export default {
   align-items: center;
   background-color: #fefefe;
   /*TODO: fix centering without using left*/
-  left: 120px;
+  left:33%;
 }
 
 .innerCircle {
@@ -507,10 +521,9 @@ li {
   top: 30px;
   width: 260%;
   height: 300%;
-  text-align: center;
+/*  text-align: center;*/
   transform: skewY(0deg) rotate(15deg);
-  /*  margin: 20px;*/
-  /*   border: 1px solid black;*/
+/*     border: 1px solid black;*/
 }
 
 .emojiCaptions {
@@ -627,6 +640,7 @@ li:nth-child(8) {
   padding: 0;
   background-color: transparent;
   border-radius: 20%;
+  margin-top: 70px;
 }
 
 .colDegree {
@@ -664,7 +678,7 @@ li:nth-child(8) {
   font-family: 'Manrope', sans-serif;
   text-transform: none;
   color: black;
-  bottom: -10px;
+  bottom: 40px;
 }
 
 </style>
