@@ -63,6 +63,7 @@ export default {
     confirmMoodTracking: function() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.$store.commit('moodtracker/setShowFeedbackBubble', true)
+      this.$store.commit('moodtracker/setShowEmotionOverview', false)
       this.$fireStore.collection('users').doc(this.$fireAuth.currentUser.uid).collection('moodTracking').add({
         emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now(), notes: this.notes,
       }).then(function (docRef) {
