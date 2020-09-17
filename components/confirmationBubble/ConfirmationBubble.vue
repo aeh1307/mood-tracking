@@ -1,7 +1,7 @@
 <template>
   <div class="flexWrapper">
     <v-app>
-        <v-dialog v-model="dialog" max-width="260">
+        <v-dialog v-model="dialog" max-width="260" v-click-outside="this.cancelMoodTracking">
           <v-card class="dialogCard" light min-height="180">
             <div class="informationText">
               Would you like to track
@@ -56,9 +56,8 @@ export default {
   },
   methods: {
     cancelMoodTracking: function() {
-      this.$store.commit('moodtracker/setShowConfirmationBubble', false)
-      this.$store.commit('moodtracker/setCount', 0)
-      this.$store.commit('moodtracker/setNotes', '');
+      this.$store.commit('moodtracker/setShowConfirmationBubble', false);
+/*      this.$store.commit('moodtracker/setNotes', '');*/
     },
     confirmMoodTracking: function() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)

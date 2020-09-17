@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- TODO: remove persistent for dialog box to close when clicking outside-->
-    <v-dialog v-model="dialog" persistent max-width="320">
+    <v-dialog v-model="dialog" max-width="320" v-click-outside="this.closeDetails">
       <v-card class="dialogCard" light height="500">
         <v-toolbar elevation="0">
           <v-btn icon dark @click="this.closeDetails">
