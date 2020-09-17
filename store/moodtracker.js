@@ -2,7 +2,6 @@ export const state = () => ({
   showConfirmationBubble: false,
   showFeedbackBubble: false,
   showEmotionOverview: false,
-/*  count: 0,*/
   emojiDescription: 'Cheerful/Happy',
   degreeOfEmotion: 4,
   notes: '',
@@ -18,9 +17,6 @@ export const getters = {
   showEmotionOverview: state => {
     return state.showEmotionOverview
   },
-/*  count: state => {
-    return state.count
-  },*/
   emojiDescription: state => {
     return state.emojiDescription
   },
@@ -41,12 +37,6 @@ export const mutations = {
   },
   setShowEmotionOverview (state, boolean) {
     state.showEmotionOverview = boolean
-  },
-/*  setCount (state, number) {
-    state.count = number
-  },*/
-  incrementCount (state){
-    state.count++
   },
   setEmojiDescription (state, string) {
     state.emojiDescription = string

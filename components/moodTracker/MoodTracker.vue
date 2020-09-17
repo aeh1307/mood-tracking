@@ -219,7 +219,7 @@ export default {
   watch: {
     degreeOfEmotion: function (val) {
       this.$store.commit('moodtracker/setDegreeOfEmotion', val);
-    }
+    },
   },
 }
 
@@ -231,7 +231,7 @@ export default {
   min-width: 100vw;
   min-height: 40px;
   margin-bottom: 120px;
-  position: relative;
+  position: absolute;
   display: flex;
 }
 

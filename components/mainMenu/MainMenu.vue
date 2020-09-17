@@ -48,28 +48,34 @@ export default {
     $route: function() {
       let moodTracker = document.querySelector('.moodTrackerVisibility');
       let moodTrackingButton = document.querySelector('.moodTrackingButton');
+      let statisticsButton = document.querySelector('.statisticsContainer');
       if (this.$route.path === "/") {
         moodTracker.style.display = "block";
         moodTrackingButton.style.display = "none";
         this.showMoodTracker = true
+        statisticsButton.style.borderBottom = "none";
       } else  {
         moodTracker.style.display = "none";
         moodTrackingButton.style.display = "block";
         this.showMoodTracker = false
+        statisticsButton.style.borderBottom = "2px solid white";
       }
     }
   },
   mounted() {
     let moodTracker = document.querySelector('.moodTrackerVisibility');
     let moodTrackingButton = document.querySelector('.moodTrackingButton');
+    let statisticsButton = document.querySelector('.statisticsContainer');
     if (this.$route.path === "/") {
       moodTracker.style.display = "block";
       moodTrackingButton.style.display = "none";
       this.showMoodTracker = true
+      statisticsButton.style.borderBottom = "none";
     } else  {
       moodTracker.style.display = "none";
       moodTrackingButton.style.display = "block";
       this.showMoodTracker = false
+      statisticsButton.style.borderBottom = "2px solid white";
     }
   }
 }
