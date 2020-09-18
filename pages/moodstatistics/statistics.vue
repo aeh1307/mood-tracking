@@ -42,6 +42,7 @@ export default {
   min-width: 100vw;
   font-size: 20px;
   font-family: 'Manrope', sans-serif;
+  position: absolute;
 }
 
 .statistics::after {

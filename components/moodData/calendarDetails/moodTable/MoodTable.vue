@@ -169,7 +169,7 @@ export default {
 
     },
     closeDetails: function () {
- /*     this.dialog = false;*/
+      this.dialog = false;
       this.$store.commit('statistics/setShowCalendarMoodDetails', false);
     }
   },
