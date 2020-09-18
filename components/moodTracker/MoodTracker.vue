@@ -98,7 +98,7 @@
           </v-container>
         </v-app>
         <div>
-          <v-btn class="trackMoodButton" v-on:click="this.openMoodTrackingConfirmationDialog">Track mood</v-btn>
+          <v-btn class="trackMoodButton" v-on:click="this.openMoodTrackingConfirmationDialog">Track</v-btn>
         </div>
       </div>
 
@@ -271,8 +271,8 @@ export default {
 
 .circleEmojiList {
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: 270px;
+  height: 270px;
   transform: skewY(0deg) rotate(0deg);
   border-radius: 50%;
   /*    border: 5px solid #514A9D;*/
@@ -324,11 +324,11 @@ export default {
 
 /* Should be 95px from left(not 93px). to correspond to select emoji button.*/
 .touchZoneTenseNervous {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  left: 93px;
+  left: 96px;
   top: -41px;
   border: 2px solid transparent;
   background-color: transparent;
@@ -337,48 +337,48 @@ export default {
 
 
 .touchZoneIrritatedAnnoyed {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  top: -1px;
-  left: -2px;
+  top: -3px;
+  left: 3px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneExcitedLively {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  top: -2px;
-  left: 192px;
+  top: -3px;
+  left: 188px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneCheerfulHappy {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  top: 94px;
-  left: 233px;
+  top: 91px;
+  left: 226px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneBoredWeary {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  top: 96px;
-  left: -42px;
+  top: 91px;
+  left: -36px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -386,24 +386,24 @@ export default {
 
 /* TODO: is the excited lively icon 2 px higher than irritated/annoyed*/
 .touchZoneRelaxedCalm {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  left: 193px;
-  top: 192px;
+  left: 188px;
+  top: 183px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneGloomySad {
-  width: 89px;
-  height: 89px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   border-radius: 50%;
-  left: -1px;
-  top: 194px;
+  left: 3px;
+  top: 183px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -694,7 +694,7 @@ li:nth-child(8) {
 
 .trackMoodButton {
   position: relative;
-  padding: 10px 20px;
+/*  padding: 8px 15px;*/
   border-radius: 10px;
   margin: 15px;
   transition: all 0.5s;
