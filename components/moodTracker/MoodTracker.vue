@@ -16,58 +16,61 @@
 
         <div id="irritatedAnnoyed" class="touchZoneIrritatedAnnoyed" v-on:click="selectEmotion($event)"></div>
       </div>
-      <ul class="circleEmojiContainer">
-        <li class="emojiListElement">
-          <div class="circlePart1 circlePart">
-            <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
-          </div>
-          <!--  <div class="emojiCaptions">Tense/Nervous</div>-->
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart3 circlePart">
-            <v-icon class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon>
-          </div>
-          <!--          <div class="emojiCaptions">Excited/Lively</div>-->
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart4 circlePart">
-            <v-icon class="emoji cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
-          </div>
-          <!--          <div class="emojiCaptions">Cheerful/Happy</div>-->
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart7 circlePart">
-            <v-icon class="emoji relaxedCalmEmoji">fas fa-smile-beam</v-icon>
-          </div>
-          <!--   <div class="emojiCaptions">Relaxed/Calm</div>-->
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart8 circlePart">
-          </div>
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart6 circlePart">
-            <v-icon class="emoji gloomySadEmoji">fas fa-frown</v-icon>
-          </div>
-          <!--          <div class="emojiCaptions">Gloomy/Sad</div>-->
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart5 circlePart">
-            <v-icon class="emoji boredWearyEmoji">fas fa-meh</v-icon>
-          </div>
-          <!--
-                    <div class="emojiCaptions">Bored/Weary</div>
-          -->
-        </li>
-        <li class="emojiListElement">
-          <div class="circlePart2 circlePart">
-            <v-icon class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon>
-          </div>
-          <!--
-                    <div class="emojiCaptions">Irritated/Annoyed</div>
-          -->
-        </li>
-      </ul>
+      <div class="circleEmojiContainer">
+        <ul class="circleEmojiList">
+          <li class="emojiListElement">
+            <div class="circlePart1 circlePart">
+              <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
+            </div>
+            <!--  <div class="emojiCaptions">Tense/Nervous</div>-->
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart3 circlePart">
+              <v-icon class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon>
+            </div>
+            <!--          <div class="emojiCaptions">Excited/Lively</div>-->
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart4 circlePart">
+              <v-icon class="emoji cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
+            </div>
+            <!--          <div class="emojiCaptions">Cheerful/Happy</div>-->
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart7 circlePart">
+              <v-icon class="emoji relaxedCalmEmoji">fas fa-smile-beam</v-icon>
+            </div>
+            <!--   <div class="emojiCaptions">Relaxed/Calm</div>-->
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart8 circlePart">
+            </div>
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart6 circlePart">
+              <v-icon class="emoji gloomySadEmoji">fas fa-frown</v-icon>
+            </div>
+            <!--          <div class="emojiCaptions">Gloomy/Sad</div>-->
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart5 circlePart">
+              <v-icon class="emoji boredWearyEmoji">fas fa-meh</v-icon>
+            </div>
+            <!--
+                      <div class="emojiCaptions">Bored/Weary</div>
+            -->
+          </li>
+          <li class="emojiListElement">
+            <div class="circlePart2 circlePart">
+              <v-icon class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon>
+            </div>
+            <!--
+                      <div class="emojiCaptions">Irritated/Annoyed</div>
+            -->
+          </li>
+        </ul>
+      </div>
+
       <div class="currentTrackingInfo">
         <div v-if="this.emojiDescription === ''" class="selectedEmotion">No mood selected</div>
         <div v-if="this.emojiDescription !== ''" class="selectedEmotion">{{ this.emojiDescription }}</div>
@@ -235,7 +238,7 @@ export default {
 .moodTrackerWrapper {
   min-width: 100vw;
   min-height: 110px;
-  position: absolute;
+  position: relative;
   z-index: -1;
 }
 
@@ -244,36 +247,36 @@ export default {
 }
 
 .emotionOverview {
-  width: 280px;
-  min-width: 280px;
+  width: 100%;
+  min-width: 100%;
   min-height: 280px;
   height: 280px;
   border-radius: 50%;
   position: absolute;
-  display: flex;
-/*  justify-self: center;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
-  align-content: center;*/
-  bottom: 100px;
+  bottom: 120px;
   overflow: visible;
-  background: linear-gradient(to right, #24C6DC, #514A9D);
-  /*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
+  display: flex;
+  justify-content: center;
 }
 
 .v-application--wrap {
   min-height: 100px !important;
 }
 
-
 .circleEmojiContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.circleEmojiList {
   position: absolute;
   width: 280px;
   height: 280px;
   transform: skewY(0deg) rotate(0deg);
   border-radius: 50%;
   /*    border: 5px solid #514A9D;*/
+  background: linear-gradient(to right, #24C6DC, #514A9D);
   border: 5px solid #3c1053;
 }
 
@@ -327,7 +330,7 @@ export default {
   border-radius: 50%;
   left: 93px;
   top: -41px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -340,7 +343,7 @@ export default {
   border-radius: 50%;
   top: -1px;
   left: -2px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -352,7 +355,7 @@ export default {
   border-radius: 50%;
   top: -2px;
   left: 192px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -364,7 +367,7 @@ export default {
   border-radius: 50%;
   top: 94px;
   left: 233px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -376,7 +379,7 @@ export default {
   border-radius: 50%;
   top: 96px;
   left: -42px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -389,7 +392,7 @@ export default {
   border-radius: 50%;
   left: 193px;
   top: 192px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -401,7 +404,7 @@ export default {
   border-radius: 50%;
   left: -1px;
   top: 194px;
-  border: 2px solid red;
+  border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
@@ -432,9 +435,9 @@ export default {
   padding: 0;
   bottom: 55px;
   margin: 0 auto;
-  min-width: 120px;
-  max-width:  120px;
-  min-height: 120px;
+  min-width: 121px;
+  max-width: 121px;
+  min-height: 121px;
   border-radius: 50%;
   list-style: none;
   overflow: hidden;
