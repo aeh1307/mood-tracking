@@ -59,6 +59,7 @@ export default {
         moodTrackingButton.style.display = "block";
         this.showMoodTracker = false
         statisticsButton.style.borderBottom = "2px solid white";
+        this.$store.commit("moodtracker/setShowEmotionOverview", false);
       }
     }
   },
@@ -76,6 +77,7 @@ export default {
       moodTrackingButton.style.display = "block";
       this.showMoodTracker = false
       statisticsButton.style.borderBottom = "2px solid white";
+      this.$store.commit("moodtracker/setShowEmotionOverview", false);
     }
   }
 }
