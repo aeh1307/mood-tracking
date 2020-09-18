@@ -213,6 +213,7 @@ export default {
   justify-content: center;
   align-items: center;
   margin-top: 70px;
+  overflow: hidden;
 }
 
 .v-date-picker {
