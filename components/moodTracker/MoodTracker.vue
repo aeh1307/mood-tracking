@@ -235,14 +235,14 @@ export default {
   min-height: 110px;
   /*margin-bottom: 120px;*/
   position: absolute;
-  display: flex;
+/*  display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
   align-self: center;
   justify-items: center;
   justify-self: center;
-  margin: 0 auto;
+  margin: 0 auto;*/
 }
 
 .emotionOverview {
@@ -439,8 +439,8 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #fefefe;
-/*  !*TODO: fix centering without using left*!
-  left: 33%;*/
+  /*TODO: fix centering without using left*/
+  left: 33%;
 }
 
 .innerCircle {
