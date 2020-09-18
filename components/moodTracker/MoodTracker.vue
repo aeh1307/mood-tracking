@@ -232,10 +232,17 @@ export default {
 <style scoped>
 .moodTrackerWrapper {
   min-width: 100vw;
-  min-height: 40px;
-  margin-bottom: 120px;
+  min-height: 110px;
+  /*margin-bottom: 120px;*/
   position: absolute;
   display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  justify-items: center;
+  justify-self: center;
+  margin: 0 auto;
 }
 
 .emotionOverview {
@@ -248,7 +255,7 @@ export default {
   display: flex;
   bottom: 30px;
   /*TODO: fix centering without using left*/
-  left: 13%;
+/*  left: 13%;*/
   overflow: visible;
   background: linear-gradient(to right, #24C6DC, #514A9D);
   /*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
@@ -422,7 +429,7 @@ export default {
     border: 1px solid #514A9D;
 /*  border: 1px solid #3c1053;*/
   padding: 0;
-  bottom: -45px;
+  bottom: 50px;
   min-width: 120px;
   min-height: 120px;
   border-radius: 50%;
@@ -432,8 +439,8 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #fefefe;
-  /*TODO: fix centering without using left*/
-  left: 33%;
+/*  !*TODO: fix centering without using left*!
+  left: 33%;*/
 }
 
 .innerCircle {
