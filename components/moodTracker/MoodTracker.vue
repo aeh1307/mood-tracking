@@ -101,20 +101,22 @@
 
 
     </div>
-
-    <div v-if="this.showEmotionOverview" class="outerCircle" v-on:click="closeEmotionOverview">
-      <div class="innerCircle">
-        <div class="selectMoodText">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
+    <div class="showEmotionOverviewButton">
+      <div v-if="this.showEmotionOverview" class="outerCircle" v-on:click="closeEmotionOverview">
+        <div class="innerCircle">
+          <div class="selectMoodText">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+          </div>
+        </div>
+      </div>
+      <div v-if="!this.showEmotionOverview" class="outerCircle" v-on:click="openEmotionOverview">
+        <div class="innerCircle">
+          <div class="selectMoodText">Select <br/> Mood</div>
         </div>
       </div>
     </div>
-    <div v-if="!this.showEmotionOverview" class="outerCircle" v-on:click="openEmotionOverview">
-      <div class="innerCircle">
-        <div class="selectMoodText">Select <br/> Mood</div>
-      </div>
-    </div>
+
   </div>
 
 </template>
@@ -126,9 +128,9 @@ export default {
   data() {
     return {
       /*      showEmotionOverview: false,*/
-     /* ex1: {label: 'color', val: 25, color: '#3c1053'},
-      ex2: {label: 'track-color', val: 75, color: "white"},
-      ex3: {label: 'thumb-color', val: 50, color: '#3c1053'},*/
+      /* ex1: {label: 'color', val: 25, color: '#3c1053'},
+       ex2: {label: 'track-color', val: 75, color: "white"},
+       ex3: {label: 'thumb-color', val: 50, color: '#3c1053'},*/
       ex1: {label: 'color', val: 25, color: '#514A9D'},
       ex2: {label: 'track-color', val: 75, color: "white"},
       ex3: {label: 'thumb-color', val: 50, color: '#514A9D'},
@@ -220,9 +222,9 @@ export default {
     degreeOfEmotion: function (val) {
       this.$store.commit('moodtracker/setDegreeOfEmotion', val);
     },
- /*   emojiDescription: function (val) {
-      this.$store.commit('moodtracker/setEmojiDescription', val);
-    },*/
+    /*   emojiDescription: function (val) {
+         this.$store.commit('moodtracker/setEmojiDescription', val);
+       },*/
   },
 }
 
@@ -233,16 +235,12 @@ export default {
 .moodTrackerWrapper {
   min-width: 100vw;
   min-height: 110px;
-  /*margin-bottom: 120px;*/
   position: absolute;
-/*  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  align-self: center;
-  justify-items: center;
-  justify-self: center;
-  margin: 0 auto;*/
+  z-index: -1;
+}
+
+.showEmotionOverviewButton {
+  width: 100%;
 }
 
 .emotionOverview {
@@ -253,9 +251,12 @@ export default {
   border-radius: 50%;
   position: absolute;
   display: flex;
-  bottom: 30px;
-  /*TODO: fix centering without using left*/
-/*  left: 13%;*/
+/*  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;*/
+  bottom: 100px;
   overflow: visible;
   background: linear-gradient(to right, #24C6DC, #514A9D);
   /*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
@@ -272,7 +273,7 @@ export default {
   height: 280px;
   transform: skewY(0deg) rotate(0deg);
   border-radius: 50%;
-/*    border: 5px solid #514A9D;*/
+  /*    border: 5px solid #514A9D;*/
   border: 5px solid #3c1053;
 }
 
@@ -326,7 +327,7 @@ export default {
   border-radius: 50%;
   left: 93px;
   top: -41px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -339,7 +340,7 @@ export default {
   border-radius: 50%;
   top: -1px;
   left: -2px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -351,7 +352,7 @@ export default {
   border-radius: 50%;
   top: -2px;
   left: 192px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -363,7 +364,7 @@ export default {
   border-radius: 50%;
   top: 94px;
   left: 233px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -375,7 +376,7 @@ export default {
   border-radius: 50%;
   top: 96px;
   left: -42px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -388,7 +389,7 @@ export default {
   border-radius: 50%;
   left: 193px;
   top: 192px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -400,7 +401,7 @@ export default {
   border-radius: 50%;
   left: -1px;
   top: 194px;
-  border: 2px solid transparent;
+  border: 2px solid red;
   background-color: transparent;
   z-index: 99;
 }
@@ -425,12 +426,14 @@ export default {
 }
 
 .outerCircle {
-  position: absolute;
-    border: 1px solid #514A9D;
-/*  border: 1px solid #3c1053;*/
+  position: relative;
+  border: 1px solid #514A9D;
+  /*  border: 1px solid #3c1053;*/
   padding: 0;
-  bottom: 50px;
+  bottom: 55px;
+  margin: 0 auto;
   min-width: 120px;
+  max-width:  120px;
   min-height: 120px;
   border-radius: 50%;
   list-style: none;
@@ -439,8 +442,6 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #fefefe;
-  /*TODO: fix centering without using left*/
-  left: 33%;
 }
 
 .innerCircle {
@@ -449,7 +450,7 @@ export default {
   border-radius: 50%;
   background: white;
   position: relative;
-    border: 1px solid #514A9D;
+  border: 1px solid #514A9D;
   /*border: 1px solid #ad5389;*/
   display: flex;
   align-items: center;
@@ -659,6 +660,7 @@ li:nth-child(8) {
   background-color: transparent;
   border-radius: 20%;
   margin-top: 75px;
+
 }
 
 .colDegree {
