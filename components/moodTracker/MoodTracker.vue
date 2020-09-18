@@ -149,7 +149,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit('moodtracker/setShowConfirmationBubble', false)
+    this.$store.commit('moodtracker/setShowConfirmationBubble', false);
   },
   methods: {
     openEmotionOverview() {
@@ -220,6 +220,9 @@ export default {
     degreeOfEmotion: function (val) {
       this.$store.commit('moodtracker/setDegreeOfEmotion', val);
     },
+ /*   emojiDescription: function (val) {
+      this.$store.commit('moodtracker/setEmojiDescription', val);
+    },*/
   },
 }
 

@@ -62,6 +62,9 @@ export default {
 /*      this.$store.commit('moodtracker/setNotes', '');*/
     },
     confirmMoodTracking: function() {
+      this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
+      this.$store.commit('moodtracker/setEmojiDescription', '');
+
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.$store.commit('moodtracker/setShowFeedbackBubble', true)
       db.collection('users').doc(auth.currentUser.uid).collection('moodTracking').add({
@@ -70,8 +73,7 @@ export default {
         console.log("Document written with ID: ", docRef.id);
       })
       setTimeout(() => {
-        this.$store.commit('moodtracker/setShowFeedbackBubble', false)
-        this.$store.commit('moodtracker/setCount', 0)
+        this.$store.commit('moodtracker/setShowFeedbackBubble', false);
       }, 3000)
       this.$store.commit('moodtracker/setNotes', '');
 

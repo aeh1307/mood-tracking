@@ -266,12 +266,18 @@ export default {
   padding: 8px;
 }
 
-#degreeRow, #degreeHeader {
+#degreeRow {
   min-width: 75px;
   text-align: center;
   padding-right: 20px;
 }
 
+#degreeHeader{
+  min-width: 110px;
+  text-align: center;
+}
+
+/*
 #timeRow, #timeHeader {
   min-width: 65px;
 }
@@ -279,6 +285,7 @@ export default {
 #timeRow {
   padding-left: 10px;
 }
+*/
 
 .actionSection {
   display: flex;

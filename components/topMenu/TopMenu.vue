@@ -165,8 +165,16 @@ export default {
       let element = document.getElementById('selectInput');
       element.value = this.selectedPage;
       this.switchPage();
-    }
-  }
+    },
+      $route: function() {
+        let hamburgerMenu = document.querySelector('.hamburgerMenu');
+        if (this.$route.path === "/") {
+          hamburgerMenu.style.display = "flex";
+        } else  {
+          hamburgerMenu.style.display = "none";
+        }
+      }
+    },
 }
 </script>
 <style scoped>
