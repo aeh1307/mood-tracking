@@ -24,8 +24,10 @@ export default {
 .backgroundImage {
   height: 100vh;
   max-height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   max-width: 100vw;
+  min-width: 100vw;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
