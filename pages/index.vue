@@ -25,5 +25,6 @@
 
 .mainPage {
   position: absolute;
+  overflow: hidden;
 }
 </style>
