@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="mainPage">
 <!--    <Reminder/>--> <!-- TODO: comment in -->
-    <div>
       <BackgroundImage/>
-    </div>
   </div>
 
   </template>
@@ -24,4 +22,8 @@
 
 
 <style scoped>
+
+.mainPage {
+  position: absolute;
+}
 </style>
