@@ -43,6 +43,7 @@ export default {
   font-size: 20px;
   font-family: 'Manrope', sans-serif;
   position: absolute;
+  overflow: hidden;
 }
 
 .statistics::after {
