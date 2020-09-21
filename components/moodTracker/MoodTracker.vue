@@ -239,7 +239,8 @@ export default {
   min-width: 100vw;
   min-height: 110px;
   position: relative;
-  z-index: -1;
+  z-index: 99;
+/*  TODO: if 99 then statistics link does not work. if not 99 then 50% of select mood button dose not work....*/
 }
 
 .showEmotionOverviewButton {
@@ -261,6 +262,7 @@ export default {
 
 .v-application--wrap {
   min-height: 100px !important;
+  z-index: -1;
 }
 
 .circleEmojiContainer {
