@@ -67,7 +67,7 @@ export default {
 
       this.$store.commit('moodtracker/setShowConfirmationBubble', false)
       this.$store.commit('moodtracker/setShowFeedbackBubble', true)
-      this.$fireStore.collection('users').doc(this.$fireAuth.currentUser.uid).collection('moodTracking').add({
+      db.collection('users').doc(auth.currentUser.uid).collection('moodTracking').add({
         emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now(), notes: this.notes,
       }).then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
