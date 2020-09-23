@@ -109,11 +109,13 @@ export default {
 .statisticsContainer {
   left: 25px;
   position: absolute;
+  z-index: 2;
 }
 
 .contactContainer {
   right: 25px;
   position: absolute;
+  z-index: 2;
 }
 
 .contact, .statistics {

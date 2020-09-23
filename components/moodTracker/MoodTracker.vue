@@ -105,20 +105,26 @@
 
     </div>
     <div class="showEmotionOverviewButton">
-      <div v-if="this.showEmotionOverview" class="outerCircle" v-on:click="closeEmotionOverview">
-        <div class="innerCircle">
-          <div class="selectMoodText">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
+      <div v-if="this.showEmotionOverview" class="selectMoodButtonTouchZone" v-on:click="closeEmotionOverview">
+        <div class="outerCircle">
+          <div class="innerCircle">
+            <div class="selectMoodText">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div v-if="!this.showEmotionOverview" class="outerCircle" v-on:click="openEmotionOverview">
-        <div class="innerCircle">
-          <div class="selectMoodText">Select <br/> Mood</div>
+
+      <div v-if="!this.showEmotionOverview"  class="selectMoodButtonTouchZone" v-on:click="openEmotionOverview">
+        <div class="outerCircle">
+           <div class="innerCircle">
+            <div class="selectMoodText">Select <br/> Mood</div>
+          </div>
         </div>
       </div>
     </div>
+
 
   </div>
 
@@ -236,15 +242,25 @@ export default {
 
 <style scoped>
 .moodTrackerWrapper {
-  min-width: 100vw;
+  min-width: 100px;
   min-height: 110px;
   position: relative;
-  z-index: 99;
-/*  TODO: if 99 then statistics link does not work. if not 99 then 50% of select mood button dose not work....*/
+  /*  z-index: 99;*/
+  /*  TODO: if 99 then statistics link does not work. if not 99 then 50% of select mood button dose not work....*/
 }
 
 .showEmotionOverviewButton {
-  width: 100%;
+  /*  width: 100%;*/
+  background-color: transparent;
+  border-radius: 50%;
+  min-height: 135px;
+  min-width: 135px;
+  margin-top: -70px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+/*  z-index: 99;*/
 }
 
 .emotionOverview {
@@ -254,7 +270,7 @@ export default {
   height: 280px;
   border-radius: 50%;
   position: absolute;
-  bottom: 120px;
+  bottom: 128px;
   overflow: visible;
   display: flex;
   justify-content: center;
@@ -435,7 +451,8 @@ export default {
   border: 1px solid #514A9D;
   /*  border: 1px solid #3c1053;*/
   padding: 0;
-  bottom: 55px;
+  /*bottom: 55px;*/
+  bottom: 0;
   margin: 0 auto;
   min-width: 121px;
   max-width: 121px;
@@ -447,6 +464,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #fefefe;
+  z-index: 1;
 }
 
 .innerCircle {
@@ -696,14 +714,14 @@ li:nth-child(8) {
 
 .trackMoodButton {
   position: relative;
-/*  padding: 8px 15px;*/
+  /*  padding: 8px 15px;*/
   border-radius: 10px;
   margin: 15px;
   transition: all 0.5s;
   font-family: 'Manrope', sans-serif;
   text-transform: none;
   color: black;
-  bottom: 40px;
+  bottom: 32px;
 }
 
 </style>
