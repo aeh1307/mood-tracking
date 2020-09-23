@@ -116,9 +116,9 @@
         </div>
       </div>
 
-      <div v-show="!this.showEmotionOverview"  class="selectMoodButtonTouchZone" v-on:click="openEmotionOverview">
+      <div v-show="!this.showEmotionOverview" class="selectMoodButtonTouchZone" v-on:click="openEmotionOverview">
         <div class="outerCircle">
-           <div class="innerCircle">
+          <div class="innerCircle">
             <div class="selectMoodText">Select <br/> Mood</div>
           </div>
         </div>
@@ -181,42 +181,57 @@ export default {
       document.querySelector('#boredWeary').style.border = 'none';
       document.querySelector('#irritatedAnnoyed').style.border = 'none';
 
+      document.querySelector('.tenseNervousEmoji').style.fontSize = '55px';
+      document.querySelector('.excitedLivelyEmoji').style.fontSize = '55px';
+      document.querySelector('.cheerfulHappyEmoji').style.fontSize = '55px';
+      document.querySelector('.relaxedCalmEmoji').style.fontSize = '55px';
+      document.querySelector('.gloomySadEmoji').style.fontSize = '55px';
+      document.querySelector('.boredWearyEmoji').style.fontSize = '55px';
+      document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '55px';
+
       let selectedEmotionEl = document.querySelector(`#${e.target.id}`);
       switch (e.target.id) {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
           // selectedEmotionEl.style.border = '8px solid #3CA475';
           selectedEmotionEl.style.border = '6px solid #431E9C';
+         document.querySelector('.tenseNervousEmoji').style.fontSize = '70px';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
           // selectedEmotionEl.style.border = '8px solid #C76A55';
           selectedEmotionEl.style.border = '6px solid #3C1A87';
+          document.querySelector('.excitedLivelyEmoji').style.fontSize = '70px';
           break;
         case 'cheerfulHappy':
           this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
           // selectedEmotionEl.style.border = '8px solid #E3BA49';
           selectedEmotionEl.style.border = '6px solid #3C1A87';
+          document.querySelector('.cheerfulHappyEmoji').style.fontSize = '70px';
           break;
         case 'relaxedCalm':
           this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
           // selectedEmotionEl.style.border = '8px solid #4231CC';
           selectedEmotionEl.style.border = '6px solid #3C1A87';
+          document.querySelector('.relaxedCalmEmoji').style.fontSize = '70px';
           break;
         case 'gloomySad':
           this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
           // selectedEmotionEl.style.border = '8px solid #202B2B';
           selectedEmotionEl.style.border = '6px solid #3C1A87';
+          document.querySelector('.gloomySadEmoji').style.fontSize = '70px';
           break;
         case 'boredWeary':
           this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
           // selectedEmotionEl.style.border = '8px solid #6B42CC';
           selectedEmotionEl.style.border = '6px solid #3C1A87';
+          document.querySelector('.boredWearyEmoji').style.fontSize = '70px';
           break;
         case 'irritatedAnnoyed':
           this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
           // selectedEmotionEl.style.border = '8px solid #AE6465';
           selectedEmotionEl.style.border = '6px solid #3C1A87';
+          document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '70px';
           break;
       }
 
@@ -257,7 +272,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-/*  z-index: 99;*/
+  /*  z-index: 99;*/
 }
 
 .emotionOverview {
@@ -304,7 +319,6 @@ export default {
 }
 
 .emoji {
-  font-size: 72px;
   position: fixed;
   overflow-y: visible;
   border-radius: 50%;
@@ -320,12 +334,12 @@ export default {
   content: "";
   background: white;
   border: 10px solid transparent;
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   position: absolute;
   opacity: 1.0;
-  top: 4px;
-  left: 4px;
+  top: 6px;
+  left: 6px;
   bottom: 0;
   right: 0;
   z-index: -1;
@@ -339,12 +353,12 @@ export default {
 
 /* Should be 95px from left(not 93px). to correspond to select emoji button.*/
 .touchZoneTenseNervous {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  left: 96px;
-  top: -41px;
+  left: 98px;
+  top: -39px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -352,48 +366,48 @@ export default {
 
 
 .touchZoneIrritatedAnnoyed {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  top: -3px;
-  left: 3px;
+  top: -1px;
+  left: 5px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneExcitedLively {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  top: -2px;
-  left: 188px;
+  top: 0;
+  left: 191px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneCheerfulHappy {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  top: 91px;
-  left: 226px;
+  top: 93px;
+  left: 228px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneBoredWeary {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  top: 89px;
-  left: -36px;
+  top: 91px;
+  left: -33px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -401,24 +415,24 @@ export default {
 
 /* TODO: is the excited lively icon 2 px higher than irritated/annoyed*/
 .touchZoneRelaxedCalm {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  left: 187px;
-  top: 183px;
+  left: 189px;
+  top: 185px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
 }
 
 .touchZoneGloomySad {
-  width: 90px;
-  height: 90px;
+  width: 85.5px;
+  height: 85.5px;
   position: absolute;
   border-radius: 50%;
-  left: 2px;
-  top: 182px;
+  left: 4px;
+  top: 184px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
@@ -490,38 +504,45 @@ export default {
 .tenseNervousEmoji {
   color: #3CBB75;
   transform: rotate(-15deg);
+  font-size: 55px;
 }
 
 .irritatedAnnoyedEmoji {
   color: #DE6465;
   transform: rotate(30deg);
+  font-size: 55px;
 }
 
 .boredWearyEmoji {
   color: #8B42CC;
   transform: rotate(75deg);
+  font-size: 55px;
 }
 
 
 .gloomySadEmoji {
   color: #3D3D3D;
   transform: rotate(120deg);
+  font-size: 55px;
 }
 
 .excitedLivelyEmoji {
   color: #EB7955;
   transform: rotate(300deg);
+  font-size: 55px;
 }
 
 .cheerfulHappyEmoji {
   color: #F7CB50;
   transform: rotate(255deg);
+  font-size: 55px;
 }
 
 
 .relaxedCalmEmoji {
   color: #425CCC;
   transform: rotate(210deg);
+  font-size: 55px;
 }
 
 @keyframes shake {
