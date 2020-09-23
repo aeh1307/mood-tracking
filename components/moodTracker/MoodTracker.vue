@@ -105,7 +105,7 @@
 
     </div>
     <div class="showEmotionOverviewButton">
-      <div v-if="this.showEmotionOverview" class="selectMoodButtonTouchZone" v-on:click="closeEmotionOverview">
+      <div v-show="this.showEmotionOverview" class="selectMoodButtonTouchZone" v-on:click="closeEmotionOverview">
         <div class="outerCircle">
           <div class="innerCircle">
             <div class="selectMoodText">
@@ -116,7 +116,7 @@
         </div>
       </div>
 
-      <div v-if="!this.showEmotionOverview"  class="selectMoodButtonTouchZone" v-on:click="openEmotionOverview">
+      <div v-show="!this.showEmotionOverview"  class="selectMoodButtonTouchZone" v-on:click="openEmotionOverview">
         <div class="outerCircle">
            <div class="innerCircle">
             <div class="selectMoodText">Select <br/> Mood</div>
@@ -231,9 +231,6 @@ export default {
     degreeOfEmotion: function (val) {
       this.$store.commit('moodtracker/setDegreeOfEmotion', val);
     },
-    /*   emojiDescription: function (val) {
-         this.$store.commit('moodtracker/setEmojiDescription', val);
-       },*/
   },
 }
 
