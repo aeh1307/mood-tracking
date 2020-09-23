@@ -195,7 +195,7 @@ export default {
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
           // selectedEmotionEl.style.border = '8px solid #3CA475';
           selectedEmotionEl.style.border = '6px solid #431E9C';
-         document.querySelector('.tenseNervousEmoji').style.fontSize = '70px';
+         document.querySelector('.tenseNervousEmoji').style.fontSize = '72px';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
