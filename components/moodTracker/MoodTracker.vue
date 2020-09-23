@@ -185,38 +185,38 @@ export default {
       switch (e.target.id) {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
-          selectedEmotionEl.style.border = '8px solid #3CA475';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #3CA475';
+          selectedEmotionEl.style.border = '6px solid #431E9C';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
-          selectedEmotionEl.style.border = '8px solid #C76A55';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #C76A55';
+          selectedEmotionEl.style.border = '6px solid #3C1A87';
           break;
         case 'cheerfulHappy':
           this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
-          selectedEmotionEl.style.border = '8px solid #E3BA49';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #E3BA49';
+          selectedEmotionEl.style.border = '6px solid #3C1A87';
           break;
         case 'relaxedCalm':
           this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
-          selectedEmotionEl.style.border = '8px solid #4231CC';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #4231CC';
+          selectedEmotionEl.style.border = '6px solid #3C1A87';
           break;
         case 'gloomySad':
           this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
-          selectedEmotionEl.style.border = '8px solid #202B2B';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #202B2B';
+          selectedEmotionEl.style.border = '6px solid #3C1A87';
           break;
         case 'boredWeary':
           this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
-          selectedEmotionEl.style.border = '8px solid #6B42CC';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #6B42CC';
+          selectedEmotionEl.style.border = '6px solid #3C1A87';
           break;
         case 'irritatedAnnoyed':
           this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
-          selectedEmotionEl.style.border = '8px solid #AE6465';
-          // selectedEmotionEl.style.border = '6px solid #3c1053';
+          // selectedEmotionEl.style.border = '8px solid #AE6465';
+          selectedEmotionEl.style.border = '6px solid #3C1A87';
           break;
       }
 
@@ -368,7 +368,7 @@ export default {
   height: 90px;
   position: absolute;
   border-radius: 50%;
-  top: -3px;
+  top: -2px;
   left: 188px;
   border: 2px solid transparent;
   background-color: transparent;
@@ -392,7 +392,7 @@ export default {
   height: 90px;
   position: absolute;
   border-radius: 50%;
-  top: 91px;
+  top: 89px;
   left: -36px;
   border: 2px solid transparent;
   background-color: transparent;
@@ -405,7 +405,7 @@ export default {
   height: 90px;
   position: absolute;
   border-radius: 50%;
-  left: 188px;
+  left: 187px;
   top: 183px;
   border: 2px solid transparent;
   background-color: transparent;
@@ -417,8 +417,8 @@ export default {
   height: 90px;
   position: absolute;
   border-radius: 50%;
-  left: 3px;
-  top: 183px;
+  left: 2px;
+  top: 182px;
   border: 2px solid transparent;
   background-color: transparent;
   z-index: 99;
