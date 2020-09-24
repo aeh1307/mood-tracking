@@ -53,26 +53,4 @@ function addDecodedIdTokenToRequest(idToken, req) {
     })
 }
 
-/*function fetchUserDataFirestore(user, req) {
-  return admin
-    .firestore()
-    .collection('users')
-    .doc(user.uid)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const user = {
-          name: doc.data().name,
-          email: doc.data().email.toLowerCase(),
-          petName: doc.data().petName,
-          uid: doc.id
-        }
 
-        // Set user request data
-        req.userData = user
-      }
-    })
-    .catch((error) => {
-      console.error(error.message)
-    })
-}*/

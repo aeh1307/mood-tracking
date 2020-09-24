@@ -8,11 +8,13 @@
           <p class="iconCaption">Statistics</p></nuxt-link>
       </div>
 
-      <MoodTracker v-if="showMoodTracker"/>
       <div v-if="!showMoodTracker" class="moodTrackingButton" v-on:click="goToMoodTracking">
         <v-icon class="cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
         <div class="iconCaption">Mood Tracking</div>
       </div>
+      <MoodTracker v-if="showMoodTracker"/>
+
+
       <div class="contactContainer">
       <a href="" class="contact"><img class="messageIcon" src="@/assets/messageIcon.png"/>
         <p class="iconCaption">Contact</p></a>
@@ -57,6 +59,17 @@ export default {
       }
     }
   },
+/* created() {
+    let statisticsButton = document.querySelector('.statisticsContainer');
+    if (this.$route.path === "/") {
+      this.showMoodTracker = true
+      statisticsButton.style.borderBottom = "none";
+    } else  {
+      this.showMoodTracker = false
+      statisticsButton.style.borderBottom = "2px solid white";
+      this.$store.commit("moodtracker/setShowEmotionOverview", false);
+    }
+  },*/
   mounted() {
     let statisticsButton = document.querySelector('.statisticsContainer');
     if (this.$route.path === "/") {

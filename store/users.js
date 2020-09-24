@@ -12,6 +12,21 @@ export const getters = {
   }
 }
 
+function convertFirestoreUserToClientUser(firestoreUser) {
+  return {
+    user_id: firestoreUser.uid,
+    email: firestoreUser.email,
+    refresh_token: firestoreUser.refreshToken
+  }
+}
+
+export const actions = {
+  loginClient(context, firestoreUser) {
+    console.log(firestoreUser);
+    context.commit('setUser', convertFirestoreUserToClientUser(firestoreUser))
+    console.log(convertFirestoreUserToClientUser(firestoreUser));
+  }
+}
 
 export const mutations = {
   setIsLoggedIn(state, boolean) {

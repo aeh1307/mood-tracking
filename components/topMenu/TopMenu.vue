@@ -151,9 +151,9 @@ export default {
       }
     },
     logOut: function () {
-      let store = this.$store;
+      const router = this.$router
       auth.signOut().then(function() {
-        store.commit('users/setIsLoggedIn', false);
+        router.push('/login')
         // Sign-out successful.
       }).catch(function(error) {
         // An error happened.

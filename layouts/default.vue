@@ -1,32 +1,33 @@
 <template>
   <div>
-      <div class="loginComponent" v-if="!isLoggedIn">
-        <Login/>
-      </div>
-      <div v-if="isLoggedIn">
-        <TopMenu/>
-        <nuxt/>
-        <BackgroundImagePicker is="BackgroundImagePicker" v-if="showBackgroundImagePicker"/>
-        <ConfirmationBubble is="ConfirmationBubble" v-if="showConfirmationBubble"/>
-        <FeedbackBubble is="FeedbackBubble" v-if="showFeedbackBubble"/>
-        <MainMenu is="MainMenu"/>
-      </div>
+    <TopMenu/>
+    <nuxt/>
+    <BackgroundImagePicker is="BackgroundImagePicker" v-if="showBackgroundImagePicker"/>
+    <ConfirmationBubble is="ConfirmationBubble" v-if="showConfirmationBubble"/>
+    <FeedbackBubble is="FeedbackBubble" v-if="showFeedbackBubble"/>
+    <MainMenu is="MainMenu"/>
   </div>
 </template>
 <script>
   import { auth, db } from '~/plugins/firebase-client-init';
-  import { getUserFromCookie } from '@/helpers';
   import MainMenu from "~/components/mainMenu/MainMenu";
   import TopMenu from "~/components/topMenu/TopMenu";
   import ConfirmationBubble from "~/components/confirmationBubble/ConfirmationBubble";
   import FeedbackBubble from "~/components/feedbackBubble/FeedbackBubble";
   import BackgroundImagePicker from "~/components/backgroundImagePicker/BackgroundImagePicker";
-  import Login from "~/components/login/Login.Vue";
 
   export default {
+    middleware: 'authenticated',
     beforeCreate() {
-      if (process.client) {
-        db.collection("users").doc(this.$store.getters["users/getUser"].user_id).collection("moodTracking")
+      if (process.server) {
+      } else if (process.client) {
+        let uid = this.$store.getters["users/getUser"].user_id;
+
+        if (auth.currentUser) {
+          uid = auth.currentUser.uid;
+        }
+
+        db.collection("users").doc(uid).collection("moodTracking")
           .orderBy('time').onSnapshot(querySnapshot => {
           this.$store.commit('statistics/emptyMoods');
           let trackedMoods = []
@@ -45,27 +46,12 @@
         })
       }
     },
-    asyncData( {req} ){
-      if(process.client) {
-        auth.currentUser.getIdToken().then(user => {
-          if(user){
-            this.$store.commit('users/setIsLoggedIn', true);
-          }else{
-            this.$store.commit('users/setIsLoggedIn', false);
-          }
-          console.log("client: ", this.isLoggedIn)
-        })
-
-      }
-
-    },
     components: {
       MainMenu,
       TopMenu,
       ConfirmationBubble,
       FeedbackBubble,
       BackgroundImagePicker,
-      Login,
     },
     computed: {
       showConfirmationBubble: { get() {return this.$store.getters['moodtracker/showConfirmationBubble']}},

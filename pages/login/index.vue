@@ -1,23 +1,24 @@
 <template>
-  <div class="login">
-    <v-form class="loginForm" ref="form" v-model="valid">
-      <v-text-field class="emailField" v-model="email" :rules="emailRules" label="Email" required></v-text-field>
-      <v-text-field class="passwordField" v-model="password" type="password" label="Password" required></v-text-field>
-      <v-btn
-        color="black"
-        @click="logIn(email, password)"
-      >
-        Login
-      </v-btn>
-    </v-form>
+    <div class="login">
+      <v-form class="loginForm" ref="form" v-model="valid">
+        <v-text-field class="emailField" v-model="email" :rules="emailRules" label="Email" required></v-text-field>
+        <v-text-field class="passwordField" v-model="password" type="password" label="Password" required></v-text-field>
+        <v-btn
+          color="black"
+          @click="logIn(email, password)"
+        >
+          Login
+        </v-btn>
+      </v-form>
   </div>
 </template>
 
 
 <script>
-import { auth, db } from '~/plugins/firebase-client-init';
+import { auth, db } from '@/plugins/firebase-client-init';
 export default {
   name: 'Login.vue',
+  layout: 'unauthenticated',
   data() {
     return {
       valid: true,
@@ -31,15 +32,9 @@ export default {
   },
   methods: {
     logIn(email, password) {
-      let store = this.$store;
       let router = this.$router
       auth.signInWithEmailAndPassword(email, password).then(response => {
-        console.log(response.user.uid)
-
-
         router.push('/')
-
-        store.commit('users/setIsLoggedIn', true);
       }).catch(function (error) {
         let errorCode = error.code;
         let errorMessage = error.message;
