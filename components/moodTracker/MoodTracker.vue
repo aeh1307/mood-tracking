@@ -1,6 +1,6 @@
 <template>
   <div class="moodTrackerWrapper">
-
+    <SelectMoodInfo v-if="this.showSelectMoodInfo"/>
     <div class="emotionOverview" v-if="showEmotionOverview">
       <div class="touchZones">
         <div id="tenseNervous" class="touchZoneTenseNervous" v-on:click="selectEmotion($event)"></div>
@@ -132,8 +132,13 @@
 
 <script>
 
+import SelectMoodInfo from "@/components/selectMoodInfo/SelectMoodInfo";
+
 export default {
   name: "MoodTracker.vue",
+  components: {
+    SelectMoodInfo,
+  },
   data() {
     return {
       /*      showEmotionOverview: false,*/
@@ -158,6 +163,11 @@ export default {
         return this.$store.getters['moodtracker/showEmotionOverview']
       }
     },
+    showSelectMoodInfo: {
+      get() {
+        return this.$store.getters['moodtracker/showSelectMoodInfo']
+      }
+    },
   },
   mounted() {
     this.$store.commit('moodtracker/setShowConfirmationBubble', false);
@@ -171,15 +181,16 @@ export default {
       this.$store.commit('moodtracker/setShowEmotionOverview', false);
       this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
       this.$store.commit('moodtracker/setEmojiDescription', '');
+      this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
     },
     selectEmotion(e) {
-      document.querySelector('#tenseNervous').style.border = 'none';
+  /*    document.querySelector('#tenseNervous').style.border = 'none';
       document.querySelector('#excitedLively').style.border = 'none';
       document.querySelector('#cheerfulHappy').style.border = 'none';
       document.querySelector('#relaxedCalm').style.border = 'none';
       document.querySelector('#gloomySad').style.border = 'none';
       document.querySelector('#boredWeary').style.border = 'none';
-      document.querySelector('#irritatedAnnoyed').style.border = 'none';
+      document.querySelector('#irritatedAnnoyed').style.border = 'none';*/
 
       document.querySelector('.tenseNervousEmoji').style.fontSize = '55px';
       document.querySelector('.excitedLivelyEmoji').style.fontSize = '55px';
@@ -189,13 +200,20 @@ export default {
       document.querySelector('.boredWearyEmoji').style.fontSize = '55px';
       document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '55px';
 
+
+      /*
+      emoji::after new values'
+      width: 45px;
+  height: 45px;
+  top: 13px;
+  left: 13px;*/
       let selectedEmotionEl = document.querySelector(`#${e.target.id}`);
       switch (e.target.id) {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
           // selectedEmotionEl.style.border = '8px solid #3CA475';
           // selectedEmotionEl.style.border = '6px solid #431E9C';
-         document.querySelector('.tenseNervousEmoji').style.fontSize = '70px';
+          document.querySelector('.tenseNervousEmoji').style.fontSize = '70px';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
@@ -239,12 +257,24 @@ export default {
     openMoodTrackingConfirmationDialog() {
       if (this.emojiDescription !== '') {
         this.$store.commit('moodtracker/setShowConfirmationBubble', true);
+        this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
+      } else {
+        this.$store.commit('moodtracker/setShowSelectMoodInfo', true);
       }
     }
   },
   watch: {
+    //TODO: not working because degreeOfEmotion is not in computed...
     degreeOfEmotion: function (val) {
+
       this.$store.commit('moodtracker/setDegreeOfEmotion', val);
+    },
+    emojiDescription: function (val) {
+      if(val === '' && this.showEmotionOverview){
+        this.$store.commit('moodtracker/setShowSelectMoodInfo', true);
+      } else {
+        this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
+      }
     },
   },
 }

@@ -59,28 +59,37 @@ export default {
   methods: {
     cancelMoodTracking: function() {
       this.$store.commit('moodtracker/setShowConfirmationBubble', false);
+      this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
       this.$store.commit('moodtracker/setEmojiDescription', '');
       this.$store.commit('moodtracker/setNotes', '');
-      document.querySelector('#tenseNervous').style.border = 'none';
+      document.querySelector('.tenseNervousEmoji').style.fontSize = '55px';
+      document.querySelector('.excitedLivelyEmoji').style.fontSize = '55px';
+      document.querySelector('.cheerfulHappyEmoji').style.fontSize = '55px';
+      document.querySelector('.relaxedCalmEmoji').style.fontSize = '55px';
+      document.querySelector('.gloomySadEmoji').style.fontSize = '55px';
+      document.querySelector('.boredWearyEmoji').style.fontSize = '55px';
+      document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '55px';
+
+/*      document.querySelector('#tenseNervous').style.border = 'none';
       document.querySelector('#excitedLively').style.border = 'none';
       document.querySelector('#cheerfulHappy').style.border = 'none';
       document.querySelector('#relaxedCalm').style.border = 'none';
       document.querySelector('#gloomySad').style.border = 'none';
       document.querySelector('#boredWeary').style.border = 'none';
-      document.querySelector('#irritatedAnnoyed').style.border = 'none';
+      document.querySelector('#irritatedAnnoyed').style.border = 'none';*/
 
     },
     confirmMoodTracking: function() {
       this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
       this.$store.commit('moodtracker/setEmojiDescription', '');
       this.$store.commit('moodtracker/setShowEmotionOverview', false);
-      document.querySelector('#tenseNervous').style.border = 'none';
+/*      document.querySelector('#tenseNervous').style.border = 'none';
       document.querySelector('#excitedLively').style.border = 'none';
       document.querySelector('#cheerfulHappy').style.border = 'none';
       document.querySelector('#relaxedCalm').style.border = 'none';
       document.querySelector('#gloomySad').style.border = 'none';
       document.querySelector('#boredWeary').style.border = 'none';
-      document.querySelector('#irritatedAnnoyed').style.border = 'none';
+      document.querySelector('#irritatedAnnoyed').style.border = 'none';*/
 
 
 

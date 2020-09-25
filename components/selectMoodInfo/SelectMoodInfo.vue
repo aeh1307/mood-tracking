@@ -1,9 +1,8 @@
 <template>
-  <div class="reminder">
-    <div class="reminderBubble">
+  <div class="selectMoodInfo">
+    <div class="selectMoodInfoBubble">
       <div class="arrow bottom"></div>
-      You have completed 2/3 parts of the survey.
-      Remember to complete the last part at   http://survey.com
+      Select a mood you want to track first
     </div>
   </div>
 
@@ -11,38 +10,41 @@
 
 <script>
   export default {
-    name: "Reminder.vue",
+    name: "SelectMoodInfo.vue",
   }
 </script>
 
 <style scoped>
 
-  .reminder {
+  .selectMoodInfo {
     display: flex;
     justify-content: center;
+    z-index: 2;
+    position: relative;
   }
-  .reminderBubble{
+  .selectMoodInfoBubble {
     background-color: #f8f8f8;
     border: 1px solid #c8c8c8;
     border-radius: 5px;
-    width: 250px;
+    width: 150px;
     padding: 10px;
     position: absolute;
-    height: 80px;
+    height: 60px;
     font-size: 14px;
     font-family: 'Manrope', sans-serif;
-    top: 10%;
+    bottom: 130px;
+    text-align: center;
   }
 
- /* .reminderBubble .arrow {
+  .selectMoodInfoBubble .arrow {
     border-style: solid;
     position: absolute;
-  }*/
+  }
   .bottom {
-    border-color: #878787 transparent transparent transparent;
+    border-color: #fefefe transparent transparent transparent;
     border-width: 8px 8px 0px 8px;
     bottom: -8px;
-    left:125px;
+    left: 75px;
   }
   /*.bottom:after {
     border-color: #f8f8f8 transparent transparent transparent;

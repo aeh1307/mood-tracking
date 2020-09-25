@@ -2,9 +2,11 @@ export const state = () => ({
   showConfirmationBubble: false,
   showFeedbackBubble: false,
   showEmotionOverview: false,
+  showSelectMoodInfo: false,
   emojiDescription: 'Cheerful/Happy',
   degreeOfEmotion: 4,
   notes: '',
+
 })
 
 export const getters = {
@@ -16,6 +18,9 @@ export const getters = {
   },
   showEmotionOverview: state => {
     return state.showEmotionOverview
+  },
+  showSelectMoodInfo: state => {
+    return state.showSelectMoodInfo
   },
   emojiDescription: state => {
     return state.emojiDescription
@@ -37,6 +42,9 @@ export const mutations = {
   },
   setShowEmotionOverview (state, boolean) {
     state.showEmotionOverview = boolean
+  },
+  setShowSelectMoodInfo (state, boolean) {
+    state.showSelectMoodInfo = boolean
   },
   setEmojiDescription (state, string) {
     state.emojiDescription = string
