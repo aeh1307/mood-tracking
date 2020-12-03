@@ -10,7 +10,9 @@ The app was at this stadium web based, in order to easily get access on both iOS
 
 It is important to note that the app has known bugs. These were dealt with, and the app was improved when 
 intergrating it into an open soruce project started by Suresh KUMAR Mukhiya (Phd) at Bergen University College;
+
 Frontend: https://github.com/sureshHARDIYA/psycometric-mobile
+
 Backend: https://github.com/sureshHARDIYA/psycometric
 
 To integrate the app in the open soruce project, it was rewritten in react native. 
