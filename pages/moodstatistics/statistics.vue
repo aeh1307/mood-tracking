@@ -20,12 +20,6 @@ export default {
       this.$store.commit('statistics/setShowStat', false);
     },
   },
-  fetch() {
-
-    /*      let element = document.querySelector('.statistics');
-          element.style.backgroundImage = `url('${this.backgroundImagePath}')`;*/
-
-  },
   mounted() {
     this.calendarView()
   }
@@ -49,7 +43,6 @@ export default {
 .statistics::after {
   content: "";
   background: linear-gradient(to right, #24C6DC, #514A9D);
-  /*background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
   opacity: 0.4;
   top: 0;
   left: 0;
@@ -58,5 +51,4 @@ export default {
   position: absolute;
   z-index: -1;
 }
-
 </style>

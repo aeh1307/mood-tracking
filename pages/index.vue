@@ -1,26 +1,20 @@
 <template>
   <div class="mainPage">
-      <BackgroundImage/>
+    <BackgroundImage/>
   </div>
 
-  </template>
+</template>
 <script>
-  import BackgroundImage from "~/components/backgroundImage/BackgroundImage";
-  import MapMarker from "../components/mapMarker/MapMarker";
-  export default {
-    components: {
-      BackgroundImage,
-      MapMarker,
-    },
-    mounted() {
+import BackgroundImage from "~/components/backgroundImage/BackgroundImage";
 
-    },
-  }
+export default {
+  components: {
+    BackgroundImage,
+  },
+}
 </script>
 
-
 <style scoped>
-
 .mainPage {
   position: absolute;
   overflow: hidden;

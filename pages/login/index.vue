@@ -1,21 +1,22 @@
 <template>
-    <div class="login">
-      <v-form class="loginForm" ref="form" v-model="valid">
-        <v-text-field class="emailField" v-model="email" :rules="emailRules" label="Email" required></v-text-field>
-        <v-text-field class="passwordField" v-model="password" type="password" label="Password" required></v-text-field>
-        <v-btn
-          color="black"
-          @click="logIn(email, password)"
-        >
-          Login
-        </v-btn>
-      </v-form>
+  <div class="login">
+    <v-form class="loginForm" ref="form" v-model="valid">
+      <v-text-field class="emailField" v-model="email" :rules="emailRules" label="Email" required></v-text-field>
+      <v-text-field class="passwordField" v-model="password" type="password" label="Password" required></v-text-field>
+      <v-btn
+        color="black"
+        @click="logIn(email, password)"
+      >
+        Login
+      </v-btn>
+    </v-form>
   </div>
 </template>
 
 
 <script>
-import { auth, db } from '@/plugins/firebase-client-init';
+import {auth, db} from '@/plugins/firebase-client-init';
+
 export default {
   name: 'Login.vue',
   layout: 'unauthenticated',
@@ -58,7 +59,6 @@ export default {
 .login::after {
   content: "";
   background: linear-gradient(to right, #24C6DC, #514A9D);
-/*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
   opacity: 0.4;
   top: 0;
   left: 0;

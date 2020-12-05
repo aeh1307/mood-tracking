@@ -1,43 +1,13 @@
 <template>
   <div class="topMenu">
     <v-container class="topMenuContainer">
-
-<!--      <div class="custom-select" v-if="isStatisticPage">
-        <select id="selectInput" class="select-items" @change="switchPage" v-model="selectedPage">
-          <option class="itemOptions" value="Calendar">Calendar</option>
-          <option class="itemOptions" value="Details">Details</option>
-          <option class="itemOptions" value="Stats">Stats</option>
-          <option class="itemOptions" value="Achievements">Achievements</option>
-        </select>
-      </div>-->
-
       <div class="calendar" v-if="isStatisticPage && this.selectedPage === 'Calendar'">Calendar</div>
       <div class="calendar" v-if="isStatisticPage && this.selectedPage === 'Details'">Details</div>
-<!--      <div class="custom-select text-white" v-if="isStatisticPage">
-        <v-app color="transparent" class="transparent text-white">
-          <v-card class="vCard text-white" color="transparent">
-            <v-select
-              @change="this.switchPage"
-              v-model="selectedPage"
-              class="custom text-white"
-              :items="statPages"
-              color="white"
-              item-text="white"
-              :width="100"
-            >
-            </v-select>
-          </v-card>
-        </v-app>
-      </div>-->
       <div class="hamburgerMenu" v-on:click="openMenu">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
         <div class="menuOptions">
-        <!--  <a class="constraint">Profile settings</a>
-          <a class="constraint">General settings</a>
-          <a class="constraint">Goals</a>
-          <a class="constraint">Reminders</a>-->
           <a v-on:click="chooseBackground">Customize Background Photo</a>
           <a v-on:click="logOut">Log Out</a>
         </div>
@@ -47,7 +17,8 @@
   </div>
 </template>
 <script>
-import { auth } from '~/plugins/firebase-client-init';
+import {auth} from '~/plugins/firebase-client-init';
+
 export default {
   name: 'TopMenu.vue',
   computed: {
@@ -74,14 +45,6 @@ export default {
         return this.$store.getters['statistics/showCalendarMoodDetails']
       }
     },
-   /* selectedPage: {
-      get() {
-        return this.$store.getters['statistics/selectedPage']
-      },
-      set(value){
-        this.$store.commit('statistics/setSelectedPage', value);
-      }
-    },*/
   },
   data() {
     return {
@@ -100,7 +63,7 @@ export default {
       let dropdown = this.$el.querySelector('.menuOptions');
       hamburger.classList.toggle("change");
 
-      if(!this.showBackgroundImagePicker) {
+      if (!this.showBackgroundImagePicker) {
         if (dropdown.style.display === "block") {
           dropdown.style.display = "none";
         } else {
@@ -108,11 +71,11 @@ export default {
         }
       }
 
-      if(this.showBackgroundImagePicker) {
+      if (this.showBackgroundImagePicker) {
         hamburger.classList.toggle("change");
       }
 
-      if(this.showBackgroundImagePicker && hamburger.classList.contains('change')) {
+      if (this.showBackgroundImagePicker && hamburger.classList.contains('change')) {
         /*dropdown.style.display = "none";
         this.$store.commit('settings/setShowBackgroundImagePicker', false);
         hamburger.classList.toggle("change");*/
@@ -152,29 +115,29 @@ export default {
     },
     logOut: function () {
       const router = this.$router
-      auth.signOut().then(function() {
+      auth.signOut().then(function () {
         router.push('/login')
         // Sign-out successful.
-      }).catch(function(error) {
+      }).catch(function (error) {
         // An error happened.
       });
     }
   },
   watch: {
-    selectedPage: function (){
+    selectedPage: function () {
       let element = document.getElementById('selectInput');
       element.value = this.selectedPage;
       this.switchPage();
     },
-      $route: function() {
-        let hamburgerMenu = document.querySelector('.hamburgerMenu');
-        if (this.$route.path === "/") {
-          hamburgerMenu.style.display = "flex";
-        } else  {
-          hamburgerMenu.style.display = "none";
-        }
+    $route: function () {
+      let hamburgerMenu = document.querySelector('.hamburgerMenu');
+      if (this.$route.path === "/") {
+        hamburgerMenu.style.display = "flex";
+      } else {
+        hamburgerMenu.style.display = "none";
       }
-    },
+    }
+  },
 }
 </script>
 <style scoped>
@@ -182,7 +145,6 @@ export default {
   position: fixed;
   top: 0;
   background: linear-gradient(to right, #24C6DC 0%, #514A9D 100%);
-/*  background: linear-gradient(to right, #ad5389 0%, #3c1053 100%);*/
   min-width: 100%;
   max-width: 100%;
   height: 55px;
@@ -256,75 +218,6 @@ export default {
   font-size: 18px;
   font-family: 'Manrope', sans-serif;
 }
-
-
-/*.theme--light.v-select .v-select__selection--comma {
-  color: white !important;
-}*/
-
-/*.custom-select {
- !* min-width: 250px;*!
-  margin: 0 auto;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  font-family: 'Manrope', sans-serif;
-  position: relative;
-}
-
-.custom-select select {
-  color: #fefefe;
-  background-color: transparent;
-  text-align-last: center;
-}
-
-#selectInput:focus {
-  outline: none;
-}
-
-!* Style the arrow inside the select element: *!
-#selectInput:after {
-  position: absolute;
-  content: "";
-  top: 19px;
-  right: 50px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  !*border-color: #fff transparent transparent transparent;*!
-}
-!* Point the arrow upwards when the select box is open (active): *!
-#selectInput .select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
-
-
-.select-selected {
-  background-color: #5a5b60;
-}
-
-.itemOptions {
-  background-color: white;
-  color: black;
-}
-
-.select-items  {
-  text-align: center;
-}
-.constraint {
-  background-color: #c8c8ca;
-}
-
-.transparent {
-  background-color: transparent !important;
-  border-style: none !important;
-}
-
-.vCard {
-  box-shadow: none;
-}*/
-
 </style>
 
 

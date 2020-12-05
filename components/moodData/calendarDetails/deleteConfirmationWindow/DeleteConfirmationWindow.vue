@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import { auth, db } from '~/plugins/firebase-client-init';
+import {auth, db} from '~/plugins/firebase-client-init';
+
 export default {
   name: 'DeleteConfirmationWindow.vue',
   computed: {

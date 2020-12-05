@@ -1,6 +1,5 @@
 <template>
   <div class="mainMenu">
-<!--    <EmojiDescription/>-->
     <div class="navigation">
       <div class="statisticsContainer">
         <nuxt-link to="/moodstatistics/statistics" class="statistics">
@@ -59,17 +58,6 @@ export default {
       }
     }
   },
-/* created() {
-    let statisticsButton = document.querySelector('.statisticsContainer');
-    if (this.$route.path === "/") {
-      this.showMoodTracker = true
-      statisticsButton.style.borderBottom = "none";
-    } else  {
-      this.showMoodTracker = false
-      statisticsButton.style.borderBottom = "2px solid white";
-      this.$store.commit("moodtracker/setShowEmotionOverview", false);
-    }
-  },*/
   mounted() {
     let statisticsButton = document.querySelector('.statisticsContainer');
     if (this.$route.path === "/") {
@@ -88,7 +76,6 @@ export default {
 .mainMenu {
   position: fixed;
   background: linear-gradient(to right, #24c6dc, #514A9D);
-/*  background: linear-gradient(to right, #ad5389, #3c1053);*/
   min-width: 100%;
   max-width: 100%;
   bottom: 0;
@@ -154,7 +141,5 @@ export default {
   border-right: 1px solid #F5F5F5;
   padding: 10px;
 }
-
-
 
 </style>

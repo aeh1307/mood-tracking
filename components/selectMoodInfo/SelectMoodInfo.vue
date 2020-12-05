@@ -9,53 +9,43 @@
 </template>
 
 <script>
-  export default {
-    name: "SelectMoodInfo.vue",
-  }
+export default {
+  name: "SelectMoodInfo.vue",
+}
 </script>
 
 <style scoped>
 
-  .selectMoodInfo {
-    display: flex;
-    justify-content: center;
-    z-index: 2;
-    position: relative;
-  }
-  .selectMoodInfoBubble {
-    background-color: #f8f8f8;
-    border: 1px solid #c8c8c8;
-    border-radius: 5px;
-    width: 150px;
-    padding: 10px;
-    position: absolute;
-    height: 60px;
-    font-size: 14px;
-    font-family: 'Manrope', sans-serif;
-    bottom: 130px;
-    text-align: center;
-  }
+.selectMoodInfo {
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
 
-  .selectMoodInfoBubble .arrow {
-    border-style: solid;
-    position: absolute;
-  }
-  .bottom {
-    border-color: #fefefe transparent transparent transparent;
-    border-width: 8px 8px 0px 8px;
-    bottom: -8px;
-    left: 75px;
-  }
-  /*.bottom:after {
-    border-color: #f8f8f8 transparent transparent transparent;
-    border-style: solid;
-    border-width: 7px 7px 0px 7px;
-    bottom: 1px;
-    content: "";
-    position: absolute;
-    left: -3px;
-  }*/
+.selectMoodInfoBubble {
+  background-color: #f8f8f8;
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
+  width: 150px;
+  padding: 10px;
+  position: absolute;
+  height: 60px;
+  font-size: 14px;
+  font-family: 'Manrope', sans-serif;
+  bottom: 130px;
+  text-align: center;
+}
 
+.selectMoodInfoBubble .arrow {
+  border-style: solid;
+  position: absolute;
+}
 
-
+.bottom {
+  border-color: #fefefe transparent transparent transparent;
+  border-width: 8px 8px 0px 8px;
+  bottom: -8px;
+  left: 75px;
+}
 </style>

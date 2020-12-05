@@ -11,6 +11,7 @@ import MoodTable from "@/components/moodData/calendarDetails/moodTable/MoodTable
 import DeleteConfirmationWindow
   from "@/components/moodData/calendarDetails/deleteConfirmationWindow/DeleteConfirmationWindow";
 import EditMoodWindow from "@/components/moodData/calendarDetails/editMoodWindow/EditMoodWindow";
+
 export default {
   name: 'CalendarDetails.vue',
   components: {
@@ -19,8 +20,16 @@ export default {
     MoodTable
   },
   computed: {
-    showDeleteConfirmationWindow: { get(){ return this.$store.getters['statistics/showDeleteConfirmationWindow'] } },
-    showEditMoodWindow: { get(){ return this.$store.getters['statistics/showEditMoodWindow'] }},
+    showDeleteConfirmationWindow: {
+      get() {
+        return this.$store.getters['statistics/showDeleteConfirmationWindow']
+      }
+    },
+    showEditMoodWindow: {
+      get() {
+        return this.$store.getters['statistics/showEditMoodWindow']
+      }
+    },
   },
 }
 

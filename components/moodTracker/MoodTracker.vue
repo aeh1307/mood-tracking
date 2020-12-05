@@ -22,25 +22,21 @@
             <div class="circlePart1 circlePart">
               <v-icon class="emoji tenseNervousEmoji" @click="closeEmotionOverview()">fas fa-frown-open</v-icon>
             </div>
-            <!--  <div class="emojiCaptions">Tense/Nervous</div>-->
           </li>
           <li class="emojiListElement">
             <div class="circlePart3 circlePart">
               <v-icon class="emoji excitedLivelyEmoji">fas fa-grin-stars</v-icon>
             </div>
-            <!--          <div class="emojiCaptions">Excited/Lively</div>-->
           </li>
           <li class="emojiListElement">
             <div class="circlePart4 circlePart">
               <v-icon class="emoji cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
             </div>
-            <!--          <div class="emojiCaptions">Cheerful/Happy</div>-->
           </li>
           <li class="emojiListElement">
             <div class="circlePart7 circlePart">
               <v-icon class="emoji relaxedCalmEmoji">fas fa-smile-beam</v-icon>
             </div>
-            <!--   <div class="emojiCaptions">Relaxed/Calm</div>-->
           </li>
           <li class="emojiListElement">
             <div class="circlePart8 circlePart">
@@ -50,23 +46,16 @@
             <div class="circlePart6 circlePart">
               <v-icon class="emoji gloomySadEmoji">fas fa-frown</v-icon>
             </div>
-            <!--          <div class="emojiCaptions">Gloomy/Sad</div>-->
           </li>
           <li class="emojiListElement">
             <div class="circlePart5 circlePart">
               <v-icon class="emoji boredWearyEmoji">fas fa-meh</v-icon>
             </div>
-            <!--
-                      <div class="emojiCaptions">Bored/Weary</div>
-            -->
           </li>
           <li class="emojiListElement">
             <div class="circlePart2 circlePart">
               <v-icon class="emoji irritatedAnnoyedEmoji">fas fa-angry</v-icon>
             </div>
-            <!--
-                      <div class="emojiCaptions">Irritated/Annoyed</div>
-            -->
           </li>
         </ul>
       </div>
@@ -74,12 +63,10 @@
       <div class="currentTrackingInfo">
         <div v-if="this.emojiDescription === ''" class="selectedEmotion">No mood selected</div>
         <div v-if="this.emojiDescription !== ''" class="selectedEmotion">{{ this.emojiDescription }}</div>
-        <!--        <div class="degreeTracker">-->
         <v-app class="sliderWrapper">
           <v-container fluid>
             <v-row>
               <v-col cols="15" class="colDegree">
-                <!--     <v-subheader class="sliderLabel">Degree/Intensity:</v-subheader>-->
                 <v-slider
                   v-model="degreeOfEmotion"
                   :thumb-size="24"
@@ -141,10 +128,6 @@ export default {
   },
   data() {
     return {
-      /*      showEmotionOverview: false,*/
-      /* ex1: {label: 'color', val: 25, color: '#3c1053'},
-       ex2: {label: 'track-color', val: 75, color: "white"},
-       ex3: {label: 'thumb-color', val: 50, color: '#3c1053'},*/
       ex1: {label: 'color', val: 25, color: '#514A9D'},
       ex2: {label: 'track-color', val: 75, color: "white"},
       ex3: {label: 'thumb-color', val: 50, color: '#514A9D'},
@@ -184,13 +167,13 @@ export default {
       this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
     },
     selectEmotion(e) {
-  /*    document.querySelector('#tenseNervous').style.border = 'none';
-      document.querySelector('#excitedLively').style.border = 'none';
-      document.querySelector('#cheerfulHappy').style.border = 'none';
-      document.querySelector('#relaxedCalm').style.border = 'none';
-      document.querySelector('#gloomySad').style.border = 'none';
-      document.querySelector('#boredWeary').style.border = 'none';
-      document.querySelector('#irritatedAnnoyed').style.border = 'none';*/
+      /*    document.querySelector('#tenseNervous').style.border = 'none';
+          document.querySelector('#excitedLively').style.border = 'none';
+          document.querySelector('#cheerfulHappy').style.border = 'none';
+          document.querySelector('#relaxedCalm').style.border = 'none';
+          document.querySelector('#gloomySad').style.border = 'none';
+          document.querySelector('#boredWeary').style.border = 'none';
+          document.querySelector('#irritatedAnnoyed').style.border = 'none';*/
 
       document.querySelector('.tenseNervousEmoji').style.fontSize = '55px';
       document.querySelector('.excitedLivelyEmoji').style.fontSize = '55px';
@@ -270,7 +253,7 @@ export default {
       this.$store.commit('moodtracker/setDegreeOfEmotion', val);
     },
     emojiDescription: function (val) {
-      if(val === '' && this.showEmotionOverview){
+      if (val === '' && this.showEmotionOverview) {
         this.$store.commit('moodtracker/setShowSelectMoodInfo', true);
       } else {
         this.$store.commit('moodtracker/setShowSelectMoodInfo', false);

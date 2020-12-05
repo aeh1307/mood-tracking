@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <!-- TODO: remove persistent for dialog box to close when clicking outside-->
     <v-dialog v-model="dialog" max-width="320" v-click-outside="this.closeDetails">
       <v-card class="dialogCard" light height="500">
         <v-toolbar elevation="0">
@@ -18,7 +17,6 @@
             <thead class="tableHeader">
             <td id="emotionHeader" class="tableHeaderColumnNames">Emotion</td>
             <td id="degreeHeader" class="tableHeaderColumnNames">Degree</td>
-            <!--    <td id="timeHeader" class="tableHeaderColumnNames">Time</td>-->
             </thead>
 
             <div class="noTrackedMoodsText" v-if="filteredMoods.length === 0">
@@ -35,7 +33,6 @@
               </td>
               <td id="emotionRow" class="tableRowCells">
                 <b class="emotionText">{{ filteredMood.emotion }}</b>
-                <!--  <div class="viewNotes" v-on:click="viewNotes(filteredMood)">View notes</div>-->
                 <div> {{
                     ('0' + new Date(filteredMood.time).getHours()).toString()
                       .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
@@ -44,14 +41,8 @@
 
               </td>
               <td id="degreeRow" class="tableRowCells">{{ filteredMood.degreeOfEmotion }}</td>
-              <!--   <td id="timeRow" class="tableRowCells">{{
-                     ('0' + new Date(filteredMood.time).getHours()).toString()
-                       .slice(-2) + ':' + (new Date(filteredMood.time).getMinutes().toString() + '0').substr(0, 2)
-                   }}
-                 </td>-->
               <div class="actionSection">
                 <v-icon class="trashIcon" v-on:click="deleteMood(filteredMood.id)">far fa-trash-alt</v-icon>
-                <!--    <v-icon class="editIcon" v-on:click="openEditMoodWindow(filteredMood)">far fa-edit</v-icon>-->
               </div>
             </tr>
           </table>
@@ -109,17 +100,6 @@ export default {
       selectedMoodEl.style.border = '1px solid #3CBB75';
       selectedMoodEl.style.backgroundColor = '#b1f8cc';
     },
-
-    /*    viewNotes: function (filterMood) {
-          console.log(filterMood.notes)
-          if (filterMood.notes !== '') {
-            console.log("Notes");
-          }
-          if (filterMood.notes === '') {
-            console.log("NO notes");
-          }
-
-        },*/
     findEmojiIcon(selectedDateMood) {
       let emojiIconObj = {};
       switch (selectedDateMood.emotion) {
@@ -196,7 +176,6 @@ export default {
   flex-direction: column;
   background-color: white;
   overflow: hidden;
-  /*  min-width: 100vw;*/
 }
 
 .selectedDate {
@@ -211,15 +190,6 @@ export default {
   font-weight: 600;
   color: #5a5b60;
   padding-left: 35px;
-  /*  width: 300px;*/
-}
-
-.tableSection {
-  /*  width: 300px;*/
-}
-
-.tableHeaderColumnNames {
-  /*min-width: 100px;*/
 }
 
 .tableRow {
@@ -272,20 +242,10 @@ export default {
   padding-right: 20px;
 }
 
-#degreeHeader{
+#degreeHeader {
   min-width: 110px;
   text-align: center;
 }
-
-/*
-#timeRow, #timeHeader {
-  min-width: 65px;
-}
-
-#timeRow {
-  padding-left: 10px;
-}
-*/
 
 .actionSection {
   display: flex;
@@ -293,15 +253,12 @@ export default {
   padding-right: 10px;
 }
 
-.trashIcon, .editIcon {
+.trashIcon {
   color: #454444;
   font-size: 18px;
   padding: 4px;
 }
 
-.viewNotes {
-  padding-top: 3px;
-}
 
 @media only screen and (max-width: 330px) {
   .dialogCard {
