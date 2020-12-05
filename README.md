@@ -9,7 +9,7 @@ The app was built in Vue.js using Nuxt.js for server side rendering, and Firebas
 The app was at this stadium web based, in order to easily get access on both iOS and Android mobile phones in early testing.
 
 It is important to note that the app has known bugs. These were dealt with, and the app was improved when 
-integrating it into an open source project started by Suresh KUMAR Mukhiya (Phd) at Bergen University College.
+integrating it into an open source project started by [Suresh KUMAR Mukhiya](https://github.com/sureshHARDIYA) (Ph.D) at Høgskulen på Vestlandet.
 
 To integrate the app into the open source project, all frontend code was rewritten in react native, and 
 backend was extended with new modules to support the actions of tracking, retrieving, and deleting mood in the app.
