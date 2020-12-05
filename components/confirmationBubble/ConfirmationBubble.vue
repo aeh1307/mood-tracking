@@ -61,26 +61,19 @@ export default {
       this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
       this.$store.commit('moodtracker/setEmojiDescription', '');
       this.$store.commit('moodtracker/setNotes', '');
-      document.querySelector('.tenseNervousEmoji').style.fontSize = '55px';
-      document.querySelector('.excitedLivelyEmoji').style.fontSize = '55px';
-      document.querySelector('.cheerfulHappyEmoji').style.fontSize = '55px';
-      document.querySelector('.relaxedCalmEmoji').style.fontSize = '55px';
-      document.querySelector('.gloomySadEmoji').style.fontSize = '55px';
-      document.querySelector('.boredWearyEmoji').style.fontSize = '55px';
-      document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '55px';
     },
     confirmMoodTracking: function () {
-      this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
-      this.$store.commit('moodtracker/setEmojiDescription', '');
-      this.$store.commit('moodtracker/setShowEmotionOverview', false);
-
-      this.$store.commit('moodtracker/setShowConfirmationBubble', false)
-      this.$store.commit('moodtracker/setShowFeedbackBubble', true)
       db.collection('users').doc(auth.currentUser.uid).collection('moodTracking').add({
         emotion: this.emojiDescription, degreeOfEmotion: this.degreeOfEmotion, time: Date.now(), notes: this.notes,
       }).then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
       })
+      this.$store.commit('moodtracker/setDegreeOfEmotion', 4);
+      this.$store.commit('moodtracker/setEmojiDescription', '');
+
+      this.$store.commit('moodtracker/setShowEmotionOverview', false);
+      this.$store.commit('moodtracker/setShowConfirmationBubble', false)
+      this.$store.commit('moodtracker/setShowFeedbackBubble', true)
       setTimeout(() => {
         this.$store.commit('moodtracker/setShowFeedbackBubble', false);
       }, 3000)

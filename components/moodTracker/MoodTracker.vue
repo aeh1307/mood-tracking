@@ -167,14 +167,6 @@ export default {
       this.$store.commit('moodtracker/setShowSelectMoodInfo', false);
     },
     selectEmotion(e) {
-      /*    document.querySelector('#tenseNervous').style.border = 'none';
-          document.querySelector('#excitedLively').style.border = 'none';
-          document.querySelector('#cheerfulHappy').style.border = 'none';
-          document.querySelector('#relaxedCalm').style.border = 'none';
-          document.querySelector('#gloomySad').style.border = 'none';
-          document.querySelector('#boredWeary').style.border = 'none';
-          document.querySelector('#irritatedAnnoyed').style.border = 'none';*/
-
       document.querySelector('.tenseNervousEmoji').style.fontSize = '55px';
       document.querySelector('.excitedLivelyEmoji').style.fontSize = '55px';
       document.querySelector('.cheerfulHappyEmoji').style.fontSize = '55px';
@@ -183,59 +175,36 @@ export default {
       document.querySelector('.boredWearyEmoji').style.fontSize = '55px';
       document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '55px';
 
-
-      /*
-      emoji::after new values'
-      width: 45px;
-  height: 45px;
-  top: 13px;
-  left: 13px;*/
-      let selectedEmotionEl = document.querySelector(`#${e.target.id}`);
       switch (e.target.id) {
         case 'tenseNervous':
           this.$store.commit('moodtracker/setEmojiDescription', 'Tense/Nervous');
-          // selectedEmotionEl.style.border = '8px solid #3CA475';
-          // selectedEmotionEl.style.border = '6px solid #431E9C';
           document.querySelector('.tenseNervousEmoji').style.fontSize = '70px';
           break;
         case 'excitedLively':
           this.$store.commit('moodtracker/setEmojiDescription', 'Excited/Lively');
-          // selectedEmotionEl.style.border = '8px solid #C76A55';
-          // selectedEmotionEl.style.border = '6px solid #3C1A87';
           document.querySelector('.excitedLivelyEmoji').style.fontSize = '70px';
           break;
         case 'cheerfulHappy':
           this.$store.commit('moodtracker/setEmojiDescription', 'Cheerful/Happy');
-          // selectedEmotionEl.style.border = '8px solid #E3BA49';
-          // selectedEmotionEl.style.border = '6px solid #3C1A87';
           document.querySelector('.cheerfulHappyEmoji').style.fontSize = '70px';
           break;
         case 'relaxedCalm':
           this.$store.commit('moodtracker/setEmojiDescription', 'Relaxed/Calm');
-          // selectedEmotionEl.style.border = '8px solid #4231CC';
-          // selectedEmotionEl.style.border = '6px solid #3C1A87';
           document.querySelector('.relaxedCalmEmoji').style.fontSize = '70px';
           break;
         case 'gloomySad':
           this.$store.commit('moodtracker/setEmojiDescription', 'Gloomy/Sad');
-          // selectedEmotionEl.style.border = '8px solid #202B2B';
-          // selectedEmotionEl.style.border = '6px solid #3C1A87';
           document.querySelector('.gloomySadEmoji').style.fontSize = '70px';
           break;
         case 'boredWeary':
           this.$store.commit('moodtracker/setEmojiDescription', 'Bored/Weary');
-          // selectedEmotionEl.style.border = '8px solid #6B42CC';
-          // selectedEmotionEl.style.border = '6px solid #3C1A87';
           document.querySelector('.boredWearyEmoji').style.fontSize = '70px';
           break;
         case 'irritatedAnnoyed':
           this.$store.commit('moodtracker/setEmojiDescription', 'Irritated/Annoyed');
-          // selectedEmotionEl.style.border = '8px solid #AE6465';
-          // selectedEmotionEl.style.border = '6px solid #3C1A87';
           document.querySelector('.irritatedAnnoyedEmoji').style.fontSize = '70px';
           break;
       }
-
     },
     openMoodTrackingConfirmationDialog() {
       if (this.emojiDescription !== '') {

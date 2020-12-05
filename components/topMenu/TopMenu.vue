@@ -30,6 +30,11 @@ export default {
         return this.$store.getters['settings/showBackgroundImagePicker']
       }
     },
+    showMenuOptions: {
+      get() {
+        return this.$store.getters['settings/showMenuOptions']
+      }
+    },
     showCalendar: {
       get() {
         return this.$store.getters['statistics/showCalendar']
@@ -62,23 +67,10 @@ export default {
       let hamburger = this.$el.querySelector('.hamburgerMenu');
       let dropdown = this.$el.querySelector('.menuOptions');
       hamburger.classList.toggle("change");
-
-      if (!this.showBackgroundImagePicker) {
-        if (dropdown.style.display === "block") {
-          dropdown.style.display = "none";
-        } else {
-          dropdown.style.display = "block";
-        }
-      }
-
-      if (this.showBackgroundImagePicker) {
-        hamburger.classList.toggle("change");
-      }
-
-      if (this.showBackgroundImagePicker && hamburger.classList.contains('change')) {
-        /*dropdown.style.display = "none";
-        this.$store.commit('settings/setShowBackgroundImagePicker', false);
-        hamburger.classList.toggle("change");*/
+      if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+      } else {
+        dropdown.style.display = "block";
       }
     },
     chooseBackground: function () {

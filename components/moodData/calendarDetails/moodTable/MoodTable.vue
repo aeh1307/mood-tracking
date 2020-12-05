@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-dialog v-model="dialog" max-width="320" v-click-outside="this.closeDetails">
+    <v-dialog v-model="dialog" persistent max-width="320">
       <v-card class="dialogCard" light height="500">
         <v-toolbar elevation="0">
           <v-btn icon dark @click="this.closeDetails">
@@ -81,24 +81,10 @@ export default {
   methods: {
     deleteMood: function (docId) {
       this.$store.commit('statistics/setShowDeleteConfirmationWindow', true);
-      this.$store.commit('statistics/setShowEditMoodWindow', false);
       this.$store.commit('statistics/setSelectedId', docId);
       let selectedMoodEl = document.getElementById(this.selectedId);
       selectedMoodEl.style.border = '1px solid #DE6465';
       selectedMoodEl.style.backgroundColor = '#f5b1b2';
-    },
-    openEditMoodWindow: function (selectedDateMood) {
-      this.$store.commit('statistics/setShowEditMoodWindow', true);
-      this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
-      this.$store.commit('statistics/setSelectedId', selectedDateMood.id);
-      this.$store.commit('statistics/setSelectedDegree', selectedDateMood.degreeOfEmotion); //number
-      this.$store.commit('statistics/setSelectedEmotion', selectedDateMood.emotion); // string
-      this.$store.commit('statistics/setSelectedTime', ('0' + new Date(selectedDateMood.time).getHours()).toString()
-        .slice(-2) + ':' + (new Date(selectedDateMood.time).getMinutes().toString() + '0').substr(0, 2)); // string
-
-      let selectedMoodEl = document.getElementById(this.selectedId);
-      selectedMoodEl.style.border = '1px solid #3CBB75';
-      selectedMoodEl.style.backgroundColor = '#b1f8cc';
     },
     findEmojiIcon(selectedDateMood) {
       let emojiIconObj = {};
@@ -139,14 +125,16 @@ export default {
       let selectedDay = this.selectedDate[2]
 
       this.filteredMoods = this.moods.filter(trackedMood => {
-        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
+        let dateFromDB = new Date(trackedMood.time).toString().split(" ");
         let trackedDay = dateFromDB[2]
-        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
+        let trackedMonth = '' + (new Date(trackedMood.time).getMonth() + 1);
+        if (trackedMonth.length < 2) {
+          trackedMonth = '0' + trackedMonth
+        }
         let trackedYear = dateFromDB[3]
 
         return (trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay);
       })
-
     },
     closeDetails: function () {
       this.dialog = false;

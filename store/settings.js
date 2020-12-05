@@ -5,19 +5,19 @@ export const state = () => ({
 
 export const getters = {
   backgroundImagePath: state => {
-   return state.backgroundImagePath;
- },
+    return state.backgroundImagePath;
+  },
   showBackgroundImagePicker: state => {
     return state.showBackgroundImagePicker
   },
 }
 
 export const mutations = {
-  setBackgroundImagePath(state, string){
+  setBackgroundImagePath(state, string) {
     state.backgroundImagePath = string;
   },
-  setShowBackgroundImagePicker(state, boolean){
-  state.showBackgroundImagePicker = boolean;
+  setShowBackgroundImagePicker(state, boolean) {
+    state.showBackgroundImagePicker = boolean;
   },
 }
 

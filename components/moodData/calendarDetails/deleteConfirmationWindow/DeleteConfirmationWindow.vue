@@ -1,7 +1,7 @@
 <template>
   <div class="flexWrapper">
     <v-app>
-      <v-dialog v-model="dialog" persistent max-width="260">
+      <v-dialog v-model="dialog" max-width="260">
         <v-card class="dialogCard" light min-height="180">
           <div class="informationText">
             Are you sure you want to delete the tracked mood?
@@ -52,10 +52,10 @@ export default {
       this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
     },
     cancelMoodDeletion: function () {
-      this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
       let selectedMoodEl = document.getElementById(this.selectedId);
       selectedMoodEl.style.border = '1px solid #e3e3e3';
       selectedMoodEl.style.backgroundColor = 'white';
+      this.$store.commit('statistics/setShowDeleteConfirmationWindow', false);
     },
   },
 }

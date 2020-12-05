@@ -118,7 +118,6 @@ export default {
     // Shows a overview over the different moods that are tracked on the date the user select in the calendar.
     // TODO: separate switch into own method, use filter to find entries for selected date, see filterMoods in MoodTable
     showDateInfo: function () {
-
       this.$store.commit('statistics/emptySelectedDateMoods');
       if (!this.userSelectedDate) return;
       let userSelectedDate = this.userSelectedDate.split("-");
@@ -129,13 +128,16 @@ export default {
       let selectedDay = userSelectedDate[2]
 
       this.filteredMoods = this.moods.filter(trackedMood => {
-        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
+        let dateFromDB = new Date(trackedMood.time).toString().split(" ");
         let trackedDay = dateFromDB[2]
-        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
+        let trackedMonth = '' + (new Date(trackedMood.time).getMonth() + 1);
+        if (trackedMonth.length < 2) {
+          trackedMonth = '0' + trackedMonth
+        }
         let trackedYear = dateFromDB[3]
-        return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay))
-      })
 
+        return (trackedYear === selectedYear) && (trackedMonth === selectedMonth) && (trackedDay === selectedDay);
+      })
     },
     dateChosen: function () {
       this.showDateInfo()
@@ -143,17 +145,20 @@ export default {
 
     },
     updateMoodsCurrentMonth: function (val) {
-
       this.moodsCurrentMonth = [];
-      // Selected month:
-      let dateFromDB = val.split("-")
+
+      let dateFromDB = val.split("-");
       let selectedMonth = dateFromDB[1];
       let selectedYear = dateFromDB[0];
       this.moodsCurrentMonth = this.moods.filter(trackedMood => {
-        let dateFromDB = new Date(trackedMood.time).toString().split(" ")
-        let trackedMonth = '0'.concat((new Date(trackedMood.time).getMonth() + 1).toString());
+        let dateFromDB = new Date(trackedMood.time).toString().split(" ");
+        let trackedMonth = '' + (new Date(trackedMood.time).getMonth() + 1);
+        if (trackedMonth.length < 2) {
+          trackedMonth = '0' + trackedMonth
+        }
         let trackedYear = dateFromDB[3]
-        return ((trackedYear === selectedYear) && (trackedMonth === selectedMonth))
+
+        return (trackedYear === selectedYear) && (trackedMonth === selectedMonth);
       })
 //For mood section, selected month:
       this.tenseNervousDateDegree = 0;

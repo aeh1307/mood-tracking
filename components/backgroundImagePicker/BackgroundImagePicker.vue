@@ -33,8 +33,7 @@ export default {
           break;
         case 'pinkBeach':
           this.$store.commit('settings/setBackgroundImagePath', 'pinkBeachBackgroundImage');
-          this.$store.commit('settings/setShowBackgroundImagePicker', false);
-          break;
+          this.$store.commit('settings/setShowBackgroundImagePicker', false);break;
         case 'lakeMountain':
           this.$store.commit('settings/setBackgroundImagePath', 'lakeMountainBackgroundImage');
           this.$store.commit('settings/setShowBackgroundImagePicker', false);
