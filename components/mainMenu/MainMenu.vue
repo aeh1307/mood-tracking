@@ -10,7 +10,7 @@
         <v-icon class="cheerfulHappyEmoji">fas fa-laugh-beam</v-icon>
         <div class="iconCaption">Mood Tracking</div>
       </div>
-      <a href="https://lifekeys.no/" class="contact"><img class="lifekeys" src="@/assets/lifekeysLogo.png"/>
+      <a href="" class="contact"><img class="contactIcon" src="@/assets/messageIcon.png"/>
         <p class="iconCaption">Contact</p></a>
     </div>
   </div>
@@ -105,9 +105,10 @@ export default {
   text-align: center;
 }
 
-.lifekeys {
+.contactIcon {
   height: 45px;
-  width: 32px;
+  width: 45px;
+  display: flex;
   align-self: center;
 }
 
